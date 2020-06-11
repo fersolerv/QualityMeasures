@@ -71,7 +71,6 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
     double val_point, val_norm;
     points.clear();
     norms.clear();
-
     Obj.open("/home/fernando/PHD/Applications/VRMLtoPCD/build/out/Object.txt");
 
     //read txt file that contains the points and normals provided by simox
@@ -87,19 +86,14 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
             point.clear();
             norm.clear();
 
-            for(int i=0; i < 6; i ++) {
-
-                if(i < 3)
-                    Obj >> val_point;
-                else
-                    Obj >> val_norm;
-
+            for(int i = 0; i < 6; i ++) {
+                if(i < 3) Obj >> val_point;
+                else Obj >> val_norm;
                 point.push_back(val_point);
                 norm.push_back(val_norm);
             }
             points.push_back(point);
             norms.push_back(norm);
-
         } while (!Obj.eof());
 
         //Convert the points into PCL format
@@ -119,9 +113,7 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
         }
 
     }
-    else
-        return false;
-
+    else return false;
     return true;
 }
 
@@ -146,23 +138,15 @@ void MVBB::cloud_filter(pcl::PointCloud<pcl::PointXYZ>::Ptr Original,
 void MVBB::getGraspQuality(const char *absPath1, const char *absPath3){ //get the quality of each grasp from the .xml file  and save them into a .txt file
 
     ofstream GraspQuality(absPath3);
-
     double quality;
-
     pugi::xml_document doc;
+    
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(absPath1);
-    if (!result){
-        std::cout << "Parse error: " << result.description()
-                  << ", character pos = " << result.offset<<std::endl;
-    }
-    else{
-        std::cout << "Problem file loaded"<<std::endl;
-    }
-
+    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+    else std::cout << "Problem file loaded"<<std::endl;
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")){
-
         quality = tool.attribute("quality").as_double();
         GraspQuality << quality << endl;
         //cout << quality << endl;
@@ -170,7 +154,7 @@ void MVBB::getGraspQuality(const char *absPath1, const char *absPath3){ //get th
     }
 }
 
-void MVBB::getTransforms(const char *absPath1, const char *absPath2){   //get the matrix transformation of each grasp from the .xml file and save them into a .txt file
+void MVBB::getTransforms(const char *absPath1, const char *absPath2) {   //get the matrix transformation of each grasp from the .xml file and save them into a .txt file
 
     ofstream transform(absPath2);
     double xx, xy, xz, yx, yy, yz, zx, zy, zz, x1, y1, z1, p1, p2, p3, p4;
@@ -178,19 +162,12 @@ void MVBB::getTransforms(const char *absPath1, const char *absPath2){   //get th
     pugi::xml_document doc;
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(absPath1);
-    if (!result){
-        std::cout << "Parse error: " << result.description()
-                  << ", character pos = " << result.offset<<std::endl;
-    }
-    else{
-        std::cout << "Problem file loaded"<<std::endl;
-    }
-
+    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+    else std::cout << "Problem file loaded"<<std::endl;
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")){
 
         pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
-
         xx = node.attribute("c1").as_double();
         xy = node.attribute("c2").as_double();
         xz = node.attribute("c3").as_double();
@@ -239,10 +216,8 @@ void MVBB::getTransforms(const char *absPath1, const char *absPath2){   //get th
 
         //cout << "Transform (" << i << ") " << xx << " " << xy << " " << xz << " " << x1 << " " << yx << " " << yy << " " << yz << " " << y1 << " " << zx << " " << zy << " " << zz << " " << z1
         //     << " " << p1 << " " << p2 << " " << p3 << " " << p4 << endl;
-
         i++;
     }
-
 }
 
 void MVBB::QualitySort(const char *absPath4, const char *absPath5){
@@ -578,6 +553,7 @@ void MVBB::ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
                           pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
                           Eigen::Vector3f &CM) 
                           {
+
     Eigen::Vector4f centroid;
     pcl::compute3DCentroid (*C_Object, centroid);
     CM << centroid[0], centroid[1], centroid[2];
@@ -714,7 +690,7 @@ void MVBB::ModelConstruct(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, double &
     cout << "The area of the whole object is: " << object_area << endl;
 }
 
-void MVBB::ModelConstruct2(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, double &object_area){
+void MVBB::ModelConstruct2(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, double &object_area) {
 
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
@@ -811,12 +787,10 @@ void MVBB::Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration,
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorOut(Points_out, 0, 255, 0); //Points out the box (green)
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorIn(Points_in, 0, 0, 255);  //Points in the box (blue)
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> grasp_cloud (Hand_configuration, 255, 0, 0); //Grasp (red)
-
     BBox_Visualizer.setBackgroundColor(255,255,255);
     BBox_Visualizer.addPointCloud(Points_out, filteredColorOut, "cloud_out");
     BBox_Visualizer.addPointCloud(Points_in, filteredColorIn, "cloud_in");
     BBox_Visualizer.addPointCloud(Hand_configuration, grasp_cloud, "grasp_cloud");
-
     BBox_Visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_out");
     BBox_Visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_in");
     BBox_Visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.2, "grasp_cloud");

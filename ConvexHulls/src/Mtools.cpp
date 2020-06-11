@@ -70,34 +70,23 @@ Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m) {
 }
 
 float Mtools::getAng(const Quaternion &q) {
-
     float n = sqrt(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
-
-    if(n < 1e-10)
+    if(n < 1e-10) 
         return 0.0f;
-
     n = 1.0f / n;
     return (float)(2.0f * acosf(q.w * n));
 }
 
-Eigen::Vector3f Mtools::TPosition(const Eigen::Vector3f &pos, const Eigen::Matrix4f &m){
-
+Eigen::Vector3f Mtools::TPosition(const Eigen::Vector3f &pos, const Eigen::Matrix4f &m) {
     Eigen::Vector4f t(pos.x(), pos.y(), pos.z(), 1);
     t = m * t;
     return t.head(3);
 }
 
 float Mtools::calculateQuality(float GWSOffset, float OWSOffset){
-
     float Quality;
-
-    if(OWSOffset != 0){
-        Quality = GWSOffset / OWSOffset;
-    }
-    else{
-        Quality = GWSOffset;
-    }
-
+    if(OWSOffset != 0) Quality = GWSOffset / OWSOffset;
+    else Quality = GWSOffset;
     return Quality;
 }
 

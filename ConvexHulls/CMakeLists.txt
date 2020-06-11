@@ -26,11 +26,7 @@ endif(PUGI_XML_FOUND)
 
 include_directories(${PUGI_XML_INCLUDE_DIR})
 
-find_package( Coin REQUIRED )
-
-#find_package( Kautham )
-#INCLUDE_DIRECTORIES(SYSTEM ${KAUTHAM_INCLUDE_DIRS})
-                 
+#find_package( Coin REQUIRED )                 
 find_package(Qhull)
 
 find_package(PCL 1.8 REQUIRED)

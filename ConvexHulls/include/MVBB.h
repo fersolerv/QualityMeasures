@@ -43,7 +43,7 @@
 #include <vtkSmartPointer.h>
 #include <vtkRenderer.h>
 #include <pcl/surface/gp3.h>
-#include <pugixml.hpp>
+//#include <pugixml.hpp>
 
 
 class MVBB

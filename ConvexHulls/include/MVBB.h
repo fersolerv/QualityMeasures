@@ -48,8 +48,8 @@
 
 class MVBB
 {
-private:
 
+private:
     std::string GraspCloudPath;
     std::string ObjectCloudPath;
     std::string GraspTransform;
@@ -64,17 +64,34 @@ private:
 
     void QualitySort(const char *absPath4, const char *absPath5);
 
-    void compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, Eigen::Quaternionf &BBox_Rotation,
-                                     Eigen::Vector3f &BBox_Traslation, Eigen::Vector4f &Min, Eigen::Vector4f &Max, Eigen::Matrix4f &Projection);
+    void compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, 
+                      Eigen::Quaternionf &BBox_Rotation,
+                      Eigen::Vector3f &BBox_Traslation, 
+                      Eigen::Vector4f &Min, 
+                      Eigen::Vector4f &Max, 
+                      Eigen::Matrix4f &Projection);
 
-    void ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr &Normals, Eigen::Vector3f &CM);
+    void ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+                        pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
+                        Eigen::Vector3f &CM);
 
-    void Crop_filters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr Normals, Eigen::Vector4f Min, Eigen::Vector4f Max, Eigen::Matrix4f Projection,
-                                pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou);
+    void Crop_filters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+                      pcl::PointCloud<pcl::Normal>::Ptr Normals, 
+                      Eigen::Vector4f Min, 
+                      Eigen::Vector4f Max, 
+                      Eigen::Matrix4f Projection,
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, 
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, 
+                      pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou);
 
-    void Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, Eigen::Vector3f Ctr,
-                            pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, Eigen::Vector4f Min, Eigen::Vector4f Max, Eigen::Quaternionf BBox_Rotation, Eigen::Vector3f BBox_Translation,
-                            bool f_cordinates);
+    void Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
+                   pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
+                   Eigen::Vector3f Ctr,
+                   pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, 
+                   Eigen::Vector4f Min, Eigen::Vector4f Max, 
+                   Eigen::Quaternionf BBox_Rotation, 
+                   Eigen::Vector3f BBox_Translation,
+                   bool f_cordinates);
 
     void ModelConstruct(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, double &object_area);
 
@@ -84,8 +101,11 @@ public:
     MVBB(int argc, char **argv);
     ~MVBB();
 
-    bool compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, pcl::PointCloud<pcl::PointXYZ>::Ptr &Cloud_out, pcl::PointCloud<pcl::Normal>::Ptr &object_normals,
-                                     pcl::PointCloud<pcl::Normal>::Ptr &object_normals_out, Eigen::Vector3f &CM);
+    bool compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr &Cloud_out, 
+                      pcl::PointCloud<pcl::Normal>::Ptr &object_normals,
+                      pcl::PointCloud<pcl::Normal>::Ptr &object_normals_out, 
+                      Eigen::Vector3f &CM);
 
 };
 

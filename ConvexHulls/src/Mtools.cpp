@@ -12,7 +12,7 @@ Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vect
     float crosslen = crossvec.norm();
     Mtools::Quaternion q;
 
-    if(crosslen == 0.0f){
+    if(crosslen == 0.0f) {
         //Parallel vectors
         if(d < 0.0f){
             //Parallel and pointing in oposite direction
@@ -20,50 +20,43 @@ Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vect
 
             Eigen::Vector3f t = fN.cross(Eigen::Vector3f(1.0f,0.0f,0.0f));
             //no->cross with y axis
-            if(t.norm() == 0.0f){
+            if(t.norm() == 0.0f) {
                 t = fN.cross(Eigen::Vector3f(0.0f,1.0f,0.0f));
             }
-
             t.normalize();
             q.x = t[0];
             q.y = t[1];
             q.z = t[2];
             q.w = 0.0f;
-
         }
     }
-    else{
+    else {
         //not parallel
         crossvec.normalize();
         crossvec *= (float)sqrt(0.5f * fabs(1.0f - d));
-
         q.x = crossvec[0];
         q.y = crossvec[1];
         q.z = crossvec[2];
         q.w = (float)sqrt(0.5f * fabs(1.0 + d));
     }
-
     return q;
 }
 
-Eigen::Matrix4f Mtools::quat2eigen4f(const Quaternion q){
-
+Eigen::Matrix4f Mtools::quat2eigen4f(const Quaternion q) {
     return quat2eigen4f(q.x, q.y, q.z, q.w);
 }
 
-Eigen::Matrix4f Mtools::quat2eigen4f(float x, float y, float z, float w){
-
+Eigen::Matrix4f Mtools::quat2eigen4f(float x, float y, float z, float w) {
     Eigen::Matrix4f m;
     m.setIdentity();
     Eigen::Quaternionf q(w, x, y, z);
     Eigen::Matrix3f m3;
     m3 = q.toRotationMatrix();
     m.block(0,0,3,3) = m3;
-
     return m;
 }
 
-Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m){
+Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m) {
 
     Eigen::Matrix3f m3 = m.block(0,0,3,3);
     Eigen::Quaternionf q(m3);
@@ -76,7 +69,7 @@ Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m){
     return qr;
 }
 
-float Mtools::getAng(const Quaternion &q){
+float Mtools::getAng(const Quaternion &q) {
 
     float n = sqrt(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
 

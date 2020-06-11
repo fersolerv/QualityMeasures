@@ -1,29 +1,26 @@
 #include "MVBB.h"
+using namespace std;
 
-MVBB::MVBB(int argc, char **argv){
-
+MVBB::MVBB(int argc, char **argv) {
     std::string Grasp(argv[1]);
     std::string Object(argv[2]);
-
-    GraspCloudPath = "/home/fernando/PHD/Experiments/pcd/Grasps/"+Grasp+".pcd";
-    ObjectCloudPath = "/home/fernando/PHD/Experiments/pcd/Objects/"+Object+".pcd";
-
-    std::cout<<"Loading Object Point Cloud..."<<ObjectCloudPath<<std::endl;
-    std::cout<<"Loading Grasp Point Cloud..."<<GraspCloudPath<<std::endl;
-
+    GraspCloudPath = "/home/fernando/PHD/Experiments/pcd/Grasps/" + Grasp + ".pcd";
+    ObjectCloudPath = "/home/fernando/PHD/Experiments/pcd/Objects/" + Object + ".pcd";
+    cout << "Loading Object Point Cloud..." << ObjectCloudPath << endl;
+    cout << "Loading Grasp Point Cloud..." << GraspCloudPath << endl;
 }
 
-MVBB::~MVBB(){
+MVBB::~MVBB(){}
 
-}
-
-bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, pcl::PointCloud<pcl::PointXYZ>::Ptr &Cloud_out,
-                        pcl::PointCloud<pcl::Normal>::Ptr &object_normals, pcl::PointCloud<pcl::Normal>::Ptr &object_normals_out, Eigen::Vector3f &CM){
+bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &Cloud_out,
+                        pcl::PointCloud<pcl::Normal>::Ptr &object_normals, 
+                        pcl::PointCloud<pcl::Normal>::Ptr &object_normals_out, 
+                        Eigen::Vector3f &CM) {
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr Original(new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_grasp (new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::PointCloud<pcl::PointXYZ>::Ptr Cloud_In (new pcl::PointCloud<pcl::PointXYZ>);
-
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_grasp(new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr Cloud_In(new pcl::PointCloud<pcl::PointXYZ>);
     Eigen::Quaternionf Rotation;
     Eigen::Vector3f Translation;
     Eigen::Vector4f Min, Max;
@@ -37,10 +34,9 @@ bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
     //const char *absPath4 = "/home/fernando/PHD/Experiments/grasps/Box/box200.xml";
     //const char *absPath5 = "/home/fernando/PHD/Experiments/grasps/Box/SortQualities1.txt";
 
-    /////////////////////////////////////////
-    //Implement a function to read the point cloud automatically
+    //TODO: Implement a function to read the point cloud automatically
 
-    //Load the Grasp .pcd file
+    //Load the Grasp point cloud file
     if (pcl::io::loadPCDFile<pcl::PointXYZ> (GraspCloudPath, *cloud_grasp) == -1) {
         PCL_ERROR ("Couldn't read file .pcd \n");
         return false;
@@ -53,11 +49,9 @@ bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
     }
     cout << "Object point cloud file loaded with " << Original->points.size() << " points" << endl;
 
-    /////////////////////////////////
-
-    cloud_filter(Original,Original_filtered);
-    ComputeNormals(Original_filtered,object_normals,CM);
-    compute_BBox(cloud_grasp,Rotation,Translation,Min,Max,Projection);
+    cloud_filter(Original, Original_filtered);
+    ComputeNormals(Original_filtered, object_normals,CM);
+    compute_BBox(cloud_grasp, Rotation, Translation, Min, Max, Projection);
     //getGraspQuality(absPath1, absPath3);
     //getTransforms(absPath1, absPath2);
     //QualitySort(absPath4, absPath5);
@@ -65,7 +59,6 @@ bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
     ModelConstruct(Original_filtered, object_area);
     ModelConstruct2(Cloud_out, object_area);
     Visualize(cloud_grasp,Cloud_out,CM,Cloud_In,Min,Max,Rotation,Translation,false);
-
     return true;
 }
 
@@ -82,7 +75,7 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
     Obj.open("/home/fernando/PHD/Applications/VRMLtoPCD/build/out/Object.txt");
 
     //read txt file that contains the points and normals provided by simox
-    if(Obj.is_open()){
+    if(Obj.is_open()) {
         do
         {
             if (Obj.eof())
@@ -94,7 +87,7 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
             point.clear();
             norm.clear();
 
-            for(int i=0; i < 6; i ++){
+            for(int i=0; i < 6; i ++) {
 
                 if(i < 3)
                     Obj >> val_point;
@@ -113,13 +106,13 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
         C_Object->resize(points.size());
         Normals->resize(norms.size());
 
-        for(size_t j = 0; j < points.size(); j++){
+        for(size_t j = 0; j < points.size(); j++) {
             C_Object->points[j].x = points.at(j).at(0);
             C_Object->points[j].y = points.at(j).at(1);
             C_Object->points[j].z = points.at(j).at(2);
         }
 
-        for(size_t k = 0; k < norms.size(); k++){
+        for(size_t k = 0; k < norms.size(); k++) {
             Normals->points[k].normal[0] = norms.at(k).at(0);
             Normals->points[k].normal[0] = norms.at(k).at(1);
             Normals->points[k].normal[0] = norms.at(k).at(2);
@@ -132,21 +125,21 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::Point
     return true;
 }
 
-void MVBB::cloud_filter(pcl::PointCloud<pcl::PointXYZ>::Ptr Original, pcl::PointCloud<pcl::PointXYZ>::Ptr &Filtered){
+void MVBB::cloud_filter(pcl::PointCloud<pcl::PointXYZ>::Ptr Original, 
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &Filtered)
+                        {
 
-    if (Original->points.size() > 10000){
+    if (Original->points.size() > 10000) {
         pcl::octree::OctreePointCloudSearch<pcl::PointXYZ > octree (128.0f);
         octree.setInputCloud(Original);
         octree.addPointsFromInputCloud();
-        double sampling=2.8;
+        double sampling = 2.8;
         pcl::VoxelGrid<pcl::PointXYZ> voxfilter;
         voxfilter.setInputCloud (Original);
-        voxfilter.setLeafSize (sampling,sampling,sampling);
+        voxfilter.setLeafSize (sampling, sampling, sampling);
         voxfilter.filter(*Filtered);
     }
-    else{
-        Filtered = Original;
-    }
+    else Filtered = Original;
     cout << "Object FILTERED with " << Filtered->points.size() << " points" << endl;
 }
 
@@ -298,8 +291,12 @@ void MVBB::QualitySort(const char *absPath4, const char *absPath5){
         getchar();
 }
 
-void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, Eigen::Quaternionf &BBox_Rotation,
-                        Eigen::Vector3f &BBox_Translation, Eigen::Vector4f &Min, Eigen::Vector4f &Max, Eigen::Matrix4f &Projection){
+void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, 
+                        Eigen::Quaternionf &BBox_Rotation,
+                        Eigen::Vector3f &BBox_Translation, 
+                        Eigen::Vector4f &Min, 
+                        Eigen::Vector4f &Max, 
+                        Eigen::Matrix4f &Projection){
 
     //Define a rotation matrix
     Eigen::Matrix4f transform;
@@ -308,7 +305,7 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
     //////////////////////////////////////////////////////
     transform <<
 
-                 ///Sport Bottle
+///Sport Bottle
 //    0.495063, 0.17581, 0.850884, 27.5527, -0.838295, 0.354105, 0.414573, 15.5333, -0.228416, -0.918532, 0.322684, 39.7708, 0, 0, 0, 1;
 //    -0.452702, 0.891122, 0.0310351, 53.5946, 0.863882, 0.446952, -0.232254, 55.1454, -0.220838, -0.0783311, -0.97216, 186.654, 0, 0, 0, 1;
 //    0.638274, -0.1858, -0.74705, 145.983, -0.567068, -0.769778, -0.293046, 63.2545, -0.520615, 0.610672, -0.596691, 137.062, 0, 0, 0, 1;
@@ -340,7 +337,7 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    -0.809747, 0.147328, -0.567983, 166.576, 0.0482915, 0.981415, 0.18572, -10.2146, 0.584789, 0.122957, -0.801813, 139.679, 0, 0, 0, 1;
 //    -0.804536, 0.40651, 0.432979, 19.3208, 0.417632, -0.131103, 0.899108, -46.4465, 0.422261, 0.904191, -0.064294, 119.924, 0, 0, 0, 1;
 
-    /// Cookie Box
+/// Cookie Box
 //    0.048396, 0.732436, -0.679114, 30.5616, -0.0163503, -0.679239, -0.733735, -9.20028, -0.998694, 0.0466135, -0.0208969, 97.867, 0, 0, 0, 1;
 //    -0.143147, -0.193771, 0.970547, 175.589, -0.169066, 0.97102, 0.16893, 24.916, -0.975154, -0.139905, -0.171759, 80.5098, 0, 0, 0, 1;
 //    0.9626, 0.158102, -0.220013, 101.606, 0.246168, -0.171239, 0.95398, 38.6626, 0.113151, -0.972461, -0.203754, 45.7493, 0, 0, 0, 1;
@@ -372,7 +369,7 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    0.829154, -0.0664927, 0.555052, 163.903, 0.55612, -0.00289725, -0.831097, -12.9705, 0.0568701, 0.997783, 0.0345756, 45.9829, 0, 0, 0, 1;
 //    -0.0308601, 0.0693727, 0.997114, 178.331, 0.0554937, -0.995931, 0.0710079, 61.5119, 0.997982, 0.0575248, 0.0268847, 94.4105, 0, 0, 0, 1;
 
-    ///Detergent Bottle:
+///Detergent Bottle:
 //    -0.894, -0.425113, -0.14157, 0.192867, -0.426368, 0.90426, -0.0228842, -0.0789124, 0.137744, 0.0399023, -0.989664, -0.0334032, 0, 0, 0, 1;                       //1
 //    0.747093, -0.649495, 0.141449, 0.189872, 0.521595, 0.704717, 0.48095, -0.130538, -0.412056, -0.285535, 0.865262, 0.104591, 0, 0, 0, 1;
 //    0.677348, -0.200986, 0.707675, 0.0806172, 0.241324, 0.969431, 0.0443442, -0.0815476, -0.694955, 0.140743, 0.705145, 0.0739862, 0, 0, 0, 1;
@@ -403,7 +400,8 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    -0.598378, -0.344505, -0.723367, 0.128862, -0.677488, 0.699543, 0.227267, -0.00963944, 0.427732, 0.626064, -0.651989, -0.0256536, 0, 0, 0, 1;
 //    -0.740807, -0.59043, -0.32031, 0.170837, 0.629643, -0.776485, -0.0249275, 0.172239, -0.233998, -0.220147, 0.946985, 0.133324, 0, 0, 0, 1;
 //    0.19715, -0.932201, -0.303534, 0.244754, -0.967747, -0.234578, 0.0918618, 0.0858748, -0.156836, 0.275634, -0.948382, 0.000376011, 0, 0, 0, 1;
-    ///Milk Box:
+
+///Milk Box:
 //    0.870887, 0.113059, 0.478301, 31.2875, -0.477561, -0.0353253, 0.877888, -58.1445, 0.116149, -0.99296, 0.0232279, 54.6036, 0, 0, 0, 1;
 //    -0.966166, 0.0123313, -0.257626, 96.1256, -0.251838, -0.260761, 0.931977, -33.5647, -0.0556865, 0.965325, 0.255044, 15.2372, 0, 0, 0, 1;
 //    0.738939, -0.0927634, -0.667356, 192.396, -0.673488, -0.130432, -0.7276, 124.331, -0.0195496, 0.987108, -0.158856, 56.1819, 0, 0, 0, 1;
@@ -434,8 +432,9 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    -0.963935, -0.247965, -0.0966596, 51.0179, 0.264075, -0.845999, -0.463196, 62.291, 0.0330826, -0.472016, 0.880968, 1.52149, 0, 0, 0, 1;
 //    -0.921382, -0.281516, 0.267961, 36.6358, 0.203384, -0.936759, -0.284813, 64.413, 0.331194, -0.207922, 0.920369, -3.7743, 0, 0, 0, 1;
 //    0.181487, -0.983193, -0.0198299, 62.9697, -0.0315476, -0.0259753, 0.999164, -87.5647, -0.982887, -0.18071, -0.0357316, 46.2073, 0, 0, 0, 1;
-    ///Coffee Mug
- //   -0.949314, 0.300834, 0.0911125, 85.9569, -0.0858197, 0.0307915, -0.995835, 52.3854, -0.302386, -0.953179, -0.00341326, 67.3304, 0, 0, 0, 1;
+
+///Coffee Mug
+//   -0.949314, 0.300834, 0.0911125, 85.9569, -0.0858197, 0.0307915, -0.995835, 52.3854, -0.302386, -0.953179, -0.00341326, 67.3304, 0, 0, 0, 1;
 //    0.092143, 0.00889151, -0.995706, 159.886, -0.983362, -0.156402, -0.0923974, 35.5113, -0.156552, 0.987653, -0.00566768, -18.3769, 0, 0, 0, 1;
 //    -0.0675251, -0.621749, -0.780301, 135.132, -0.0932638, -0.774728, 0.625379, -47.4525, -0.993349, 0.115003, -0.00567309, 14.6236, 0, 0, 0, 1;
 //    -0.0299445, -0.625887, 0.779338, 31.5591, -0.0469466, -0.777947, -0.626574, 35.7804, 0.998448, -0.0553497, -0.0060881, 53.661, 0, 0, 0, 1;
@@ -465,7 +464,8 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    0.100368, 0.342481, 0.934149, 38.1066, -0.464354, -0.814239, 0.348411, 22.1091, 0.879944, -0.468744, 0.0773088, 50.3459, 0, 0, 0, 1;
 //    0.178865, -0.511865, -0.840239, 125.525, 0.073651, -0.844649, 0.53023, -28.7834, -0.981113, -0.156724, -0.113379, 76.4989, 0, 0, 0, 1;
 //    0.451159, -0.876499, 0.167942, 41.3897, -0.0635412, -0.219253, -0.973597, 41.8311, 0.890179, 0.428576, -0.154612, 82.8018, 0, 0, 0, 1;
-    ///MilkBottle
+
+///MilkBottle
 //    0.20478, 0.961595, -0.182758, 9.36993, -0.0380663, -0.17875, -0.983158, 28.5627, -0.978067, 0.208288, -6.70552e-08, 1.5695, 0, 0, 0, 1;
 //    -0.957576, -0.269356, -0.102436, -510.308, -0.277522, 0.957709, 0.0759899, -1148.14, 0.077636, 0.101195, -0.991833, 98.5434, 0, 0, 0, 1;
 //    0.946207, -0.287388, 0.148662, 1136.62, -0.147495, -0.792045, -0.592376, 685.668, 0.287989, 0.538584, -0.791827, -167.337, 0, 0, 0, 1;
@@ -496,7 +496,8 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    0.306957, 0.906268, 0.290612, -575.421, 0.88935, -0.381864, 0.251467, 1146.06, 0.338871, 0.181267, -0.923205, 256.824, 0, 0, 0, 1;
 //    0.742158, 0.65901, -0.122099, 103.922, -0.658797, 0.750794, 0.0479038, -1286.55, 0.12324, 0.0448866, 0.991361, -1.1053, 0, 0, 0, 1;
 //    -0.365886, -0.906613, -0.21019, 605.128, 0.288937, -0.32535, 0.900368, 557.446, -0.884671, 0.268701, 0.380995, -964.639, 0, 0, 0, 1;
-    ///BabyBottle
+
+//BabyBottle
 //    -0.0787739, -0.277242, -0.957566, 137.871, -0.423268, -0.860368, 0.283921, -11.9385, -0.902574, 0.427672, -0.049573, -2.61595, 0, 0, 0, 1;
 //    -0.656684, 0.742998, 0.129306, 45.9026, 0.751127, 0.659728, 0.0237894, 42.4251, -0.0676315, 0.112748, -0.991319, 78.846, 0, 0, 0, 1;
 //    0.514425, 0.856545, -0.0411913, 58.4194, -0.011518, -0.0411288, -0.999088, 95.0663, -0.857458, 0.51443, -0.011292, 1.59392, 0, 0, 0, 1;
@@ -527,7 +528,6 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
 //    0.889152, -0.0174973, -0.457278, 97.4742, 0.45492, -0.0744487, 0.887415, -33.1945, -0.0495711, -0.997071, -0.0582363, 25.1397, 0, 0, 0, 1;
 //    -0.768273, -0.63969, -0.0235289, 26.2483, 0.635355, -0.757558, -0.149766, 19.0602, 0.0779795, -0.130011, 0.988441, 58.138, 0, 0, 0, 1;
 //    0.580402, -0.794242, 0.179759, 43.588, -0.135994, 0.123108, 0.983031, -50.1877, -0.802894, -0.594999, -0.03656, 46.6799, 0, 0, 0, 1;
-    /////////////////////////////////////////////////////
 
     Eigen::Matrix4f Tinv;
     Tinv= transform.inverse();
@@ -536,7 +536,7 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
     pcl::PointCloud<pcl::PointXYZ>::Ptr transformed_cloud_grasp (new pcl::PointCloud<pcl::PointXYZ> ());
     pcl::transformPointCloud (*Hand_configuration, *transformed_cloud_grasp, Tinv);
 
-    /// GRASP MVBB
+    ///GRASP MVBB
     //Compute PCA
     Eigen::Vector4f pcaCentroid;
     pcl::compute3DCentroid(*transformed_cloud_grasp, pcaCentroid);
@@ -546,44 +546,41 @@ void MVBB::compute_BBox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration,
     Eigen::Matrix3f eigenVectorsPCA = eigen_solver.eigenvectors();
     eigenVectorsPCA.col(2) = eigenVectorsPCA.col(0).cross(eigenVectorsPCA.col(1));
 
-    //Transform the original grasp cloud to the origin where the principal components correspond to the axes.
+    //Transform the original grasp point cloud to the origin where the principal component correspond to the axes.
     Eigen::Matrix4f projectionTransform(Eigen::Matrix4f::Identity());
     projectionTransform.block<3,3>(0,0) = eigenVectorsPCA.transpose();
     projectionTransform.block<3,1>(0,3) = -1.f * (projectionTransform.block<3,3>(0,0) * pcaCentroid.head<3>());
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPointsProjected (new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPointsProjected(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::transformPointCloud(*transformed_cloud_grasp, *cloudPointsProjected, projectionTransform);
-
     Projection = projectionTransform;
 
     // Get the minimum and maximum points of the transformed cloud.
     pcl::PointXYZ minPoint, maxPoint;
     pcl::getMinMax3D(*cloudPointsProjected, minPoint, maxPoint);
-    const Eigen::Vector3f meanDiagonal = 0.5f*(maxPoint.getVector3fMap() + minPoint.getVector3fMap());
+    const Eigen::Vector3f meanDiagonal = 0.5f * (maxPoint.getVector3fMap() + minPoint.getVector3fMap());
 
     // Final transform
     const Eigen::Quaternionf bboxQuaternion(eigenVectorsPCA);
     const Eigen::Vector3f bboxTransform = eigenVectorsPCA * meanDiagonal + pcaCentroid.head<3>();
-
     BBox_Rotation = bboxQuaternion;
     BBox_Translation = bboxTransform;
-
     Min[0] = minPoint.x;
     Min[1] = minPoint.y;
     Min[2] = minPoint.z;
     Max[0] = maxPoint.x;
     Max[1] = maxPoint.y;
     Max[2] = maxPoint.z;
-
     Hand_configuration->clear();
     Hand_configuration = transformed_cloud_grasp;
 }
 
-void MVBB::ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr &Normals, Eigen::Vector3f &CM){
-
+void MVBB::ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+                          pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
+                          Eigen::Vector3f &CM) 
+                          {
     Eigen::Vector4f centroid;
     pcl::compute3DCentroid (*C_Object, centroid);
     CM << centroid[0], centroid[1], centroid[2];
-
     //Compute normal vectors
     pcl::NormalEstimationOMP<pcl::PointXYZ, pcl::Normal> ne(8);
     ne.setInputCloud(C_Object);
@@ -594,8 +591,15 @@ void MVBB::ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::Poi
     ne.compute(*Normals);
 }
 
-void MVBB::Crop_filters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr Normals, Eigen::Vector4f Min, Eigen::Vector4f Max, Eigen::Matrix4f Projection,
-                        pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou){
+void MVBB::Crop_filters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+                        pcl::PointCloud<pcl::Normal>::Ptr Normals, 
+                        Eigen::Vector4f Min, 
+                        Eigen::Vector4f Max, 
+                        Eigen::Matrix4f Projection,
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, 
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, 
+                        pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou)
+                        {
 
     Eigen::Affine3f boxTransform;
     boxTransform.matrix() = Projection;
@@ -761,7 +765,7 @@ void MVBB::ModelConstruct2(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, doubl
     double x1, x2, x3, y1, y2, y3, z1, z2, z3, a, b, c, q;
     double area = 0;
 
-    for(int i = 0; i < triangles.polygons.size(); i++){
+    for(int i = 0; i < triangles.polygons.size(); i++) {
         index_p1 = triangles.polygons[i].vertices[0];
         index_p2 = triangles.polygons[i].vertices[1];
         index_p3 = triangles.polygons[i].vertices[2];
@@ -783,7 +787,6 @@ void MVBB::ModelConstruct2(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, doubl
         b = sqrt(pow((x1 - x3),2) + pow((y1 - y3),2) + pow((z1 - z3),2));
         c = sqrt(pow((x3 - x2),2) + pow((y3 - y2),2) + pow((z3 - z2),2));
         q = (a + b + c) / 2;
-
         area = area + sqrt(q * (q - a) * (q - b) * (q - c));
     }
     //cout << "The size of polygon is  " << triangles.polygons.size() << endl;
@@ -793,14 +796,20 @@ void MVBB::ModelConstruct2(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, doubl
     cout << "THE QUALITY BASED ON THE AREA OF THE OBJECT IS: " << Qt << endl;
 }
 
-void MVBB::Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out,
-                     Eigen::Vector3f Ctr, pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, Eigen::Vector4f Min,
-                     Eigen::Vector4f Max, Eigen::Quaternionf BBox_Rotation, Eigen::Vector3f BBox_Translation, bool f_coordinates){
+void MVBB::Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
+                     pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out,
+                     Eigen::Vector3f Ctr, 
+                     pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, 
+                     Eigen::Vector4f Min,
+                     Eigen::Vector4f Max, 
+                     Eigen::Quaternionf BBox_Rotation, 
+                     Eigen::Vector3f BBox_Translation, 
+                     bool f_coordinates)
+                     {
 
     pcl::visualization::PCLVisualizer BBox_Visualizer ("3D Viewer");
-
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorOut(Points_out, 0, 255, 0); //Points out the box (green)
-    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorIn(Points_in, 0, 0, 255);   //Points in the box (blue)
+    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorIn(Points_in, 0, 0, 255);  //Points in the box (blue)
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> grasp_cloud (Hand_configuration, 255, 0, 0); //Grasp (red)
 
     BBox_Visualizer.setBackgroundColor(255,255,255);
@@ -823,7 +832,7 @@ void MVBB::Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, pcl
     BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_LINE_WIDTH, 4, "boundingbox");
     BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_OPACITY, 0.2, "boundingbox");
 
-    while(!BBox_Visualizer.wasStopped()){
+    while(!BBox_Visualizer.wasStopped()) {
         BBox_Visualizer.spinOnce();
     }
     BBox_Visualizer.close();

@@ -12,21 +12,20 @@ INCLUDE_DIRECTORIES(SYSTEM ${EIGEN_INCLUDE_DIRS})
 add_definitions(-DEIGEN_USE_NEW_STDVECTOR
                  -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET)
                  
-#find_package( PugiXML )
-#if(PUGI_XML_FOUND)
-#   message( STATUS "PugiXML FOUND, using it")
-#   set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE  )
-#   include_directories( ${PUGI_XML_INCLUDE_DIR})
-#else(PUGI_XML_FOUND)
-#   message(STATUS "PugiXML not found, using internal copy")
-#   add_subdirectory ( pugixml )
-#   include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/pugixml )
-   #set(PUGI_XML_LIBRARIES libpugixml)
-#endif(PUGI_XML_FOUND)
+find_package( PugiXML )
+if(PUGI_XML_FOUND)
+   message( STATUS "PugiXML FOUND, using it")
+   set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE  )
+   include_directories( ${PUGI_XML_INCLUDE_DIR})
+else(PUGI_XML_FOUND)
+   message(STATUS "PugiXML not found, using internal copy")
+   add_subdirectory ( pugixml )
+   include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/pugixml )
+   set(PUGI_XML_LIBRARIES libpugixml)
+endif(PUGI_XML_FOUND)
 
 include_directories(${PUGI_XML_INCLUDE_DIR})
-
-#find_package( Coin REQUIRED )                 
+                 
 find_package(Qhull)
 
 find_package(PCL 1.8 REQUIRED)

@@ -14,10 +14,9 @@ Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vect
 
     if(crosslen == 0.0f) {
         //Parallel vectors
-        if(d < 0.0f){
+        if(d < 0.0f) {
             //Parallel and pointing in oposite direction
             //Crossing with X axis
-
             Eigen::Vector3f t = fN.cross(Eigen::Vector3f(1.0f,0.0f,0.0f));
             //no->cross with y axis
             if(t.norm() == 0.0f) {
@@ -57,7 +56,6 @@ Eigen::Matrix4f Mtools::quat2eigen4f(float x, float y, float z, float w) {
 }
 
 Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m) {
-
     Eigen::Matrix3f m3 = m.block(0,0,3,3);
     Eigen::Quaternionf q(m3);
     Quaternion qr;
@@ -65,7 +63,6 @@ Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m) {
     qr.y = q.y();
     qr.z = q.z();
     qr.w = q.w();
-
     return qr;
 }
 

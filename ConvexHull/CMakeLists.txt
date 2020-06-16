@@ -54,9 +54,9 @@ SET(SRC src/TransferQualityMeasure.cpp
 add_executable(TransferQualityMeasure ${SRC})
 
 
-target_link_libraries(TransferQualityMeasure ${QHULL_LIBRARIES}
-                                             ${KAUTHAM_LIBRARIES}
-                                             ${COIN_LIBRARY}
+target_link_libraries(TransferQualityMeasure #${QHULL_LIBRARIES}
+                                             #${KAUTHAM_LIBRARIES}
+                                             #${COIN_LIBRARY}
                                              ${PUGI_XML_LIBRARIES}
                                              ${PCL_LIBRARIES}
                                              ${PCL_IO_LIBRARIES}

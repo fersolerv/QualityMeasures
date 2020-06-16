@@ -1,0 +1,2027 @@
+<ManipulationObject name='SportBottlePartial5'>
+	<Visualization>
+		<File type='inventor'>../../../Applications/simox/VirtualRobot/data/objects/iv/SportBottlePartial5.wrl</File>
+	</Visualization>
+	<CollisionModel>
+		<File type='inventor'>../../../Applications/simox/VirtualRobot/data/objects/iv/SportBottlePartial5.wrl</File>
+	</CollisionModel>
+	<GraspSet name='Grasp Planner - AHand' RobotType='AHandRight' EndEffector='AHand'>
+		<Grasp name='Grasp 1' quality='0.106159' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.00882266' c2='-0.652922' c3='-0.757374' c4='10.8653'/>
+					<row2 c1='-0.772288' c2='0.476681' c3='-0.419937' c4='57.3232'/>
+					<row3 c1='0.635211' c2='0.588616' c3='-0.500039' c4='74.3159'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 1'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.7'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Index-last.joint' unit='radian' value='1.54'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.98'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.92'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.86'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.88'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 2' quality='0.101913' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.724534' c2='-0.477842' c3='0.496707' c4='-13.0551'/>
+					<row2 c1='-0.201431' c2='0.835998' c3='0.510425' c4='-47.9803'/>
+					<row3 c1='-0.659148' c2='0.269768' c3='-0.701961' c4='185.547'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 2'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.94'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.96'/>
+				<Node name='Index-last.joint' unit='radian' value='0.9'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.7'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.68'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.34'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.34'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 3' quality='0.103514' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.37394' c2='0.260753' c3='-0.890043' c4='65.4839'/>
+					<row2 c1='-0.487726' c2='-0.760965' c3='-0.427849' c4='18.1403'/>
+					<row3 c1='-0.788855' c2='0.594087' c3='-0.15738' c4='81.8877'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 3'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.16'/>
+				<Node name='Index-last.joint' unit='radian' value='1.08'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.36'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.74'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 4' quality='0.260822' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.865371' c2='0.472081' c3='0.168143' c4='50.5814'/>
+					<row2 c1='0.383646' c2='0.839954' c3='-0.383786' c4='123.956'/>
+					<row3 c1='-0.322411' c2='-0.26761' c3='-0.907984' c4='237.287'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 4'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.08'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.26'/>
+				<Node name='Index-last.joint' unit='radian' value='1.6'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.26'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.38'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.38'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.42'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.44'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 5' quality='0.325346' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.836195' c2='-0.356772' c3='0.416523' c4='-37.4147'/>
+					<row2 c1='-0.10824' c2='0.637182' c3='0.763075' c4='-122.729'/>
+					<row3 c1='-0.537644' c2='-0.683164' c3='0.494192' c4='-125.342'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 5'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.1'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.16'/>
+				<Node name='Index-last.joint' unit='radian' value='1.08'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.78'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.8'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.76'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.36'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 6' quality='0.628537' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.540902' c2='0.428586' c3='0.723698' c4='-102.671'/>
+					<row2 c1='0.0533036' c2='0.841236' c3='-0.538034' c4='141.103'/>
+					<row3 c1='-0.839395' c2='0.329599' c3='0.432181' c4='-78.8347'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 6'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.48'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.52'/>
+				<Node name='Index-last.joint' unit='radian' value='0.92'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.08'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.98'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.94'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.02'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.2'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.16'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.78'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 7' quality='0.301162' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.582795' c2='-0.656078' c3='0.479491' c4='-56.3468'/>
+					<row2 c1='0.368236' c2='0.739215' c3='0.563883' c4='-74.343'/>
+					<row3 c1='-0.724398' c2='-0.152063' c3='0.672402' c4='-152.415'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 7'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.04'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.16'/>
+				<Node name='Index-last.joint' unit='radian' value='1.1'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.7'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.88'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.84'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.08'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 8' quality='0.314882' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.565234' c2='0.423276' c3='0.70806' c4='-81.7944'/>
+					<row2 c1='0.719911' c2='-0.165993' c3='0.673924' c4='-127.513'/>
+					<row3 c1='0.402789' c2='0.890665' c3='-0.210896' c4='122.59'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 8'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.34'/>
+				<Node name='Index-last.joint' unit='radian' value='0.5'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.58'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.04'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.66'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 9' quality='0.21371' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.771317' c2='-0.0621325' c3='-0.633411' c4='239.197'/>
+					<row2 c1='0.632842' c2='0.0309688' c3='-0.773662' c4='217.598'/>
+					<row3 c1='0.0676856' c2='-0.997587' c3='0.0154333' c4='-18.6112'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 9'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.6'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.6'/>
+				<Node name='Index-last.joint' unit='radian' value='0.54'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.72'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.74'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.68'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.14'/>
+				<Node name='Thumb-last.joint' unit='radian' value='2.98023e-08'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 10' quality='0.562952' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.502919' c2='-0.78963' c3='0.351507' c4='-25.9865'/>
+					<row2 c1='0.562674' c2='-0.00960527' c3='-0.826623' c4='189.928'/>
+					<row3 c1='0.656103' c2='0.613508' c3='0.439473' c4='-48.71'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 10'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.16'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.22'/>
+				<Node name='Index-last.joint' unit='radian' value='0.74'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.12'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.24'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.22'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.16'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.52'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.54'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 11' quality='0.304102' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.745054' c2='0.667001' c3='0.00181591' c4='65.5786'/>
+					<row2 c1='-0.659337' c2='0.736899' c3='-0.14918' c4='40.2495'/>
+					<row3 c1='-0.100841' c2='0.10995' c3='0.988808' c4='-152.492'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 11'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.08'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.14'/>
+				<Node name='Index-last.joint' unit='radian' value='1.18'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.66'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.16'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.92'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 12' quality='0.370816' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.594102' c2='0.154049' c3='0.789501' c4='-101.731'/>
+					<row2 c1='-0.124233' c2='-0.987285' c3='0.0991557' c4='12.2953'/>
+					<row3 c1='0.794738' c2='-0.0391738' c3='0.605687' c4='-112.466'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 12'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.96'/>
+				<Node name='Index-last.joint' unit='radian' value='0.9'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.1'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.88'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.84'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.32'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.34'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 13' quality='0.601302' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.492652' c2='0.62165' c3='0.608971' c4='-68.1311'/>
+					<row2 c1='-0.551878' c2='-0.317879' c3='0.770962' c4='-158.694'/>
+					<row3 c1='0.672848' c2='-0.715894' c3='0.186471' c4='-40.2545'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 13'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.08'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.16'/>
+				<Node name='Index-last.joint' unit='radian' value='1.1'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.3'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.82'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.78'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.56'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.58'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.2'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.42'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 14' quality='0.0841955' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.907551' c2='0.0451984' c3='-0.417504' c4='122.453'/>
+					<row2 c1='-0.0406624' c2='-0.980061' c3='-0.19449' c4='46.0077'/>
+					<row3 c1='-0.41797' c2='0.193487' c3='-0.887617' c4='335.684'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 14'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.12'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.08'/>
+				<Node name='Index-last.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-last.joint' unit='radian' value='-0.2'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='-0.02'/>
+				<Node name='Ring-distal.joint' unit='radian' value='2.98023e-08'/>
+				<Node name='Ring-last.joint' unit='radian' value='-0.04'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 15' quality='0.364705' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.521006' c2='0.608014' c3='-0.599059' c4='199.23'/>
+					<row2 c1='0.852862' c2='0.342589' c3='-0.394029' c4='136.658'/>
+					<row3 c1='-0.0343442' c2='-0.716207' c3='-0.697043' c4='220.436'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 15'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.4'/>
+				<Node name='Index-last.joint' unit='radian' value='0.34'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.16'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.2'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.16'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.58'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.6'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 16' quality='0.5475' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.512932' c2='0.729109' c3='0.453101' c4='-33.092'/>
+					<row2 c1='-0.697339' c2='0.661723' c3='-0.275393' c4='72.3203'/>
+					<row3 c1='-0.500619' c2='-0.174707' c3='0.847855' c4='-151.699'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 16'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.22'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.34'/>
+				<Node name='Index-last.joint' unit='radian' value='1.26'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.94'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.9'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.3'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.94'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.9'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.46'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 17' quality='0.374248' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.715856' c2='-0.338186' c3='-0.610884' c4='227.131'/>
+					<row2 c1='-0.696881' c2='0.400747' c3='0.594776' c4='-115.521'/>
+					<row3 c1='0.0436647' c2='0.851488' c3='-0.522553' c4='145.247'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 17'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.46'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Index-last.joint' unit='radian' value='0.4'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.44'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.58'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.62'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.3'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.3'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 18' quality='0.294041' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.415321' c2='-0.898096' c3='-0.144682' c4='96.5748'/>
+					<row2 c1='-0.497202' c2='0.0909234' c3='0.862858' c4='-140.572'/>
+					<row3 c1='-0.761774' c2='0.430299' c3='-0.484297' c4='165.042'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 18'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.12'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.5'/>
+				<Node name='Index-last.joint' unit='radian' value='1.4'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.34'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.14'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.06'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.5'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.5'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 19' quality='0.0126858' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.0543905' c2='-0.596481' c3='0.800782' c4='13.8825'/>
+					<row2 c1='-0.52017' c2='0.701481' c3='0.487183' c4='73.7241'/>
+					<row3 c1='-0.852329' c2='-0.390045' c3='-0.348426' c4='7.11699'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 19'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.68'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Index-last.joint' unit='radian' value='0.82'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.36'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.58'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.58'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 20' quality='0.157873' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.0774894' c2='0.265799' c3='0.960909' c4='19.2764'/>
+					<row2 c1='0.974635' c2='0.223162' c3='0.0168672' c4='23.5523'/>
+					<row3 c1='-0.209955' c2='0.937843' c3='-0.276349' c4='107.287'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 20'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.22'/>
+				<Node name='Index-last.joint' unit='radian' value='1.4'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.38'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.3'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.86'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.88'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 21' quality='0.343166' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.422191' c2='0.764407' c3='-0.487274' c4='150.649'/>
+					<row2 c1='-0.89047' c2='0.249049' c3='-0.380839' c4='100.731'/>
+					<row3 c1='-0.169761' c2='0.59469' c3='0.785828' c4='-33.7125'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 21'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.14'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.14'/>
+				<Node name='Index-last.joint' unit='radian' value='-0.14'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.14'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.14'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.14'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.12'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.04'/>
+				<Node name='Thumb-last.joint' unit='radian' value='2.98023e-08'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 22' quality='0.285946' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.743626' c2='0.526069' c3='0.41264' c4='-39.1454'/>
+					<row2 c1='-0.564621' c2='0.16357' c3='0.80898' c4='-144.895'/>
+					<row3 c1='0.358084' c2='-0.834563' c3='0.418665' c4='-18.2726'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 22'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.14'/>
+				<Node name='Index-last.joint' unit='radian' value='1.04'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.02'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.02'/>
+				<Node name='Medium-last.joint' unit='radian' value='-0.02'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.66'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 23' quality='0.393866' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.0735054' c2='0.922495' c3='-0.378945' c4='155.107'/>
+					<row2 c1='0.841733' c2='0.1464' c3='0.519667' c4='-56.5522'/>
+					<row3 c1='0.534867' c2='-0.357168' c3='-0.765733' c4='210.478'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 23'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-2.98023e-08'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.4'/>
+				<Node name='Index-last.joint' unit='radian' value='0.4'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.6'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.4'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.34'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.44'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.44'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 24' quality='0.095477' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.929255' c2='-0.0403729' c3='-0.367226' c4='85.3909'/>
+					<row2 c1='-0.0247489' c2='-0.984975' c3='0.170915' c4='-11.8644'/>
+					<row3 c1='-0.368608' c2='0.167912' c3='0.914294' c4='27.9743'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 24'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.56'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.56'/>
+				<Node name='Index-last.joint' unit='radian' value='0.66'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.36'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.58'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.58'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 25' quality='0.0257922' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.99535' c2='-0.074581' c3='-0.0609555' c4='42.1406'/>
+					<row2 c1='-0.0762607' c2='-0.223595' c3='-0.971694' c4='53.1227'/>
+					<row3 c1='0.0588407' c2='0.971824' c3='-0.228243' c4='75.5401'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 25'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.64'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.66'/>
+				<Node name='Index-last.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.56'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.46'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.66'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 26' quality='0.331614' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.611561' c2='-0.507013' c3='0.607397' c4='-76.2747'/>
+					<row2 c1='0.0159384' c2='0.775432' c3='0.631229' c4='-97.3116'/>
+					<row3 c1='-0.791036' c2='-0.376355' c3='0.482305' c4='-109.717'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 26'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.44'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.92'/>
+				<Node name='Index-last.joint' unit='radian' value='0.86'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.68'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.68'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.88'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 27' quality='0.353197' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.0873424' c2='-0.423247' c3='0.901794' c4='-171.628'/>
+					<row2 c1='0.83872' c2='0.519696' c3='0.16268' c4='-13.2285'/>
+					<row3 c1='-0.537513' c2='0.742144' c3='0.400378' c4='-18.9982'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 27'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.08'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.08'/>
+				<Node name='Index-last.joint' unit='radian' value='0.44'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.02'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.06'/>
+				<Node name='Medium-last.joint' unit='radian' value='2.98023e-08'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.28'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.34'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.6'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.74'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.78'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 28' quality='0.114273' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.398641' c2='0.526861' c3='-0.750669' c4='74.6703'/>
+					<row2 c1='0.895837' c2='-0.39896' c3='0.19572' c4='-21.4074'/>
+					<row3 c1='-0.19637' c2='-0.750498' c3='-0.631024' c4='8.06699'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 28'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.74'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.78'/>
+				<Node name='Index-last.joint' unit='radian' value='0.7'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.26'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.22'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.72'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 29' quality='0.333067' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.172384' c2='0.1665' c3='0.970856' c4='-157.355'/>
+					<row2 c1='-0.0820827' c2='0.984611' c3='-0.154285' c4='62.7882'/>
+					<row3 c1='-0.981604' c2='-0.0530942' c3='0.183398' c4='21.6089'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 29'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.24'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Index-last.joint' unit='radian' value='0.2'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.2'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.12'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.46'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.48'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.6'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.6'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.6'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 30' quality='0.225526' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.299336' c2='-0.151822' c3='-0.941991' c4='286.049'/>
+					<row2 c1='-0.581135' c2='0.754009' c3='-0.306192' c4='120.586'/>
+					<row3 c1='0.756757' c2='0.639078' c3='0.137473' c4='-37.7414'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 30'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.6'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.6'/>
+				<Node name='Index-last.joint' unit='radian' value='0.56'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.7'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.66'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.96'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 31' quality='0.387078' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.325753' c2='-0.826928' c3='0.458339' c4='-52.39'/>
+					<row2 c1='0.475576' c2='0.562303' c3='0.676494' c4='-108.785'/>
+					<row3 c1='-0.817137' c2='-0.00239514' c3='0.576439' c4='-91.8601'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 31'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.86'/>
+				<Node name='Index-last.joint' unit='radian' value='0.8'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.32'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.36'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.98'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.48'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 32' quality='0.30069' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.515748' c2='0.465345' c3='-0.719345' c4='232.611'/>
+					<row2 c1='0.482163' c2='0.851695' c3='0.205267' c4='14.1065'/>
+					<row3 c1='0.708183' c2='-0.240976' c3='-0.663632' c4='126.507'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 32'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.62'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.66'/>
+				<Node name='Index-last.joint' unit='radian' value='1.6'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.12'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.14'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.4'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 33' quality='0.331382' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.0217227' c2='0.0609064' c3='0.997907' c4='-173.022'/>
+					<row2 c1='-0.482038' c2='0.875098' c3='-0.0429177' c4='40.5132'/>
+					<row3 c1='-0.875881' c2='-0.480097' c3='0.0483687' c4='56.8487'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 33'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.2'/>
+				<Node name='Index-last.joint' unit='radian' value='0.16'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.12'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.14'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.08'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.06'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.04'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.6'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.7'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 34' quality='0.459745' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.491103' c2='-0.5601' c3='0.667163' c4='-81.4677'/>
+					<row2 c1='0.857339' c2='0.446383' c3='-0.256343' c4='83.4897'/>
+					<row3 c1='-0.154233' c2='0.697875' c3='0.699416' c4='-159.21'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 34'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.64'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.68'/>
+				<Node name='Index-last.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.72'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.88'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.82'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.04'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.04'/>
+				<Node name='Ring-last.joint' unit='radian' value='1'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.14'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 35' quality='0.260362' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.491312' c2='0.843234' c3='0.218102' c4='30.0144'/>
+					<row2 c1='0.50704' c2='-0.480507' c3='0.715558' c4='-161.026'/>
+					<row3 c1='0.708183' c2='-0.240975' c3='-0.663632' c4='123.507'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 35'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.76'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.76'/>
+				<Node name='Index-last.joint' unit='radian' value='0.7'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.64'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.6'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.02'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.56'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 36' quality='0.097769' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.690315' c2='0.370379' c3='-0.621517' c4='63.5158'/>
+					<row2 c1='0.631204' c2='0.111553' c3='0.767553' c4='2.90964'/>
+					<row3 c1='0.353617' c2='-0.922158' c3='-0.156778' c4='-12.9422'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 36'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.06'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.12'/>
+				<Node name='Index-last.joint' unit='radian' value='1.04'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.3'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.24'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 37' quality='0.386891' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.582154' c2='-0.727166' c3='0.363768' c4='-25.0141'/>
+					<row2 c1='0.471045' c2='0.666293' c3='0.578075' c4='-86.0077'/>
+					<row3 c1='-0.662732' c2='-0.165177' c3='0.730413' c4='-150.717'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 37'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.16'/>
+				<Node name='Index-last.joint' unit='radian' value='1.1'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.5'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.74'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.82'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.12'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.22'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 38' quality='0.508162' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.393786' c2='-0.763047' c3='0.512535' c4='-44.9982'/>
+					<row2 c1='0.919029' c2='-0.337621' c3='0.203461' c4='-26.7285'/>
+					<row3 c1='0.0177927' c2='0.551155' c3='0.834213' c4='-193.781'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 38'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.68'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Index-last.joint' unit='radian' value='0.64'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.74'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.82'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.78'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.88'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.88'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.82'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.06'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.08'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 39' quality='0.375685' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.112159' c2='0.940586' c3='0.320496' c4='23.2142'/>
+					<row2 c1='0.961113' c2='-0.0207761' c3='-0.275371' c4='42.9567'/>
+					<row3 c1='-0.252352' c2='0.338918' c3='-0.90634' c4='207.733'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 39'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.14'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.12'/>
+				<Node name='Index-last.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1.08'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.12'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.18'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.92'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.98'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.9'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.32'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.36'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 40' quality='0.134207' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.395487' c2='0.235329' c3='0.887812' c4='-156.621'/>
+					<row2 c1='-0.776121' c2='-0.431269' c3='0.460047' c4='-19.9538'/>
+					<row3 c1='0.491148' c2='-0.870992' c3='0.0120822' c4='-10.1085'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 40'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.08'/>
+				<Node name='Index-distal.joint' unit='radian' value='1'/>
+				<Node name='Index-last.joint' unit='radian' value='1.24'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.36'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.58'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.6'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 41' quality='0.231547' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.981132' c2='0.0295029' c3='-0.191077' c4='77.2718'/>
+					<row2 c1='0.108674' c2='0.901547' c3='-0.418813' c4='103.164'/>
+					<row3 c1='0.159909' c2='-0.431676' c3='-0.887741' c4='343.386'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 41'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.12'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.1'/>
+				<Node name='Index-last.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-last.joint' unit='radian' value='-0.1'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.04'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.06'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.02'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 42' quality='0.134832' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.887695' c2='-0.375518' c3='0.266428' c4='1.29332'/>
+					<row2 c1='0.334295' c2='0.923551' c3='0.187883' c4='8.63336'/>
+					<row3 c1='-0.316614' c2='-0.0777173' c3='0.945365' c4='-230.012'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 42'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.72'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Index-last.joint' unit='radian' value='0.68'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.86'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.86'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.8'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.08'/>
+				<Node name='Thumb-last.joint' unit='radian' value='-0.06'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 43' quality='0.540513' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.223295' c2='0.588883' c3='0.776761' c4='-102.16'/>
+					<row2 c1='-0.57811' c2='0.721609' c3='-0.380882' c4='105.575'/>
+					<row3 c1='-0.784811' c2='-0.364004' c3='0.50157' c4='-119.384'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 43'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.72'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.74'/>
+				<Node name='Index-last.joint' unit='radian' value='0.66'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.58'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.94'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.86'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.96'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.98'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.92'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.8'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 44' quality='0.437318' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.668115' c2='-0.574608' c3='0.472703' c4='-33.3525'/>
+					<row2 c1='-0.648856' c2='-0.139015' c3='0.748104' c4='-137.189'/>
+					<row3 c1='-0.364154' c2='-0.806536' c3='-0.465716' c4='157.672'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 44'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.28'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.28'/>
+				<Node name='Index-last.joint' unit='radian' value='0.22'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.4'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.36'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.58'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.6'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.52'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.5'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 45' quality='0.311718' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.427586' c2='0.420682' c3='-0.800123' c4='250.117'/>
+					<row2 c1='-0.552694' c2='0.578749' c3='0.599649' c4='-84.358'/>
+					<row3 c1='0.715332' c2='0.698624' c3='-0.0149572' c4='24.0241'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 45'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.94'/>
+				<Node name='Index-last.joint' unit='radian' value='0.86'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.48'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.54'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.74'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.5'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.88'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 46' quality='0.148936' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.33188' c2='0.156477' c3='-0.930253' c4='308.764'/>
+					<row2 c1='-0.900081' c2='0.242617' c3='0.361926' c4='-39.6354'/>
+					<row3 c1='0.282328' c2='0.957419' c3='0.0603222' c4='-11.388'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 46'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.56'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.56'/>
+				<Node name='Index-last.joint' unit='radian' value='0.52'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.58'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.54'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.02'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.06'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 47' quality='9.59545e-08' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.663922' c2='-0.639745' c3='0.387213' c4='-83.1113'/>
+					<row2 c1='0.730958' c2='0.445915' c3='-0.516586' c4='135.363'/>
+					<row3 c1='0.157818' c2='0.626008' c3='0.76368' c4='-29.2171'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 47'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.12'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.16'/>
+				<Node name='Index-last.joint' unit='radian' value='0.1'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.02'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.02'/>
+				<Node name='Medium-last.joint' unit='radian' value='-0.08'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 48' quality='0.200676' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.685417' c2='-0.368714' c3='-0.627896' c4='197.315'/>
+					<row2 c1='-0.188071' c2='-0.922701' c3='0.336529' c4='-41.0529'/>
+					<row3 c1='-0.703443' c2='-0.112573' c3='-0.70178' c4='197.974'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 48'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.08'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Index-last.joint' unit='radian' value='1.6'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.02'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1.38'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.6'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.44'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.48'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 49' quality='0.316488' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.874515' c2='0.297381' c3='0.383129' c4='-34.7828'/>
+					<row2 c1='0.154419' c2='0.578125' c3='-0.801203' c4='197.93'/>
+					<row3 c1='-0.459758' c2='0.759827' c3='0.459657' c4='0.511124'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 49'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.32'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.42'/>
+				<Node name='Index-last.joint' unit='radian' value='0.36'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.1'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.56'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.76'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 50' quality='0.482721' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.662335' c2='-0.669982' c3='0.335315' c4='-7.15259'/>
+					<row2 c1='-0.701583' c2='0.397622' c3='-0.591336' c4='154.751'/>
+					<row3 c1='0.262856' c2='-0.626914' c3='-0.733407' c4='213.437'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 50'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.12'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.5'/>
+				<Node name='Index-last.joint' unit='radian' value='1.44'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.56'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.56'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.84'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.86'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.78'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.54'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.54'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 51' quality='0.399194' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.865359' c2='0.501152' c3='0.000153422' c4='67.8122'/>
+					<row2 c1='-0.129402' c2='-0.22374' c3='0.966021' c4='-215.335'/>
+					<row3 c1='0.484157' c2='0.835935' c3='0.258466' c4='15.6823'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 51'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.22'/>
+				<Node name='Index-last.joint' unit='radian' value='0.24'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.42'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.48'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Ring-distal.joint' unit='radian' value='2.98023e-08'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.6'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.66'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.7'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 52' quality='0.333202' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.862776' c2='-0.235447' c3='0.447417' c4='-30.1642'/>
+					<row2 c1='0.226006' c2='0.971213' c3='0.0752695' c4='18.9821'/>
+					<row3 c1='-0.45226' c2='0.0361783' c3='0.891152' c4='-215.518'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 52'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.72'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Index-last.joint' unit='radian' value='0.68'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.82'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.84'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.8'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.04'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.08'/>
+				<Node name='Ring-last.joint' unit='radian' value='1'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.16'/>
+				<Node name='Thumb-last.joint' unit='radian' value='-0.16'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 53' quality='0.283993' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.757179' c2='-0.648335' c3='0.0796366' c4='45.767'/>
+					<row2 c1='0.652889' c2='0.754971' c3='-0.0612736' c4='33.1333'/>
+					<row3 c1='-0.0203976' c2='0.098389' c3='0.994939' c4='-231.582'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 53'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.64'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.66'/>
+				<Node name='Index-last.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.78'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.78'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.72'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.88'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.9'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.86'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.06'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.08'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 54' quality='0.293999' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.305646' c2='0.870993' c3='0.384642' c4='-17.0279'/>
+					<row2 c1='-0.00107926' c2='-0.404291' c3='0.914629' c4='-187.936'/>
+					<row3 c1='0.952146' c2='0.279138' c3='0.12451' c4='56.9954'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 54'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.06'/>
+				<Node name='Index-distal.joint' unit='radian' value='-0.04'/>
+				<Node name='Index-last.joint' unit='radian' value='1'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.12'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.76'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.7'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.72'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 55' quality='0.122271' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.895661' c2='0.201978' c3='0.39623' c4='28.9698'/>
+					<row2 c1='-0.394934' c2='-0.0484597' c3='0.91743' c4='7.00173'/>
+					<row3 c1='0.204502' c2='-0.978191' c3='0.0363643' c4='12.7246'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 55'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Index-last.joint' unit='radian' value='1.38'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.1'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.96'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.92'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 56' quality='0.258759' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.484831' c2='-0.719839' c3='-0.49676' c4='165.361'/>
+					<row2 c1='-0.639594' c2='0.679211' c3='-0.359988' c4='147.186'/>
+					<row3 c1='0.596538' c2='0.143191' c3='-0.789707' c4='245.08'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 56'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Index-last.joint' unit='radian' value='0.4'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.24'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.2'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.68'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.7'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 57' quality='0.191206' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.966242' c2='0.190584' c3='-0.173359' c4='110.861'/>
+					<row2 c1='0.238839' c2='0.914923' c3='-0.325379' c4='141.576'/>
+					<row3 c1='0.0965983' c2='-0.3558' c3='-0.929556' c4='172.175'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 57'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.62'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.4'/>
+				<Node name='Index-last.joint' unit='radian' value='1.34'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.94'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.96'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.88'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='2.98023e-08'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.06'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 58' quality='0.189846' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.760555' c2='-0.236022' c3='0.604854' c4='-82.6349'/>
+					<row2 c1='-0.580644' c2='-0.66411' c3='0.470968' c4='-72.7731'/>
+					<row3 c1='0.290531' c2='-0.709402' c3='-0.642137' c4='197.559'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 58'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.22'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Index-last.joint' unit='radian' value='0.18'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.3'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.3'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.26'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.54'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.56'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 59' quality='0.301576' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.0164324' c2='0.760935' c3='0.64862' c4='-49.7003'/>
+					<row2 c1='0.823689' c2='0.357436' c3='-0.440198' c4='99.8095'/>
+					<row3 c1='-0.566803' c2='0.541495' c3='-0.620901' c4='172.041'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 59'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.62'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.66'/>
+				<Node name='Index-last.joint' unit='radian' value='0.58'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.84'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.88'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.86'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.54'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.54'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.5'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.38'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.42'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 60' quality='0.599128' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.840231' c2='0.119599' c3='0.528876' c4='-58.1353'/>
+					<row2 c1='0.315164' c2='0.685974' c3='-0.655829' c4='154.512'/>
+					<row3 c1='-0.441231' c2='0.71773' c3='0.538682' c4='-111.477'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 60'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.58'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Index-last.joint' unit='radian' value='0.94'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.22'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.92'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.82'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.04'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.98'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.1'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.06'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 61' quality='0.501793' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.456007' c2='0.0804351' c3='0.886333' c4='-139.622'/>
+					<row2 c1='-0.889538' c2='-0.072439' c3='-0.451081' c4='116.219'/>
+					<row3 c1='0.0279223' c2='-0.994124' c3='0.104583' c4='9.72874'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 61'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.28'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.3'/>
+				<Node name='Index-last.joint' unit='radian' value='0.3'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.12'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.6'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.18'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.14'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.08'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.52'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.56'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 62' quality='0.26844' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.392934' c2='0.179473' c3='-0.901883' c4='249.271'/>
+					<row2 c1='0.821102' c2='0.373074' c3='0.431981' c4='-58.292'/>
+					<row3 c1='0.413998' c2='-0.910277' c3='-0.000772297' c4='51.6976'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 62'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='2.98023e-08'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Index-last.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.58'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.56'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.02'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 63' quality='0.297466' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.145188' c2='-0.820863' c3='0.552362' c4='-72.6146'/>
+					<row2 c1='0.988278' c2='0.146946' c3='-0.041392' c4='51.4722'/>
+					<row3 c1='-0.0471904' c2='0.551897' c3='0.832576' c4='-144.131'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 63'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.4'/>
+				<Node name='Index-last.joint' unit='radian' value='1.5'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.08'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.16'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.6'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.48'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 64' quality='0.460254' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.0505043' c2='-0.676345' c3='0.734851' c4='-107.323'/>
+					<row2 c1='-0.358499' c2='0.69903' c3='0.618737' c4='-137.471'/>
+					<row3 c1='-0.932163' c2='-0.232194' c3='-0.277773' c4='113.586'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 64'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.12'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Index-last.joint' unit='radian' value='0.64'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.32'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.34'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.26'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.4'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.38'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.56'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.58'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 65' quality='0.393671' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.393148' c2='0.0758559' c3='-0.916341' c4='305.939'/>
+					<row2 c1='-0.914468' c2='0.0715998' c3='0.398272' c4='-56.9649'/>
+					<row3 c1='0.0958211' c2='0.994545' c3='0.0412185' c4='-16.544'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 65'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.6'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Index-last.joint' unit='radian' value='0.56'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.64'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.56'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.8'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.8'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.74'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='-0.14'/>
+				<Node name='Thumb-last.joint' unit='radian' value='-0.12'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 66' quality='0.370532' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.00555459' c2='-0.290656' c3='0.956811' c4='-160.63'/>
+					<row2 c1='-0.0956456' c2='0.952594' c3='0.288819' c4='-30.7578'/>
+					<row3 c1='-0.9954' c2='-0.0899105' c3='-0.0330912' c4='76.0008'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 66'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.2'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.22'/>
+				<Node name='Index-last.joint' unit='radian' value='0.18'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.22'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.24'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.18'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.58'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.6'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.6'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.66'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.7'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 67' quality='0.41' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.906226' c2='0.321031' c3='-0.275125' c4='128.875'/>
+					<row2 c1='-0.379' c2='0.328417' c3='-0.86516' c4='227.316'/>
+					<row3 c1='-0.187387' c2='0.888303' c3='0.419291' c4='-25.8548'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 67'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.06'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Index-last.joint' unit='radian' value='0.38'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.26'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.48'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.5'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.44'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.48'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 68' quality='0.39171' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.210571' c2='-0.647192' c3='0.732667' c4='-112.223'/>
+					<row2 c1='0.472274' c2='0.723557' c3='0.503411' c4='-78.4607'/>
+					<row3 c1='-0.855931' c2='0.240016' c3='0.458012' c4='-87.5743'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 68'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.14'/>
+				<Node name='Index-distal.joint' unit='radian' value='1'/>
+				<Node name='Index-last.joint' unit='radian' value='0.96'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.44'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.32'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.06'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.06'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 69' quality='0.325381' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.215228' c2='-0.785681' c3='-0.579985' c4='184.5'/>
+					<row2 c1='0.757675' c2='0.509045' c3='-0.408413' c4='64.8084'/>
+					<row3 c1='0.616121' c2='-0.351539' c3='0.704852' c4='-92.8398'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 69'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='0.42'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.46'/>
+				<Node name='Index-last.joint' unit='radian' value='0.72'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.62'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.54'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='-0.12'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.72'/>
+				<Node name='Ring-last.joint' unit='radian' value='0.64'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 70' quality='0.115406' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.700622' c2='0.163923' c3='-0.694448' c4='67.027'/>
+					<row2 c1='0.697227' c2='0.364155' c3='-0.617467' c4='48.328'/>
+					<row3 c1='0.15167' c2='-0.916799' c3='-0.369427' c4='19.9675'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 70'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.08'/>
+				<Node name='Index-last.joint' unit='radian' value='1'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.14'/>
+				<Node name='Medium-distal.joint' unit='radian' value='1'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.92'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 71' quality='0.362058' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='0.358354' c2='-0.900657' c3='0.245763' c4='6.07892'/>
+					<row2 c1='0.888623' c2='0.409776' c3='0.205995' c4='2.52158'/>
+					<row3 c1='-0.286239' c2='0.144571' c3='0.947189' c4='-187.452'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 71'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.16'/>
+				<Node name='Index-distal.joint' unit='radian' value='1.1'/>
+				<Node name='Index-last.joint' unit='radian' value='1.04'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='0.46'/>
+				<Node name='Medium-distal.joint' unit='radian' value='0.8'/>
+				<Node name='Medium-last.joint' unit='radian' value='0.72'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-distal.joint' unit='radian' value='1.42'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.36'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='0.26'/>
+				<Node name='Thumb-last.joint' unit='radian' value='0.32'/>
+			</Configuration>
+		</Grasp>
+		<Grasp name='Grasp 72' quality='0.162814' Creation='Simox - GraspStudio - GraspWrenchSpace' Preshape='Grasp Preshape'>
+			<Transform>
+				<Matrix4x4>
+					<row1 c1='-0.196414' c2='-0.909954' c3='0.365245' c4='-25.8445'/>
+					<row2 c1='0.893484' c2='-0.319528' c3='-0.315578' c4='69.7177'/>
+					<row3 c1='0.403867' c2='0.264357' c3='0.87579' c4='-131.023'/>
+					<row4 c1='0' c2='0' c3='0' c4='1'/>
+				</Matrix4x4>
+			</Transform>
+			<Configuration name='Grasp 72'>
+				<Node name='Index-base.joint' unit='radian' value='0'/>
+				<Node name='Index-cproximal.joint' unit='radian' value='-0.06'/>
+				<Node name='Index-distal.joint' unit='radian' value='0.06'/>
+				<Node name='Index-last.joint' unit='radian' value='1.46'/>
+				<Node name='Medium-base.joint' unit='radian' value='0'/>
+				<Node name='Medium-cproximal.joint' unit='radian' value='-0.18'/>
+				<Node name='Medium-distal.joint' unit='radian' value='-0.06'/>
+				<Node name='Medium-last.joint' unit='radian' value='1.52'/>
+				<Node name='Ring-base.joint' unit='radian' value='0'/>
+				<Node name='Ring-cproximal.joint' unit='radian' value='0.04'/>
+				<Node name='Ring-distal.joint' unit='radian' value='0.04'/>
+				<Node name='Ring-last.joint' unit='radian' value='1.6'/>
+				<Node name='Thumb-base.joint' unit='radian' value='1.396'/>
+				<Node name='Thumb-cproximal.joint' unit='radian' value='0.029'/>
+				<Node name='Thumb-distal.joint' unit='radian' value='1.18'/>
+				<Node name='Thumb-last.joint' unit='radian' value='1.2'/>
+			</Configuration>
+		</Grasp>
+	</GraspSet>
+
+</ManipulationObject>

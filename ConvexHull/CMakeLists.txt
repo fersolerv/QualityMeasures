@@ -26,11 +26,11 @@ endif(PUGI_XML_FOUND)
 
 include_directories(${PUGI_XML_INCLUDE_DIR})
                  
-#find_package(Qhull)
+find_package(Qhull)
 
 find_package(PCL 1.8 REQUIRED)
 if (NOT PCL_SHARED_LIB OR WIN32)
-#set(QHULL_USE_STATIC ON)
+set(QHULL_USE_STATIC ON)
 endif(NOT PCL_SHARED_LIB OR WIN32)
 
 INCLUDE_DIRECTORIES( ${CMAKE_SOURCE_DIR}
@@ -54,9 +54,9 @@ SET(SRC src/TransferQualityMeasure.cpp
 add_executable(TransferQualityMeasure ${SRC})
 
 
-target_link_libraries(TransferQualityMeasure #${QHULL_LIBRARIES}
+target_link_libraries(TransferQualityMeasure ${QHULL_LIBRARIES}
                                              #${KAUTHAM_LIBRARIES}
-                                             #${COIN_LIBRARY}
+                                             ${COIN_LIBRARY}
                                              ${PUGI_XML_LIBRARIES}
                                              ${PCL_LIBRARIES}
                                              ${PCL_IO_LIBRARIES}

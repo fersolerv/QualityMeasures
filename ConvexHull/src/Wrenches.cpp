@@ -4,7 +4,11 @@ wrench::wrench(){}
 
 wrench::~wrench(){}
 
-bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object, pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object2, pcl::PointCloud<pcl::Normal>::Ptr Normals, pcl::PointCloud<pcl::Normal>::Ptr Normals2, Eigen::Vector3f CM){
+bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object, 
+                                  pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object2, 
+                                  pcl::PointCloud<pcl::Normal>::Ptr Normals, 
+                                  pcl::PointCloud<pcl::Normal>::Ptr Normals2, 
+                                  Eigen::Vector3f CM){
 
     // Object Wrench Space (OWS)
     boost::posix_time::ptime totalst, totalend;

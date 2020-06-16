@@ -7,6 +7,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules/" ${CMAKE_MODULE_PATH})
 
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
+set(CMAKE_CXX_STANDARD 14)
+
 find_package(Eigen REQUIRED)
 INCLUDE_DIRECTORIES(SYSTEM ${EIGEN_INCLUDE_DIRS})
 add_definitions(-DEIGEN_USE_NEW_STDVECTOR
@@ -42,7 +44,7 @@ add_definitions(${PCL_DEFINITIONS})
 
 message(STATUS "PCL_LIBRARY_DIRS(${PCL_LABRARY_DIRS})")
 
-SET(SRC src/TransferQualityMeasure.cpp 
+SET(SRC src/main.cpp 
         src/ContactConeGenerator.cpp 
         src/ConvexHull.cpp
         src/Mtools.cpp

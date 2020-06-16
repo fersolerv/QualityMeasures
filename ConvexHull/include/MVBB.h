@@ -108,15 +108,14 @@ public:
     MVBB(int argc, char **argv);
     ~MVBB();
 
-    bool compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
+    bool compute_bbox(string graspPointCloudPath,
+                      string objectPointCloudPath,
+                      pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
                       pcl::PointCloud<pcl::PointXYZ>::Ptr &Cloud_out, 
                       pcl::PointCloud<pcl::Normal>::Ptr &object_normals,
                       pcl::PointCloud<pcl::Normal>::Ptr &object_normals_out, 
                       Eigen::Vector3f &CM);
 
 };
-
-
-
 #endif
 

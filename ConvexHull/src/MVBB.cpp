@@ -2,17 +2,19 @@
 using namespace std;
 
 MVBB::MVBB(int argc, char **argv) {
-    std::string Grasp(argv[1]);
-    std::string Object(argv[2]);
-    GraspCloudPath = "/home/fernando/PHD/Experiments/pcd/Grasps/" + Grasp + ".pcd";
-    ObjectCloudPath = "/home/fernando/PHD/Experiments/pcd/Objects/" + Object + ".pcd";
-    cout << "Loading Object Point Cloud..." << ObjectCloudPath << endl;
-    cout << "Loading Grasp Point Cloud..." << GraspCloudPath << endl;
+    // std::string Grasp(argv[1]);
+    // std::string Object(argv[2]);
+    // GraspCloudPath = "/home/fernando/PHD/Experiments/pcd/Grasps/" + Grasp + ".pcd";
+    // ObjectCloudPath = "/home/fernando/PHD/Experiments/pcd/Objects/" + Object + ".pcd";
+    // cout << "Loading Object Point Cloud..." << ObjectCloudPath << endl;
+    // cout << "Loading Grasp Point Cloud..." << GraspCloudPath << endl;
 }
 
 MVBB::~MVBB(){}
 
-bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
+bool MVBB::compute_bbox(std::string GraspCloudPath,
+                        std::string ObjectCloudPath,
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered, 
                         pcl::PointCloud<pcl::PointXYZ>::Ptr &Cloud_out,
                         pcl::PointCloud<pcl::Normal>::Ptr &object_normals, 
                         pcl::PointCloud<pcl::Normal>::Ptr &object_normals_out, 
@@ -62,7 +64,8 @@ bool MVBB::compute_bbox(pcl::PointCloud<pcl::PointXYZ>::Ptr &Original_filtered,
     return true;
 }
 
-bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &Normals) {
+bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, 
+                       pcl::PointCloud<pcl::Normal>::Ptr &Normals) {
     std::fstream Obj;
     std::vector< std::vector <double> > points;
     std::vector< std::vector <double> > norms;
@@ -570,7 +573,7 @@ void MVBB::Crop_filters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
                         pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, 
                         pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, 
                         pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou)
-                        {
+{
 
     Eigen::Affine3f boxTransform;
     boxTransform.matrix() = Projection;

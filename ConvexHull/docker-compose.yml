@@ -1,0 +1,10 @@
+version: "3"
+services:
+  quality_measures:
+    image: spedenaave/dpg
+    volumes: 
+      - ./:/opt/app
+    ports:
+      - 3000:3000
+    tty: true
+  

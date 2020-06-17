@@ -54,6 +54,9 @@ private:
     std::string ObjectCloudPath;
     std::string GraspTransform;
 
+    bool loadPointCloud(string path, 
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud);
+
     bool read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, 
                      pcl::PointCloud<pcl::Normal>::Ptr &Normals);
 
@@ -76,11 +79,11 @@ private:
                       Eigen::Vector4f &Max, 
                       Eigen::Matrix4f &Projection);
 
-    void ComputeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+    void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                         pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
                         Eigen::Vector3f &CM);
 
-    void Crop_filters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+    void cropFilters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                       pcl::PointCloud<pcl::Normal>::Ptr Normals, 
                       Eigen::Vector4f Min, 
                       Eigen::Vector4f Max, 
@@ -89,7 +92,7 @@ private:
                       pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, 
                       pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou);
 
-    void Visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
+    void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
                    pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
                    Eigen::Vector3f Ctr,
                    pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, 
@@ -105,7 +108,7 @@ private:
                          double &object_area);
 
 public:
-    MVBB(int argc, char **argv);
+    MVBB();
     ~MVBB();
 
     bool compute_bbox(string graspPointCloudPath,

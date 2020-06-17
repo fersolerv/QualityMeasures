@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ae007/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ae007.dir/build.make CMakeFiles/cmTC_ae007.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_8efdf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8efdf.dir/build.make CMakeFiles/cmTC_8efdf.dir/build
 make[1]: Entering directory '/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ae007.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_ae007.dir/CheckSymbolExists.c.o   -c /home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_ae007
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ae007.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_ae007.dir/CheckSymbolExists.c.o  -o cmTC_ae007 
-CMakeFiles/cmTC_ae007.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_8efdf.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_8efdf.dir/CheckSymbolExists.c.o   -c /home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_8efdf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8efdf.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_8efdf.dir/CheckSymbolExists.c.o  -o cmTC_8efdf 
+CMakeFiles/cmTC_8efdf.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_ae007.dir/build.make:97: recipe for target 'cmTC_ae007' failed
-make[1]: *** [cmTC_ae007] Error 1
+CMakeFiles/cmTC_8efdf.dir/build.make:97: recipe for target 'cmTC_8efdf' failed
+make[1]: *** [cmTC_8efdf] Error 1
 make[1]: Leaving directory '/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_ae007/fast' failed
-make: *** [cmTC_ae007/fast] Error 2
+Makefile:126: recipe for target 'cmTC_8efdf/fast' failed
+make: *** [cmTC_8efdf/fast] Error 2
 
 File /home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_7046e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_7046e.dir/build.make CMakeFiles/cmTC_7046e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_7931d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7931d.dir/build.make CMakeFiles/cmTC_7931d.dir/build
 make[1]: Entering directory '/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_7046e.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7046e.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_7046e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7046e.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_7046e.dir/CheckFunctionExists.c.o  -o cmTC_7046e -lpthreads 
+Building C object CMakeFiles/cmTC_7931d.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_7931d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7931d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7931d.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_7931d.dir/CheckFunctionExists.c.o  -o cmTC_7931d -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_7046e.dir/build.make:97: recipe for target 'cmTC_7046e' failed
-make[1]: *** [cmTC_7046e] Error 1
+CMakeFiles/cmTC_7931d.dir/build.make:97: recipe for target 'cmTC_7931d' failed
+make[1]: *** [cmTC_7931d] Error 1
 make[1]: Leaving directory '/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_7046e/fast' failed
-make: *** [cmTC_7046e/fast] Error 2
+Makefile:126: recipe for target 'cmTC_7931d/fast' failed
+make: *** [cmTC_7931d/fast] Error 2
 
 

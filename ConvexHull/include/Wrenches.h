@@ -40,7 +40,11 @@ public:
     ~wrench();
 
     float pquality;
-    bool computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr Original, pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object2, pcl::PointCloud<pcl::Normal>::Ptr Normals, pcl::PointCloud<pcl::Normal>::Ptr Normals2, Eigen::Vector3f CM);
+    bool computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr Original, 
+                              pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object2, 
+                              pcl::PointCloud<pcl::Normal>::Ptr Normals, 
+                              pcl::PointCloud<pcl::Normal>::Ptr Normals2, 
+                              Eigen::Vector3f CM);
 };
 
 

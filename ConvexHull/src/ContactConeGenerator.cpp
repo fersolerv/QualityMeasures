@@ -1,6 +1,6 @@
 #include "ContactConeGenerator.h"
 
-CCone::CCone(float uForce, float fCoef, int cSides){
+CCone::CCone(float uForce, float fCoef, int cSides) {
 
     //Generation of generic friction cones
     this->unitforce = uForce;
@@ -10,7 +10,7 @@ CCone::CCone(float uForce, float fCoef, int cSides){
     this->frictionConeRaid = unitforce * sin(frictionAngle);
     this->frictionConeHeigh = unitforce * cos(frictionAngle);
 
-    for(int i = 0; i < conesides; i++){
+    for(int i = 0; i < conesides; i++) {
         Eigen::Vector3f p;
         p(0) = unitforce * (float)(cos(frictionAngle) * cos(i * 2.0 * M_PI / conesides));
         p(1) = unitforce * (float)(cos(frictionAngle) * sin(i * 2.0 * M_PI / conesides));

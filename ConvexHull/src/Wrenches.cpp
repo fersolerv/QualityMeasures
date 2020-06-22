@@ -8,8 +8,7 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
                                   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object2, 
                                   pcl::PointCloud<pcl::Normal>::Ptr Normals, 
                                   pcl::PointCloud<pcl::Normal>::Ptr Normals2, 
-                                  Eigen::Vector3f CM)
-                                  {
+                                  Eigen::Vector3f CM) {
 
     // Object Wrench Space (OWS)
     boost::posix_time::ptime totalst, totalend;
@@ -42,16 +41,12 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     }
 
    //Compute friction cones for every point
-    for(int i = 0; i < points.size(); i++){
+    for(int i = 0; i < points.size(); i++)
        cone->frictionCones(points.at(i), fcones, i);
-    }
-
     chull->Cwrenches(fcones); //Compute wrenches
-
 //    totalst = boost::posix_time::second_clock::local_time();
     chull->CreateConvexHull();  //Compute the convex hull of the wrench
 //    totalend = boost::posix_time::second_clock::local_time();
-
 //    boost::posix_time::time_duration msdiff = totalend-totalst;
 //    std::cout << "ConvexHull Time: " << msdiff.total_seconds() << std::endl;
 //    std::cout<<"ConvexHUll computation finshed"<<std::endl;
@@ -65,7 +60,7 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     cout << "Full object quality is: " << tquality << endl;
     tquality = 0.876;
 
-    // Object Wrench Space (OWS) ///////////////////////////////////////////////////////////////////////
+    // Object Wrench Space (OWS)
     boost::posix_time::ptime totalst2, totalend2;
     std::vector <Mtools::ContactPoint> points2;
     points2.clear();
@@ -99,31 +94,23 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     for(int i = 0; i < points2.size(); i++){
         cone2->frictionCones(points2.at(i), fcones2, i);
     }
-
     chull2->Cwrenches(fcones2); //Compute wrenches
-
     //totalst2 = boost::posix_time::second_clock::local_time();
     chull2->CreateConvexHull();  //Compute the convex hull of the wrench
     //totalend2 = boost::posix_time::second_clock::local_time();
-
     //boost::posix_time::time_duration msdiff2 = totalend2-totalst2;
     //std::cout << "ConvexHull Time: " << msdiff.total_seconds() << std::endl;
     //std::cout<<"ConvexHUll computation finshed"<<std::endl;
-
     if(chull2->isForceClosure()) 
         std::cout << "Force Closure" << std::endl;
     else 
         std::cout << "No force closure" << std::endl;
-
     pquality = chull2->Quality;
     cout << "Potential quality is: " << pquality << endl;
-
     float LostQualityOWS = (tquality - pquality) / tquality;
-    cout << "Quality lost  based on OWS is: " << LostQualityOWS << endl;
-
+    cout << "Quality lost based on OWS is: " << LostQualityOWS << endl;
     float QualityOWS = 1 - ((tquality - pquality) / tquality);
     cout << "THE QUALITY BASED ON OWS IS: " << QualityOWS << endl;
-
 }
 
 

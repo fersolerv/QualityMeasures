@@ -67,6 +67,12 @@ string
 -
 fstream
 -
+sstream
+-
+limits
+-
+locale
+-
 algorithm
 -
 iterator
@@ -120,12 +126,6 @@ pcl/filters/crop_box.h
 pcl/filters/passthrough.h
 -
 pcl/filters/radius_outlier_removal.h
--
-pcl/filters/conditional_removal.h
--
-pcl/features/normal_3d_omp.h
--
-pcl/surface/mls.h
 -
 pcl/surface/poisson.h
 -
@@ -1562,10 +1562,6 @@ Eigen/Eigenvalues
 pcl/common/impl/eigen.hpp
 -
 
-/usr/include/pcl-1.8/pcl/common/geometry.h
-Eigen/Core
--
-
 /usr/include/pcl-1.8/pcl/common/impl/accumulators.hpp
 map
 -
@@ -1804,14 +1800,6 @@ boost/function.hpp
 boost/optional.hpp
 -
 
-/usr/include/pcl-1.8/pcl/filters/conditional_removal.h
-pcl/common/eigen.h
--
-pcl/filters/filter.h
--
-pcl/filters/impl/conditional_removal.hpp
--
-
 /usr/include/pcl-1.8/pcl/filters/crop_box.h
 pcl/point_types.h
 -
@@ -1844,14 +1832,6 @@ pcl/filters/impl/filter.hpp
 pcl/filters/filter.h
 -
 pcl/filters/impl/filter_indices.hpp
--
-
-/usr/include/pcl-1.8/pcl/filters/impl/conditional_removal.hpp
-pcl/common/io.h
--
-pcl/common/copy_point.h
--
-pcl/filters/conditional_removal.h
 -
 
 /usr/include/pcl-1.8/pcl/filters/impl/crop_box.hpp
@@ -2952,10 +2932,6 @@ boost/dynamic_bitset/dynamic_bitset.hpp
 boost/shared_ptr.hpp
 -
 
-/usr/include/pcl-1.8/pcl/surface/eigen.h
-Eigen/SVD
--
-
 /usr/include/pcl-1.8/pcl/surface/gp3.h
 pcl/surface/reconstruction.h
 -
@@ -2980,24 +2956,6 @@ pcl/surface/impl/gp3.hpp
 pcl/surface/gp3.h
 -
 pcl/kdtree/impl/kdtree_flann.hpp
--
-
-/usr/include/pcl-1.8/pcl/surface/impl/mls.hpp
-pcl/point_traits.h
--
-pcl/surface/mls.h
--
-pcl/common/io.h
--
-pcl/common/copy_point.h
--
-pcl/common/centroid.h
--
-pcl/common/eigen.h
--
-pcl/common/geometry.h
--
-omp.h
 -
 
 /usr/include/pcl-1.8/pcl/surface/impl/poisson.hpp
@@ -3026,28 +2984,8 @@ stdarg.h
 string
 -
 
-/usr/include/pcl-1.8/pcl/surface/impl/processing.hpp
-
 /usr/include/pcl-1.8/pcl/surface/impl/reconstruction.hpp
 pcl/search/pcl_search.h
--
-
-/usr/include/pcl-1.8/pcl/surface/mls.h
-pcl/pcl_base.h
--
-pcl/search/pcl_search.h
--
-pcl/common/common.h
--
-pcl/surface/boost.h
--
-pcl/surface/eigen.h
--
-pcl/surface/processing.h
--
-map
--
-pcl/surface/impl/mls.hpp
 -
 
 /usr/include/pcl-1.8/pcl/surface/poisson.h
@@ -3055,16 +2993,6 @@ pcl/surface/reconstruction.h
 -
 pcl/surface/impl/poisson.hpp
 -
-
-/usr/include/pcl-1.8/pcl/surface/processing.h
-pcl/pcl_base.h
--
-pcl/point_cloud.h
--
-pcl/PolygonMesh.h
--
-pcl/surface/impl/processing.hpp
-/usr/include/pcl-1.8/pcl/surface/pcl/surface/impl/processing.hpp
 
 /usr/include/pcl-1.8/pcl/surface/reconstruction.h
 pcl/pcl_base.h

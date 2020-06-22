@@ -606,10 +606,8 @@ void MVBB::cropFilters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
 }
 
 void MVBB::ModelConstruct(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
-                          double &object_area)
-                          {
+                          double &object_area) {
 
-    // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
     pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
     pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
@@ -658,7 +656,7 @@ void MVBB::ModelConstruct(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
     double x1, x2, x3, y1, y2, y3, z1, z2, z3, a, b, c, q;
     object_area = 0;
 
-    for(int i = 0; i < triangles.polygons.size(); i++){
+    for(int i = 0; i < triangles.polygons.size(); i++) {
         index_p1 = triangles.polygons[i].vertices[0];
         index_p2 = triangles.polygons[i].vertices[1];
         index_p3 = triangles.polygons[i].vertices[2];

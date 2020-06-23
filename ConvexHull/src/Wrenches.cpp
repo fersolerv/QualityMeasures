@@ -3,7 +3,7 @@
 wrench::wrench(){}
 
 wrench::~wrench(){}
-
+ 
 bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object, 
                                   pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object2, 
                                   pcl::PointCloud<pcl::Normal>::Ptr Normals, 

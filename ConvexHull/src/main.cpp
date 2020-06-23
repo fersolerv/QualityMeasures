@@ -31,22 +31,22 @@ int main(int argc, char **argv) {
         if(index > 0)
             transformationsFile = argv[index + 1];
 
-        if(!qtl->compute_bbox(graspPointCloud,
-                                objectPointCloud,
-                                transformationsFile,
-                                originalFiltered, 
-                                cloudOut, 
-                                objectNormals, 
-                                objectNormalsOut, 
-                                CM))
+        if(!qtl->getQualities(graspPointCloud,
+                              objectPointCloud,
+                              transformationsFile,
+                              originalFiltered, 
+                              cloudOut, 
+                              objectNormals, 
+                              objectNormalsOut, 
+                              CM))
             cout << "Cannot perform the computation" << endl;
         
-        // if(!wrc->computeWrenchQuality(Original_filtered, 
-        //                               Cloud_out, 
-        //                               object_normals, 
-        //                               object_normals_out,
-        //                               CM))
-        //     cout << "OWS can't be computed.\n";
+        if(!wrc->computeWrenchQuality(originalFiltered, 
+                                      cloudOut, 
+                                      objectNormals, 
+                                      objectNormalsOut,
+                                      CM))
+            cout << "OWS can't be computed.\n";
     }
     else PCL_ERROR("Write the command line correctly\n");
 }

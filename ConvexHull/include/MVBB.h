@@ -89,7 +89,8 @@ private:
                       Eigen::Matrix4f Projection,
                       pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, 
                       pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, 
-                      pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou);
+                      pcl::PointCloud<pcl::Normal>::Ptr &Normals_ou,
+                      int line);
     
     void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
                    pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
@@ -100,16 +101,17 @@ private:
                    Eigen::Vector3f BBox_Translation,
                    bool f_cordinates);
     
-    void ModelConstruct(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
-                        double &object_area);
+    void getObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+                       double &object_area);
     
-    void ModelConstruct2(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
-                         double &object_area);
+    void getPartialObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
+                             double &object_area,
+                             int line);
 public:
     MVBB();
     ~MVBB();
 
-    bool compute_bbox(string graspPointCloudPath,
+    bool getQualities(string graspPointCloudPath,
                       string objectPointCloudPath,
                       string transformationsFile,
                       pcl::PointCloud<pcl::PointXYZ>::Ptr &originalFiltered, 

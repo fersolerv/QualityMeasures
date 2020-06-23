@@ -31,7 +31,7 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     std::vector <Mtools::ContactPoint> fcones;
     fcones.clear();
 
-    //save points into a variable "conatact points"
+    //save points into a variable "contact points"
     for (int i = 0; i < cloud_object->points.size(); i ++) {
        point << cloud_object->points.at(i).x, cloud_object->points.at(i).y, cloud_object->points.at(i).z;
        norm << Normals->points.at(i).normal[0], Normals->points.at(i).normal[1],Normals->points.at(i).normal[2];
@@ -58,7 +58,7 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
 
     float tquality = chull->Quality;
     cout << "Full object quality is: " << tquality << endl;
-    tquality = 0.876;
+    //tquality = 0.876;
 
     // Object Wrench Space (OWS)
     boost::posix_time::ptime totalst2, totalend2;
@@ -81,8 +81,8 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     std::vector <Mtools::ContactPoint> fcones2;
     fcones2.clear();
 
-    //save points into a variable "conatct points"
-    for (int i = 0; i < cloud_object2->points.size(); i ++){
+    //save points into a variable "contact points"
+    for (int i = 0; i < cloud_object2->points.size(); i ++) {
         point2 << cloud_object2->points.at(i).x, cloud_object2->points.at(i).y, cloud_object2->points.at(i).z;
         norm2 << Normals2->points.at(i).normal[0], Normals2->points.at(i).normal[1],Normals2->points.at(i).normal[2];
         graspPoint2.p = point2;
@@ -91,7 +91,7 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     }
 
     //Compute friction cones for every point
-    for(int i = 0; i < points2.size(); i++){
+    for(int i = 0; i < points2.size(); i++) {
         cone2->frictionCones(points2.at(i), fcones2, i);
     }
     chull2->Cwrenches(fcones2); //Compute wrenches
@@ -111,6 +111,7 @@ bool wrench::computeWrenchQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_obje
     cout << "Quality lost based on OWS is: " << LostQualityOWS << endl;
     float QualityOWS = 1 - ((tquality - pquality) / tquality);
     cout << "THE QUALITY BASED ON OWS IS: " << QualityOWS << endl;
+    return true;
 }
 
 

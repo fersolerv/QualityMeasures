@@ -139,6 +139,16 @@ pcl/surface/gp3.h
 -
 pugixml.hpp
 ../include/pugixml.hpp
+pcl/console/print.h
+-
+pcl/sample_consensus/ransac.h
+-
+pcl/sample_consensus/sac_model_plane.h
+-
+pcl/sample_consensus/sac_model_sphere.h
+-
+pcl/features/normal_3d_omp.h
+-
 
 ../include/Mtools.h
 Eigen/Core
@@ -165,38 +175,6 @@ cmath
 -
 
 ../include/Wrenches.h
-pcl/io/pcd_io.h
--
-pcl/io/io.h
--
-pcl/point_types.h
--
-pcl/visualization/cloud_viewer.h
--
-pcl/common/common.h
--
-pcl/point_types.h
--
-pcl/point_cloud.h
--
-pcl/console/parse.h
--
-pcl/console/print.h
--
-pcl/common/transforms.h
--
-pcl/features/normal_3d.h
--
-pcl/sample_consensus/ransac.h
--
-pcl/sample_consensus/sac_model_plane.h
--
-pcl/sample_consensus/sac_model_sphere.h
--
-pcl/features/normal_3d_omp.h
--
-pcl/filters/voxel_grid.h
--
 boost/thread/thread.hpp
 -
 iostream
@@ -217,6 +195,16 @@ ContactConeGenerator.h
 ../include/ContactConeGenerator.h
 ConvexHull.h
 ../include/ConvexHull.h
+pcl/point_types.h
+-
+pcl/point_cloud.h
+-
+pcl/common/common.h
+-
+pcl/point_representation.h
+-
+pcl/io/pcd_io.h
+-
 
 /home/parallels/Apps/QualityMeasures/ConvexHull/src/ContactConeGenerator.cpp
 ContactConeGenerator.h
@@ -2064,10 +2052,6 @@ sys/mman.h
 pcl/io/lzf.h
 -
 
-/usr/include/pcl-1.8/pcl/io/io.h
-pcl/common/io.h
--
-
 /usr/include/pcl-1.8/pcl/io/lzf.h
 pcl/pcl_macros.h
 -
@@ -3042,12 +3026,6 @@ boost/foreach.hpp
 boost/date_time/posix_time/posix_time.hpp
 -
 boost/filesystem.hpp
--
-
-/usr/include/pcl-1.8/pcl/visualization/cloud_viewer.h
-pcl/visualization/pcl_visualizer.h
--
-string
 -
 
 /usr/include/pcl-1.8/pcl/visualization/common/actor_map.h

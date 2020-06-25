@@ -25,11 +25,11 @@ CCone::~CCone(){
     frictionRimPoints.clear();
 }
 
-void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint>& StoreCones){
+void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint>& StoreCones) {
 
     bool printInfo =  false;
 
-    if(printInfo){
+    if(printInfo) {
         std::cout<< "Compute Friction Cones" << std::endl;
         std::cout<< "Point: " << std::endl;
         std::cout<< p.p << std::endl;
@@ -44,7 +44,7 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
 
     Eigen::Vector3f conePoint;
 
-    for(int i = 0; i < conesides; i++){
+    for(int i = 0; i < conesides; i++) {
         Mtools::ContactPoint nConePoint;
         Eigen::Vector3f conePointOrg = frictionRimPoints[i];
         conePoint = Mtools::TPosition(conePointOrg, ObNorT);
@@ -52,24 +52,22 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
         nConePoint.n = conePoint;
         nConePoint.n.normalize();
 
-
-        if(printInfo){
+        if(printInfo) {
             std::cout<< "Loop " << i <<std::endl;
             std::cout<< "nCone: " << std::endl;
             std::cout<< nConePoint.p << std::endl;
             std::cout<<std::endl;
-
         }
         StoreCones.push_back(nConePoint);
     }
 
 }
 
-void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint>& StoreCones, unsigned int id){
+void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint>& StoreCones, unsigned int id) {
 
     bool printInfo =  false;
 
-    if(printInfo){
+    if(printInfo) {
         std::cout<< "Compute Friction Cones" << std::endl;
         std::cout<< "Point: " << std::endl;
         std::cout<< p.p << std::endl;
@@ -83,8 +81,7 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
     Eigen::Matrix4f ObNorT = Mtools::quat2eigen4f(ObNorRot);
 
     Eigen::Vector3f conePoint;
-
-    for(int i = 0; i < conesides; i++){
+    for(int i = 0; i < conesides; i++) {
         Mtools::ContactPoint nConePoint;
         Eigen::Vector3f conePointOrg = frictionRimPoints[i];
         conePoint = Mtools::TPosition(conePointOrg, ObNorT);
@@ -93,8 +90,7 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
         nConePoint.n.normalize();
         nConePoint.id = id;
 
-
-        if(printInfo){
+        if(printInfo) {
             std::cout<< "Loop " << i <<std::endl;
             std::cout<< "nCone: " << std::endl;
             std::cout<< nConePoint.p <<" "<<id<< std::endl;
@@ -106,11 +102,11 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
 
 }
 
-void CCone::frictionCones_2(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones, unsigned int id){
+void CCone::frictionCones_2(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones, unsigned int id) {
 
     bool printInfo =  false;
 
-    if(printInfo){
+    if(printInfo) {
         std::cout<< "Compute Friction Cones" << std::endl;
         std::cout<< "Point: " << std::endl;
         std::cout<< p.p << std::endl;
@@ -118,26 +114,24 @@ void CCone::frictionCones_2(Mtools::ContactPoint p, std::vector<Mtools::ContactP
         std::cout<< p.n << std::endl;
     }
 
-    for(int i = 0; i < conesides; i++){
+    for(int i = 0; i < conesides; i++) {
         Mtools::ContactPoint S;
+        S.n[0] = (p.n[0]);
+        S.n[1] = (p.n[1]+(frictioncoef*cos((2*i*M_PI)/conesides)));
+        S.n[2] = (p.n[2]+(frictioncoef*sin((2*i*M_PI)/conesides)));
+        S.p = p.p;
+        S.id = id;
+        S.n.normalize();
 
-         S.n[0] = (p.n[0]);
-         S.n[1] = (p.n[1]+(frictioncoef*cos((2*i*M_PI)/conesides)));
-         S.n[2] = (p.n[2]+(frictioncoef*sin((2*i*M_PI)/conesides)));
-         S.p = p.p;
-         S.id = id;
-         S.n.normalize();
-
-
-         if(printInfo){
-             std::cout<< "Loop " << i <<std::endl;
-             std::cout<< "nCone: " << std::endl;
-             std::cout<< S.n << std::endl;
-             std::cout<< "Force: " << std::endl;
-             std::cout<< S.n.norm() <<" "<<id<< std::endl;
-             std::cout<<std::endl;
-         }
-         StoreCones.push_back(S);
+        if(printInfo) {
+            std::cout << "Loop " << i <<std::endl;
+            std::cout << "nCone: " << std::endl;
+            std::cout << S.n << std::endl;
+            std::cout << "Force: " << std::endl;
+            std::cout << S.n.norm() <<" " << id << std::endl;
+            std::cout<<std::endl;
+        }
+        StoreCones.push_back(S);
     }
 }
 

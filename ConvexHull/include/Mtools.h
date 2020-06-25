@@ -53,10 +53,8 @@ namespace Mtools
         ContactPoint center;
     };
 
-
     Quaternion getRot(const Eigen::Vector3f& from, const Eigen::Vector3f& to);
     float getAng(const Quaternion& q);
-
     Quaternion eigen4f2quat(const Eigen::Matrix4f& m);
     Eigen::Matrix4f quat2eigen4f(float x, float y, float z, float w);
     Eigen::Matrix4f quat2eigen4f(const Quaternion q);

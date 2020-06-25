@@ -6,15 +6,15 @@ MVBB::~MVBB(){}
 
 bool MVBB::getQualities(std::string graspPointCloudPath,
                         std::string objectPointCloudPath,
-                        std::string transformationsFile,
-                        pcl::PointCloud<pcl::PointXYZ>::Ptr &originalFiltered, 
-                        pcl::PointCloud<pcl::PointXYZ>::Ptr &cloudOut,
+                        std::string transformationsFilePath,
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &objectPCFiltered, 
+                        pcl::PointCloud<pcl::PointXYZ>::Ptr &partialObjectPC,
                         pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
-                        pcl::PointCloud<pcl::Normal>::Ptr &objectNormalsOut, 
+                        pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
                         Eigen::Vector3f &CM) {
 
-    pcl::PointCloud<pcl::PointXYZ>::Ptr original(new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloudGrasp(new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud(new pcl::PointCloud<pcl::PointXYZ>);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr graspPointCloud(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloudIn(new pcl::PointCloud<pcl::PointXYZ>);
     Eigen::Quaternionf rotation;
     Eigen::Vector3f translation;
@@ -29,26 +29,26 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
     //const char *absPath4 = "/home/fernando/PHD/Experiments/grasps/Box/box200.xml";
     //const char *absPath5 = "/home/fernando/PHD/Experiments/grasps/Box/SortQualities1.txt";
 
-    loadPointCloud(graspPointCloudPath, cloudGrasp);
-    loadPointCloud(objectPointCloudPath, original);
-    filterPointCloud(original, originalFiltered);
-    computeNormals(originalFiltered, objectNormals, CM);
+    loadPointCloud(graspPointCloudPath, graspPointCloud);
+    loadPointCloud(objectPointCloudPath, objectPointCloud);
+    filterPointCloud(objectPointCloud, objectPCFiltered);
+    computeNormals(objectPCFiltered, objectNormals, CM);
     int line = extractGraspNumber(graspPointCloudPath);
-    Eigen::Matrix4f transformation = returnTransformation(transformationsFile, line);
-    computeQuality(cloudGrasp, rotation, translation, min, max, projection, transformation);
+    Eigen::Matrix4f transformation = returnTransformation(transformationsFilePath, line);
+    computeQuality(graspPointCloud, rotation, translation, min, max, projection, transformation);
     //getGraspQuality(absPath1, absPath3);
     //getTransforms(absPath1, absPath2);
     //QualitySort(absPath4, absPath5);
-    cropFilters(originalFiltered, objectNormals, min, max, projection, cloudOut, cloudIn, objectNormalsOut, line);
-    getObjectArea(originalFiltered, objectArea);
-    getPartialObjectArea(cloudOut, objectArea, line);
-    //visualize(cloudGrasp, cloudOut, CM, cloudIn, min, max, rotation, translation, false);
+    cropFilters(objectPCFiltered, objectNormals, min, max, projection, partialObjectPC, cloudIn, partialObjectNormals, line);
+    getObjectArea(objectPCFiltered, objectArea);
+    getPartialObjectArea(partialObjectPC, objectArea, line);
+    //visualize(graspPointCloud, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
     return true;
 }
 
 bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) {
     if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) {
-        PCL_ERROR ("Couldn't read file .pcd \n");
+        PCL_ERROR ("Can't read file .pcd \n");
         return false;
     }
 }
@@ -107,6 +107,7 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object,
 
 void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, 
                             pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered) {
+    
     if (original->points.size() > 900000) {
         pcl::octree::OctreePointCloudSearch<pcl::PointXYZ > octree (128.0f);
         octree.setInputCloud(original);
@@ -123,7 +124,7 @@ void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original,
 
 void MVBB::getGraspQuality(const char *absPath1, 
                            const char *absPath3) { 
-    //get the quality of each grasp from the .xml file  and save them into a .txt file
+    //get the quality of each grasp from the .xml file and save it into a .txt file
     ofstream GraspQuality(absPath3);
     double quality;
     pugi::xml_document doc;
@@ -262,14 +263,14 @@ int MVBB::extractGraspNumber(string graspPointCloudPath) {
     // remove the first chars, which aren't digits
     graspPointCloudPath = graspPointCloudPath.substr(i, graspPointCloudPath.length() - i );
     int number = atoi(graspPointCloudPath.c_str());
-    //return number;
+    return number;
 }
 
-Eigen::Matrix4f MVBB::returnTransformation(string transformationFile, 
+Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, 
                                            uint line) {
     string sLine = "";
     ifstream read;
-    read.open(transformationFile);
+    read.open(transformationFilePath);
     int line_no = 0;
     while (line_no != line && getline(read, sLine))
         ++line_no;
@@ -398,7 +399,6 @@ void MVBB::cropFilters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
     pcl::copyPointCloud<pcl::PointXYZ>(*C_Object, index, *pointsOut);
     pcl::copyPointCloud<pcl::Normal>(*normals, index, *normalsOut);
     float pointsOutside = pointsOut->points.size();
-    //pcl::io::savePCDFile("/home/fernando/PHD/Experiments/objectFilteredOut3.pcd", *Points_out, true);
     //Filter Points Inside the CropBox
     pcl::CropBox<pcl::PointXYZ> cropFilterIn; // create the filter
     cropFilterIn.setInputCloud (C_Object); //input the object cloud to be filtered
@@ -407,7 +407,6 @@ void MVBB::cropFilters(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
     cropFilterIn.setTransform(boxTransform);
     cropFilterIn.filter (*pointsIn);
     float pointsInside = pointsIn->points.size() ;
-    //pcl::io::savePCDFile("home/fernando/PHD/Experiments/pcd/DetergentBottleRight/objectFilteredIn3.pcd", *CloudObjectFilteredIn, true);
     float Qt = pointsOutside / (pointsOutside + pointsInside);
     cout << "The quality for grasp " << line << " based on number of points is: "  << Qt << endl;
 }
@@ -453,8 +452,6 @@ void MVBB::getObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
     gp.setSearchMethod (tree2);
     gp.reconstruct (triangles);
 
-    //pcl::io::saveVTKFile("/home/fernando/PHD/Experiments/pcd/BabyBottle/ObjectTriangleMesh.vtk", triangles);
-
     //calculate area
     pcl::PointCloud<pcl::PointXYZ> cloud_area;
     cloud_area = *C_Object;
@@ -488,8 +485,6 @@ void MVBB::getObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
 
         object_area = object_area + sqrt(q * (q - a) * (q - b) * (q - c));
     }
-    //cout << "The size of polygon is  " << triangles.polygons.size() << endl;
-    //cout << "The area of the whole object is: " << object_area << endl;
 }
 
 void MVBB::getPartialObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
@@ -498,25 +493,24 @@ void MVBB::getPartialObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out,
 
     // Normal estimation*
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
-    pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
-    pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
-    tree->setInputCloud (Points_out);
-    n.setInputCloud (Points_out);
-    n.setSearchMethod (tree);
-    n.setKSearch (20);
-    n.compute (*normals);
+    pcl::PointCloud<pcl::Normal>::Ptr normals(new pcl::PointCloud<pcl::Normal>);
+    pcl::search::KdTree<pcl::PointXYZ>::Ptr tree(new pcl::search::KdTree<pcl::PointXYZ>);
+    tree->setInputCloud(Points_out);
+    n.setInputCloud(Points_out);
+    n.setSearchMethod(tree);
+    n.setKSearch(20);
+    n.compute(*normals);
     // Concatenate the XYZ and normal fields*
-    pcl::PointCloud<pcl::PointNormal>::Ptr Points_outNormals (new pcl::PointCloud<pcl::PointNormal>);
-    pcl::concatenateFields(*Points_out, *normals, *Points_outNormals);
-    //* cloud_with_normals = cloud + normals
+    pcl::PointCloud<pcl::PointNormal>::Ptr points_outNormals(new pcl::PointCloud<pcl::PointNormal>);
+    pcl::concatenateFields(*Points_out, *normals, *points_outNormals);
     // Create search tree*
-    pcl::search::KdTree<pcl::PointNormal>::Ptr tree2 (new pcl::search::KdTree<pcl::PointNormal>);
-    tree2->setInputCloud (Points_outNormals);
+    pcl::search::KdTree<pcl::PointNormal>::Ptr tree2(new pcl::search::KdTree<pcl::PointNormal>);
+    tree2->setInputCloud(points_outNormals);
     // Initialize objects
     pcl::GreedyProjectionTriangulation<pcl::PointNormal> gp3;
     pcl::PolygonMesh triangles;
     // Set the maximum distance between connected points (maximum edge length)
-    gp3.setSearchRadius (50000);
+    gp3.setSearchRadius(50000);
     // Set typical values for the parameters
     gp3.setMu (5.0);
     gp3.setMaximumNearestNeighbors (100);
@@ -525,10 +519,9 @@ void MVBB::getPartialObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out,
     gp3.setMaximumAngle(2 * (M_PI / 3)); // 120 degrees
     gp3.setNormalConsistency(false);
     // Get result
-    gp3.setInputCloud (Points_outNormals);
-    gp3.setSearchMethod (tree2);
-    gp3.reconstruct (triangles);
-   // pcl::io::saveVTKFile("/home/fernando/PHD/Experiments/pcd/BabyBottle/BabyBottlePartial1.vtk", triangles);
+    gp3.setInputCloud(points_outNormals);
+    gp3.setSearchMethod(tree2);
+    gp3.reconstruct(triangles);
     //calculate area
     pcl::PointCloud<pcl::PointXYZ> cloud_area;
     cloud_area = *Points_out;
@@ -559,8 +552,6 @@ void MVBB::getPartialObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out,
         q = (a + b + c) / 2;
         area = area + sqrt(q * (q - a) * (q - b) * (q - c));
     }
-    //cout << "The size of polygon is  " << triangles.polygons.size() << endl;
-    //cout << "The area of the partial object is: " << area  << endl;
     double Qt = area / object_area;
     cout << "The quality for grasp " << line << " based on the area on the area is: " << Qt << endl;
 }

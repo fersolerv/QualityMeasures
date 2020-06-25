@@ -10,7 +10,7 @@
 #include <string>
 #include <time.h>
 #include <vector>
-#include <cmath> //Para lenguaje C++
+#include <cmath> 
 #include "Mtools.h"
 
 extern "C"
@@ -22,13 +22,9 @@ class ConvexHull
 {
 private:
 
-
-
     bool convertPoints(double* storePointsQHull);
     float minOffset();
     void ChullCenter();
-
-
 
 public:
     
@@ -49,7 +45,6 @@ public:
     void Cwrenches(std::vector<Mtools::ContactPoint>& cpoints);
     bool isForceClosure();
     float minDistCH();
-
 };
 
 #endif

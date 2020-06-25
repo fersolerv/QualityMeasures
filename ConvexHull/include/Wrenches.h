@@ -1,7 +1,6 @@
 #ifndef WRENCHES_H
 #define WRENCHES_H
 
-#include <boost/thread/thread.hpp>
 #include <iostream>
 #include <string>
 #include <fstream>

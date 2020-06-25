@@ -175,8 +175,6 @@ cmath
 -
 
 ../include/Wrenches.h
-boost/thread/thread.hpp
--
 iostream
 -
 string

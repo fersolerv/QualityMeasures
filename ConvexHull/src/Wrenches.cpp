@@ -18,11 +18,8 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
     Eigen::Vector3f norm;
     Mtools::ContactPoint graspPoint;
 
-    CCone *cone;
-    cone = new CCone(uforce, mu, csides);
-
-    ConvexHull *chull;
-    chull = new ConvexHull(CM);
+    CCone *cone; cone = new CCone(uforce, mu, csides);
+    ConvexHull *chull; chull = new ConvexHull(CM);
 
     std::vector <Mtools::ContactPoint> fcones;
     fcones.clear();
@@ -36,7 +33,7 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
        points.push_back(graspPoint);
     }
 
-   //Compute friction cones for every point
+    //Compute friction cones for every point
     for(int i = 0; i < points.size(); i++)
        cone->frictionCones(points.at(i), fcones, i);
     
@@ -49,8 +46,6 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
         std::cout<<"No force closure"<<std::endl;
 
     float quality = chull->Quality;
-    cout << "Full object quality is: " << quality << endl;
-
     return quality;
 }
 
@@ -61,10 +56,13 @@ bool wrench::computeOWSQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCl
                                Eigen::Vector3f CM) {
 
     float totalQuality = computeOWS(objectPointCloud, objectNormals, CM, 1.0, 1, 6);
-    float partialQuality = computeOWS(partialObjectPointCloud, partialObjectNormals, CM, 1.0, 0.4, 6);
-    float LostQualityOWS = (totalQuality - partialQuality) / totalQuality;
+    float potentialQuality = computeOWS(partialObjectPointCloud, partialObjectNormals, CM, 1.0, 0.4, 6);
+    cout << "Total quality is: " << totalQuality << endl;
+    cout << "Potential quality is: " << potentialQuality << endl; 
+    float LostQualityOWS = (totalQuality - potentialQuality) / totalQuality;
     cout << "Quality lost based on OWS is: " << LostQualityOWS << endl;
-    float QualityOWS = 1 - ((totalQuality - partialQuality) / totalQuality);
+    
+    float QualityOWS = 1 - ((totalQuality - potentialQuality) / totalQuality);
     cout << "THE QUALITY BASED ON OWS IS: " << QualityOWS << endl;
     return true;
 }

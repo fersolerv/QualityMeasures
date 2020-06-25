@@ -42,7 +42,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
     cropFilters(objectPCFiltered, objectNormals, min, max, projection, partialObjectPC, cloudIn, partialObjectNormals, line);
     getObjectArea(objectPCFiltered, objectArea);
     getPartialObjectArea(partialObjectPC, objectArea, line);
-    //visualize(graspPointCloud, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
+    visualize(graspPointCloud, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
     return true;
 }
 

@@ -43,11 +43,7 @@ int main(int argc, char **argv) {
                               CM))
             cout << "Cannot perform the computation" << endl;
         
-        if(!wrc->computeOWSQuality(objectPCFiltered,  
-                                   objectNormals, 
-                                   partialObjectPC,
-                                   partialObjectNormals,
-                                   CM))
+        if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
             cout << "OWS can't be computed.\n";
     }
     else 

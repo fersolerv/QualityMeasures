@@ -52,28 +52,15 @@ class MVBB
 {
 
 private:
-    bool loadPointCloud(string path, 
-                        pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud);
+    bool loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud);
     
-    bool read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, 
-                     pcl::PointCloud<pcl::Normal>::Ptr &normals);
+    bool readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals);
     
-    void filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, 
-                          pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered);
+    void filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered);
     
-    void getGraspQuality(const char *absPath1, 
-                         const char *absPath3);
-    
-    void getTransforms(const char *absPath, 
-                       const char *absPath2);
-    
-    void QualitySort(const char *absPath4, 
-                     const char *absPath5);
-
     int extractGraspNumber(string graspPointCloudPath);
 
-    Eigen::Matrix4f returnTransformation(string transformationFilePath, 
-                                         uint line);
+    Eigen::Matrix4f returnTransformation(string transformationFilePath, uint line);
     
     void getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, 
                                  Eigen::Quaternionf &BBox_Rotation,
@@ -83,9 +70,7 @@ private:
                                  Eigen::Matrix4f &Projection,
                                  Eigen::Matrix4f transform);
     
-    void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
-                        pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
-                        Eigen::Vector3f &CM);
+    void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr &Normals, Eigen::Vector3f &CM);
     
     float computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                           pcl::PointCloud<pcl::Normal>::Ptr Normals, 
@@ -107,8 +92,6 @@ private:
     
     float getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object);
     
-    void getPartialObjectArea(pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, float objectArea, int line);
-
 public:
     MVBB();
     ~MVBB();
@@ -121,6 +104,12 @@ public:
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormals,
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormalsOut, 
                       Eigen::Vector3f &CM);
+    
+    bool extractTransforms(const char *inXML, const char *outTransformationTXT);
+    
+    bool extractGraspQuality(const char *inXML, const char *outQualityGraspTXT);
+        
+    bool qualitySort(const char *inXML, const char *qualitySortedTXT);
 
 };
 #endif

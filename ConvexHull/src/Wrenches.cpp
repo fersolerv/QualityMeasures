@@ -25,7 +25,7 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
     fcones.clear();
 
     //save points into a variable "contact points"
-    for (int i = 0; i < objectPointCloud->points.size(); i ++) {
+    for(int i = 0; i < objectPointCloud->points.size(); i ++) {
        point << objectPointCloud->points.at(i).x, objectPointCloud->points.at(i).y, objectPointCloud->points.at(i).z;
        norm << objectNormals->points.at(i).normal[0], objectNormals->points.at(i).normal[1], objectNormals->points.at(i).normal[2];
        graspPoint.p = point;
@@ -57,12 +57,11 @@ bool wrench::computeOWSQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCl
 
     float totalQuality = computeOWS(objectPointCloud, objectNormals, CM, 1.0, 1, 6);
     float potentialQuality = computeOWS(partialObjectPointCloud, partialObjectNormals, CM, 1.0, 0.4, 6);
+    float LostQualityOWS = (totalQuality - potentialQuality) / totalQuality;
+    float QualityOWS = 1 - ((totalQuality - potentialQuality) / totalQuality);
     cout << "Total quality is: " << totalQuality << endl;
     cout << "Potential quality is: " << potentialQuality << endl; 
-    float LostQualityOWS = (totalQuality - potentialQuality) / totalQuality;
     cout << "Quality lost based on OWS is: " << LostQualityOWS << endl;
-    
-    float QualityOWS = 1 - ((totalQuality - potentialQuality) / totalQuality);
     cout << "QTows is: " << QualityOWS << endl;
     return true;
 }

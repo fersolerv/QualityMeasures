@@ -4,9 +4,7 @@ using namespace std;
 
 MVBB::MVBB() {}
 MVBB::~MVBB(){}
-
-// wrench *wrc; wrc = new wrench();
-
+;
 bool MVBB::getQualities(std::string graspPointCloudPath,
                         std::string objectPointCloudPath,
                         std::string transformationsFilePath,
@@ -23,13 +21,6 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
     Eigen::Vector3f translation;
     Eigen::Vector4f min, max;
     Eigen::Matrix4f projection;
-  
-    //  if change object, change path
-    const char *absPath1 = "/home/fernando/PHD/Experiments/grasps/CookieBox/box30.xml";
-    const char *absPath2 = "/home/fernando/PHD/Experiments/grasps/BabyBottle/GraspTransforms30.txt";
-    const char *absPath3 = "/home/fernando/PHD/Experiments/grasps/CookieBox/GraspsQuality30.txt";
-    //const char *absPath4 = "/home/fernando/PHD/Experiments/grasps/Box/box200.xml";
-    //const char *absPath5 = "/home/fernando/PHD/Experiments/grasps/Box/SortQualities1.txt";
 
     //Pipeline
     loadPointCloud(graspPointCloudPath, graspPC);
@@ -39,9 +30,6 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
     int line = extractGraspNumber(graspPointCloudPath);
     Eigen::Matrix4f transformation = returnTransformation(transformationsFilePath, line);
     getHandPCTransformation(graspPC, rotation, translation, min, max, projection, transformation);
-    //getGraspQuality(absPath1, absPath3);
-    //getTransforms(absPath1, absPath2);
-    //QualitySort(absPath4, absPath5);
     float QTpoints = computeQTMpoints(objectPCFiltered, objectNormals, min, max, projection, partialObjectPC, cloudIn, partialObjectNormals);
     float TotalObjectArea = getPointCloudArea(objectPC);
     float partialObjectArea = getPointCloudArea(partialObjectPC);
@@ -59,8 +47,7 @@ bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
     }
 }
 
-bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, 
-                       pcl::PointCloud<pcl::Normal>::Ptr &normals) 
+bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) 
                        {
     std::fstream obj;
     std::vector<std::vector <double>> points;
@@ -111,8 +98,7 @@ bool MVBB::read_points(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object,
     return true;
 }
 
-void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, 
-                            pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered) {
+void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered) {
     
     if (original->points.size() > 900000) {
         pcl::octree::OctreePointCloudSearch<pcl::PointXYZ > octree (128.0f);
@@ -128,137 +114,6 @@ void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original,
     else filtered = original;  
 }
 
-void MVBB::getGraspQuality(const char *absPath1, 
-                           const char *absPath3) { 
-    //get the quality of each grasp from the .xml file and save it into a .txt file
-    ofstream GraspQuality(absPath3);
-    double quality;
-    pugi::xml_document doc;
-    //Load .xml file
-    pugi::xml_parse_result result = doc.load_file(absPath1);
-    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
-    else std::cout << "Problem file loaded"<<std::endl;
-    int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
-        quality = tool.attribute("quality").as_double();
-        GraspQuality << quality << endl;
-        std::cout << quality << std::endl;
-        i++;
-    }
-}
-
-void MVBB::getTransforms(const char *absPath1, 
-                         const char *absPath2) {   
-    //get the matrix transformation of each grasp from the .xml file and save them into a .txt file
-    ofstream transform(absPath2);
-    double xx, xy, xz, yx, yy, yz, zx, zy, zz, x1, y1, z1, p1, p2, p3, p4;
-    pugi::xml_document doc;
-    //Load .xml file
-    pugi::xml_parse_result result = doc.load_file(absPath1);
-    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
-    else std::cout << "Problem file loaded"<<std::endl;
-    int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")){
-
-        pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
-        xx = node.attribute("c1").as_double();
-        xy = node.attribute("c2").as_double();
-        xz = node.attribute("c3").as_double();
-        x1 = node.attribute("c4").as_double();
-
-        node = tool.child("Transform").child("Matrix4x4").child("row2");
-
-        yx = node.attribute("c1").as_double();
-        yy = node.attribute("c2").as_double();
-        yz = node.attribute("c3").as_double();
-        y1 = node.attribute("c4").as_double();
-
-        node = tool.child("Transform").child("Matrix4x4").child("row3");
-
-        zx = node.attribute("c1").as_double();
-        zy = node.attribute("c2").as_double();
-        zz = node.attribute("c3").as_double();
-        z1 = node.attribute("c4").as_double();
-
-        node = tool.child("Transform").child("Matrix4x4").child("row4");
-
-        p1 = node.attribute("c1").as_double();
-        p2 = node.attribute("c2").as_double();
-        p3 = node.attribute("c3").as_double();
-        p4 = node.attribute("c4").as_double();
-
-        transform << xx << ", ";
-        transform << xy << ", ";
-        transform << xz << ", ";
-        transform << x1 << ", ";
-
-        transform << yx << ", ";
-        transform << yy << ", ";
-        transform << yz << ", ";
-        transform << y1 << ", ";
-
-        transform << zx << ", ";
-        transform << zy << ", ";
-        transform << zz << ", ";
-        transform << z1 << ", ";
-
-        transform << p1 << ", ";
-        transform << p2 << ", ";
-        transform << p3 << ", ";
-        transform << p4 << ";" << endl;
-
-        //cout << "Transform (" << i << ") " << xx << " " << xy << " " << xz << " " << x1 << " " << yx << " " << yy << " " << yz << " " << y1 << " " << zx << " " << zy << " " << zz << " " << z1
-        //     << " " << p1 << " " << p2 << " " << p3 << " " << p4 << endl;
-        i++;
-    }
-}
-
-void MVBB::QualitySort(const char *absPath4, 
-                       const char *absPath5) {
-                        
-    ofstream GraspQuality(absPath5);
-    double quality;
-    pugi::xml_document doc;
-    //Load .xml file
-    pugi::xml_parse_result result = doc.load_file(absPath4);
-    if (!result){
-        std::cout << "Parse error: " << result.description()
-                  << ", character pos = " << result.offset<<std::endl;
-    }
-    else{
-        std::cout << "Problem file loaded"<<std::endl;
-    }
-
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")){
-
-        int i = 0;
-        quality = tool.attribute("quality").as_double();
-        GraspQuality << quality << endl;
-        i++;
-    }
-
-    // Open your text file
-    std::ifstream file("/home/fernando/PHD/Experiments/grasps/Coffee_mug/SortQualities.txt");
-    std::vector<std::string> rows;
-
-    // Read all the lines and add them to the rows vector
-    while(!file.eof())
-    {
-        std::string line;
-        std::getline(file, line);
-        rows.push_back(line);
-    }
-
-    // Sort the vector
-    std::sort(rows.begin(), rows.end());
-
-    // Print out all of the vectors values
-    std::vector<std::string>::iterator iterator = rows.begin();
-    for(; iterator != rows.end(); ++iterator)
-        //std::cout << *iterator << std::endl;
-        getchar();
-}
-
 int MVBB::extractGraspNumber(string graspPointCloudPath) {
     // For atoi, the input string has to start with a digit, so lets search for the first digit
     size_t i = 0;
@@ -272,8 +127,7 @@ int MVBB::extractGraspNumber(string graspPointCloudPath) {
     return number;
 }
 
-Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, 
-                                           uint line) {
+Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint line) {
     string sLine = "";
     ifstream read;
     read.open(transformationFilePath);
@@ -292,22 +146,10 @@ Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath,
         if (ss.peek() == ',')
             ss.ignore();
     }
-    transformation << num[0], 
-                      num[1], 
-                      num[2], 
-                      num[3], 
-                      num[4], 
-                      num[5], 
-                      num[6], 
-                      num[7], 
-                      num[8], 
-                      num[9], 
-                      num[10], 
-                      num[11], 
-                      num[12], 
-                      num[13], 
-                      num[14], 
-                      num[15];
+    transformation << num[0], num[1], num[2], num[3], 
+                      num[4], num[5], num[6], num[7], 
+                      num[8], num[9], num[10], num[11], 
+                      num[12], num[13], num[14], num[15];
     read.close();
     return transformation;
 }
@@ -529,4 +371,131 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration,
         BBox_Visualizer.spinOnce();
     }
     BBox_Visualizer.close();
+}
+
+bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT) {   
+    //get the matrix transformation of each grasp from the .xml file and save it into a .txt file
+    ofstream transform(outTransformationTXT);
+    double xx, xy, xz, yx, yy, yz, zx, zy, zz, x1, y1, z1, p1, p2, p3, p4;
+    pugi::xml_document doc;
+    //Load .xml file
+    pugi::xml_parse_result result = doc.load_file(inXML);
+    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+    else std::cout << "Problem file loaded"<<std::endl;
+    int i = 0;
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")){
+
+        pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
+        xx = node.attribute("c1").as_double();
+        xy = node.attribute("c2").as_double();
+        xz = node.attribute("c3").as_double();
+        x1 = node.attribute("c4").as_double();
+
+        node = tool.child("Transform").child("Matrix4x4").child("row2");
+
+        yx = node.attribute("c1").as_double();
+        yy = node.attribute("c2").as_double();
+        yz = node.attribute("c3").as_double();
+        y1 = node.attribute("c4").as_double();
+
+        node = tool.child("Transform").child("Matrix4x4").child("row3");
+
+        zx = node.attribute("c1").as_double();
+        zy = node.attribute("c2").as_double();
+        zz = node.attribute("c3").as_double();
+        z1 = node.attribute("c4").as_double();
+
+        node = tool.child("Transform").child("Matrix4x4").child("row4");
+
+        p1 = node.attribute("c1").as_double();
+        p2 = node.attribute("c2").as_double();
+        p3 = node.attribute("c3").as_double();
+        p4 = node.attribute("c4").as_double();
+
+        transform << xx << ", ";
+        transform << xy << ", ";
+        transform << xz << ", ";
+        transform << x1 << ", ";
+
+        transform << yx << ", ";
+        transform << yy << ", ";
+        transform << yz << ", ";
+        transform << y1 << ", ";
+
+        transform << zx << ", ";
+        transform << zy << ", ";
+        transform << zz << ", ";
+        transform << z1 << ", ";
+
+        transform << p1 << ", ";
+        transform << p2 << ", ";
+        transform << p3 << ", ";
+        transform << p4 << ";" << endl;
+
+        i++;
+    }
+    return true;
+}
+
+bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT) { 
+    //get the quality of each grasp from the .xml file and save it into a .txt file
+    ofstream GraspQuality(outQualityGraspTXT);
+    double quality;
+    pugi::xml_document doc;
+    //Load .xml file
+    pugi::xml_parse_result result = doc.load_file(inXML);
+    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+    else std::cout << "Problem file loaded"<<std::endl;
+    int i = 0;
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
+        quality = tool.attribute("quality").as_double();
+        GraspQuality << quality << endl;
+        std::cout << quality << std::endl;
+        i++;
+    }
+}
+
+bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
+                        
+    //Extract qualities
+    ofstream GraspQuality(qualitySortedTXT);
+    double quality;
+    pugi::xml_document doc;
+    //Load .xml file
+    pugi::xml_parse_result result = doc.load_file(inXML);
+    if (!result){
+        std::cout << "Parse error: " << result.description()
+                  << ", character pos = " << result.offset<<std::endl;
+    }
+    else
+        std::cout << "Problem file loaded"<<std::endl;
+
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
+
+        int i = 0;
+        quality = tool.attribute("quality").as_double();
+        GraspQuality << quality << endl;
+        i++;
+    }
+    // Sort qualities
+    // Open txt file
+    std::ifstream file(qualitySortedTXT);
+    std::vector<std::string> rows;
+
+    // Read all the lines and add them to the rows vector
+    while(!file.eof())
+    {
+        std::string line;
+        std::getline(file, line);
+        rows.push_back(line);
+    }
+
+    // Sort the vector
+    std::sort(rows.begin(), rows.end());
+
+    // Print out all of the vectors values
+    std::vector<std::string>::iterator iterator = rows.begin();
+    for(; iterator != rows.end(); ++iterator)
+        //std::cout << *iterator << std::endl;
+        getchar();
 }

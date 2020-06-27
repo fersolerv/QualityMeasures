@@ -47,8 +47,7 @@ bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
     }
 }
 
-bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) 
-                       {
+bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) {
     std::fstream obj;
     std::vector<std::vector <double>> points;
     std::vector<std::vector <double>> norms;
@@ -380,10 +379,13 @@ bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT
     pugi::xml_document doc;
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(inXML);
-    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
-    else std::cout << "Problem file loaded"<<std::endl;
+    if (!result) 
+        std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+    else 
+        std::cout << "Problem file loaded"<<std::endl;
+    
     int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")){
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
 
         pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
         xx = node.attribute("c1").as_double();
@@ -444,15 +446,18 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
     pugi::xml_document doc;
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(inXML);
-    if (!result) std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
-    else std::cout << "Problem file loaded"<<std::endl;
+    if (!result) 
+        std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+    else 
+        std::cout << "Problem file loaded"<<std::endl;
+    
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         quality = tool.attribute("quality").as_double();
         GraspQuality << quality << endl;
-        std::cout << quality << std::endl;
         i++;
     }
+    return true;
 }
 
 bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
@@ -463,39 +468,36 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
     pugi::xml_document doc;
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(inXML);
-    if (!result){
-        std::cout << "Parse error: " << result.description()
-                  << ", character pos = " << result.offset<<std::endl;
-    }
+    if (!result)
+        std::cout << "Parse error: " << result.description()<< ", character pos = " << result.offset<<std::endl;
     else
         std::cout << "Problem file loaded"<<std::endl;
 
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
-
         int i = 0;
         quality = tool.attribute("quality").as_double();
         GraspQuality << quality << endl;
         i++;
     }
     // Sort qualities
-    // Open txt file
     std::ifstream file(qualitySortedTXT);
     std::vector<std::string> rows;
 
     // Read all the lines and add them to the rows vector
-    while(!file.eof())
-    {
+    while(!file.eof()) {
         std::string line;
         std::getline(file, line);
         rows.push_back(line);
     }
-
-    // Sort the vector
     std::sort(rows.begin(), rows.end());
+}
 
-    // Print out all of the vectors values
-    std::vector<std::string>::iterator iterator = rows.begin();
-    for(; iterator != rows.end(); ++iterator)
-        //std::cout << *iterator << std::endl;
-        getchar();
+bool MVBB::getData(const char *inXML, 
+                   const char *outTransformationTXT, 
+                   const char *outQualityGraspTXT, 
+                   const char *qualitySortedTXT) {
+    extractTransforms(inXML, outTransformationTXT);
+    extractGraspQuality(inXML, outQualityGraspTXT);
+    qualitySort(inXML, qualitySortedTXT);
+    return true;
 }

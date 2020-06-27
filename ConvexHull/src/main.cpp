@@ -51,35 +51,27 @@ int main(int argc, char **argv) {
     
     if(find_switch(argc, argv, "--extractValues")) {
 
-        const char *inXML;
-        const char *outTransformationTXT;
-        const char *outQualityGraspTXT;
-        const char *qualitySortedTXT;
-
-        int index = find_argument(argc, argv, "transformationXMLFile"); // file.xml
+        const char *inXML, *outTransformationTXT, *outQualityGraspTXT, *qualitySortedTXT;
+   
+        int index = find_argument(argc, argv, "-transformationXMLFile"); // file.xml
         if(index > 0)
             inXML = argv[index + 1];
         
-        index = find_argument(argc, argv, "outputGraspTransformationPath"); // file.txt
+        index = find_argument(argc, argv, "-outputGraspTransformationPath"); // file.txt
         if(index > 0)
             outTransformationTXT = argv[index + 1];
         
-        index = find_argument(argc, argv, "outputGraspQualityPath"); // file.txt
+        index = find_argument(argc, argv, "-outputGraspQualityPath"); // file.txt
         if(index > 0)
             outQualityGraspTXT = argv[index + 1];
         
-        index = find_argument(argc, argv, "outputSortedQualitiesPath"); // file.txt
+        index = find_argument(argc, argv, "-outputSortedQualitiesPath"); // file.txt
         if(index > 0)
             qualitySortedTXT = argv[index + 1];
 
-        if(!qtl->extractTransforms(inXML, outTransformationTXT))
-            cout << "Transformation matrices extracted\n";
+        if(qtl->getData(inXML, outTransformationTXT, outQualityGraspTXT, qualitySortedTXT))
+            cout << "Data extracted\n";
         
-        if(!qtl->extractGraspQuality(inXML, outQualityGraspTXT))
-            cout << "Qualities extracted\n";
-        
-        if(!qtl->qualitySort(inXML, qualitySortedTXT))
-            cout << "Qualities sorted\n";
     }
     else 
         PCL_ERROR("Write the command line correctly\n");

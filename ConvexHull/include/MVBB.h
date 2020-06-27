@@ -91,6 +91,12 @@ private:
                    bool f_cordinates);
     
     float getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object);
+
+    bool extractTransforms(const char *inXML, const char *outTransformationTXT);
+    
+    bool extractGraspQuality(const char *inXML, const char *outQualityGraspTXT);
+        
+    bool qualitySort(const char *inXML, const char *qualitySortedTXT);
     
 public:
     MVBB();
@@ -105,12 +111,11 @@ public:
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormalsOut, 
                       Eigen::Vector3f &CM);
     
-    bool extractTransforms(const char *inXML, const char *outTransformationTXT);
+    bool getData(const char *inXML, 
+                 const char *outTransformationTXT, 
+                 const char *outQualityGraspTXT, 
+                 const char *qualitySortedTXT);
     
-    bool extractGraspQuality(const char *inXML, const char *outQualityGraspTXT);
-        
-    bool qualitySort(const char *inXML, const char *qualitySortedTXT);
-
 };
 #endif
 

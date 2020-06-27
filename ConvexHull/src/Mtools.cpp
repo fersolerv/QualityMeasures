@@ -19,9 +19,9 @@ Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vect
             //Crossing with X axis
             Eigen::Vector3f t = fN.cross(Eigen::Vector3f(1.0f,0.0f,0.0f));
             //no->cross with y axis
-            if(t.norm() == 0.0f) {
+            if(t.norm() == 0.0f)
                 t = fN.cross(Eigen::Vector3f(0.0f,1.0f,0.0f));
-            }
+            
             t.normalize();
             q.x = t[0];
             q.y = t[1];

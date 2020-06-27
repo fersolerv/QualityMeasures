@@ -361,14 +361,14 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration,
         BBox_Visualizer.addCoordinateSystem(10,Ctr[0],Ctr[1],Ctr[2],"centroid",0);
     }
     BBox_Visualizer.addCube(BBox_Translation, BBox_Rotation, Max[0] - Min[0], Max[1] - Min[1], Max[2] - Min[2], "boundingbox", 0);
-    //BBox_Visualizer.setRepresentationToWireframeForAllActors();
+    // BBox_Visualizer.setRepresentationToWireframeForAllActors(); // see bounding box lines
     BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0.0, 0.0, 0.0, "boundingbox");
     BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_LINE_WIDTH, 4, "boundingbox");
     BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_OPACITY, 0.2, "boundingbox");
 
-    while(!BBox_Visualizer.wasStopped()) {
+    while(!BBox_Visualizer.wasStopped())
         BBox_Visualizer.spinOnce();
-    }
+        
     BBox_Visualizer.close();
 }
 
@@ -447,9 +447,9 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(inXML);
     if (!result) 
-        std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
+        cout << "Parse error: " << result.description() << ", character pos = " << result.offset << endl;
     else 
-        std::cout << "Problem file loaded"<<std::endl;
+        cout << "Problem file loaded" << endl;
     
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
@@ -469,9 +469,9 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
     //Load .xml file
     pugi::xml_parse_result result = doc.load_file(inXML);
     if (!result)
-        std::cout << "Parse error: " << result.description()<< ", character pos = " << result.offset<<std::endl;
+        cout << "Parse error: " << result.description()<< ", character pos = " << result.offset << endl;
     else
-        std::cout << "Problem file loaded"<<std::endl;
+        cout << "Problem file loaded" << endl;
 
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         int i = 0;
@@ -480,16 +480,16 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
         i++;
     }
     // Sort qualities
-    std::ifstream file(qualitySortedTXT);
-    std::vector<std::string> rows;
+    ifstream file(qualitySortedTXT);
+    vector<string> rows;
 
     // Read all the lines and add them to the rows vector
     while(!file.eof()) {
-        std::string line;
-        std::getline(file, line);
+        string line;
+        getline(file, line);
         rows.push_back(line);
     }
-    std::sort(rows.begin(), rows.end());
+    sort(rows.begin(), rows.end());
 }
 
 bool MVBB::getData(const char *inXML, 

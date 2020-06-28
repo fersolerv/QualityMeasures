@@ -3,8 +3,8 @@
 using namespace std;
 
 MVBB::MVBB() {}
-MVBB::~MVBB(){}
-;
+MVBB::~MVBB(){};
+
 bool MVBB::getQualities(std::string graspPointCloudPath,
                         std::string objectPointCloudPath,
                         std::string transformationsFilePath,
@@ -368,7 +368,7 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration,
 
     while(!BBox_Visualizer.wasStopped())
         BBox_Visualizer.spinOnce();
-        
+
     BBox_Visualizer.close();
 }
 

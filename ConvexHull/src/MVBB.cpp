@@ -159,10 +159,10 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConf
                                    Eigen::Vector4f &min, 
                                    Eigen::Vector4f &max, 
                                    Eigen::Matrix4f &projection,
-                                   Eigen::Matrix4f transform) {
+                                   Eigen::Matrix4f transformation) {
 
     Eigen::Matrix4f Tinv;
-    Tinv = transform.inverse();
+    Tinv = transformation.inverse();
 
     // Executing the transformation
     pcl::PointCloud<pcl::PointXYZ>::Ptr transformedGraspPointCloud (new pcl::PointCloud<pcl::PointXYZ> ());

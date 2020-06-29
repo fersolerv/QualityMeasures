@@ -22,10 +22,8 @@ namespace Mtools
         unsigned int id;
     };
 
-    struct Quaternion
-    {
-        Quaternion()
-        {
+    struct Quaternion {
+        Quaternion() {
             x = y = z = 0.0f;
             w = 1.0f;
         }
@@ -33,8 +31,7 @@ namespace Mtools
         float x,y,z,w;
     };
 
-    struct TriangleFace6D
-    {
+    struct TriangleFace6D {
         int id[6];
         ContactPoint normal;
         std::vector<ContactPoint> verts;
@@ -45,8 +42,7 @@ namespace Mtools
         float offset;
     };
 
-    struct ConvexHUll6D
-    {
+    struct ConvexHUll6D {
         std::vector<ContactPoint> vertices;
         std::vector<TriangleFace6D> faces;
         float volume;

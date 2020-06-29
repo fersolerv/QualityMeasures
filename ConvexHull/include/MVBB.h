@@ -62,33 +62,34 @@ private:
 
     Eigen::Matrix4f returnTransformation(string transformationFilePath, uint line);
     
-    void getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, 
-                                 Eigen::Quaternionf &BBox_Rotation,
-                                 Eigen::Vector3f &BBox_Traslation, 
-                                 Eigen::Vector4f &Min, 
-                                 Eigen::Vector4f &Max, 
-                                 Eigen::Matrix4f &Projection,
+    void getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConfiguration, 
+                                 Eigen::Quaternionf &bboxRotation,
+                                 Eigen::Vector3f &bboxTraslation, 
+                                 Eigen::Vector4f &bin, 
+                                 Eigen::Vector4f &bax, 
+                                 Eigen::Matrix4f &projection,
                                  Eigen::Matrix4f transform);
     
     void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr &Normals, Eigen::Vector3f &CM);
     
     float computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                           pcl::PointCloud<pcl::Normal>::Ptr Normals, 
-                          Eigen::Vector4f Min, 
-                          Eigen::Vector4f Max, 
-                          Eigen::Matrix4f Projection,
-                          pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_out, 
-                          pcl::PointCloud<pcl::PointXYZ>::Ptr &Points_in, 
-                          pcl::PointCloud<pcl::Normal>::Ptr &Normals_out);
+                          Eigen::Vector4f min, 
+                          Eigen::Vector4f max, 
+                          Eigen::Matrix4f projection,
+                          pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsOut, 
+                          pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsIn, 
+                          pcl::PointCloud<pcl::Normal>::Ptr &NormalsOut);
     
-    void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
-                   pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out, 
-                   Eigen::Vector3f Ctr,
-                   pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, 
-                   Eigen::Vector4f Min, Eigen::Vector4f Max, 
-                   Eigen::Quaternionf BBox_Rotation, 
-                   Eigen::Vector3f BBox_Translation,
-                   bool f_cordinates);
+    void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfiguration, 
+                   pcl::PointCloud<pcl::PointXYZ>::Ptr pointsOut, 
+                   Eigen::Vector3f centroid,
+                   pcl::PointCloud<pcl::PointXYZ>::Ptr pointsIn, 
+                   Eigen::Vector4f min, 
+                   Eigen::Vector4f max, 
+                   Eigen::Quaternionf bboxRotation, 
+                   Eigen::Vector3f bboxTranslation,
+                   bool fCordinates);
     
     float getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object);
 

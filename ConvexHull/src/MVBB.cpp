@@ -153,9 +153,9 @@ Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint l
     return transformation;
 }
 
-void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_configuration, 
-                                   Eigen::Quaternionf &BBox_Rotation,
-                                   Eigen::Vector3f &BBox_Translation, 
+void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConfiguration, 
+                                   Eigen::Quaternionf &bboxRotation,
+                                   Eigen::Vector3f &bboxTranslation, 
                                    Eigen::Vector4f &min, 
                                    Eigen::Vector4f &max, 
                                    Eigen::Matrix4f &projection,
@@ -165,15 +165,15 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_con
     Tinv = transform.inverse();
 
     // Executing the transformation
-    pcl::PointCloud<pcl::PointXYZ>::Ptr transformed_cloud_grasp (new pcl::PointCloud<pcl::PointXYZ> ());
-    pcl::transformPointCloud(*Hand_configuration, *transformed_cloud_grasp, Tinv);
+    pcl::PointCloud<pcl::PointXYZ>::Ptr transformedGraspPointCloud (new pcl::PointCloud<pcl::PointXYZ> ());
+    pcl::transformPointCloud(*handConfiguration, *transformedGraspPointCloud, Tinv);
 
     ///GRASP MVBB
     //Compute PCA
     Eigen::Vector4f pcaCentroid;
-    pcl::compute3DCentroid(*transformed_cloud_grasp, pcaCentroid);
+    pcl::compute3DCentroid(*transformedGraspPointCloud, pcaCentroid);
     Eigen::Matrix3f covariance;
-    pcl::computeCovarianceMatrixNormalized(*transformed_cloud_grasp, pcaCentroid, covariance);
+    pcl::computeCovarianceMatrixNormalized(*transformedGraspPointCloud, pcaCentroid, covariance);
     Eigen::SelfAdjointEigenSolver<Eigen::Matrix3f> eigen_solver(covariance, Eigen::ComputeEigenvectors);
     Eigen::Matrix3f eigenVectorsPCA = eigen_solver.eigenvectors();
     eigenVectorsPCA.col(2) = eigenVectorsPCA.col(0).cross(eigenVectorsPCA.col(1));
@@ -183,7 +183,7 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_con
     projectionTransform.block<3,3>(0,0) = eigenVectorsPCA.transpose();
     projectionTransform.block<3,1>(0,3) = -1.f * (projectionTransform.block<3,3>(0,0) * pcaCentroid.head<3>());
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloudPointsProjected(new pcl::PointCloud<pcl::PointXYZ>);
-    pcl::transformPointCloud(*transformed_cloud_grasp, *cloudPointsProjected, projectionTransform);
+    pcl::transformPointCloud(*transformedGraspPointCloud, *cloudPointsProjected, projectionTransform);
     projection = projectionTransform;
 
     // Get the minimum and maximum points of the transformed cloud.
@@ -194,16 +194,16 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &Hand_con
     // Final transform
     const Eigen::Quaternionf bboxQuaternion(eigenVectorsPCA);
     const Eigen::Vector3f bboxTransform = eigenVectorsPCA * meanDiagonal + pcaCentroid.head<3>();
-    BBox_Rotation = bboxQuaternion;
-    BBox_Translation = bboxTransform;
+    bboxRotation = bboxQuaternion;
+    bboxTranslation = bboxTransform;
     min[0] = minPoint.x;
     min[1] = minPoint.y;
     min[2] = minPoint.z;
     max[0] = maxPoint.x;
     max[1] = maxPoint.y;
     max[2] = maxPoint.z;
-    Hand_configuration->clear();
-    Hand_configuration = transformed_cloud_grasp;
+    handConfiguration->clear();
+    handConfiguration = transformedGraspPointCloud;
 }
 
 void MVBB::computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
@@ -300,8 +300,8 @@ float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
     gp.reconstruct(triangles);
 
     //calculate area
-    pcl::PointCloud<pcl::PointXYZ> cloud_area;
-    cloud_area = *C_Object;
+    pcl::PointCloud<pcl::PointXYZ> cloudArea;
+    cloudArea = *C_Object;
 
     int index_p1, index_p2, index_p3;
     double x1, x2, x3, y1, y2, y3, z1, z2, z3, a, b, c, q;
@@ -312,17 +312,17 @@ float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
         index_p2 = triangles.polygons[i].vertices[1];
         index_p3 = triangles.polygons[i].vertices[2];
 
-        x1 = cloud_area.points[index_p1].x;
-        y1 = cloud_area.points[index_p1].y;
-        z1 = cloud_area.points[index_p1].z;
+        x1 = cloudArea.points[index_p1].x;
+        y1 = cloudArea.points[index_p1].y;
+        z1 = cloudArea.points[index_p1].z;
 
-        x2 = cloud_area.points[index_p2].x;
-        y2 = cloud_area.points[index_p2].y;
-        z2 = cloud_area.points[index_p2].z;
+        x2 = cloudArea.points[index_p2].x;
+        y2 = cloudArea.points[index_p2].y;
+        z2 = cloudArea.points[index_p2].z;
 
-        x3 = cloud_area.points[index_p3].x;
-        y3 = cloud_area.points[index_p3].y;
-        z3 = cloud_area.points[index_p3].z;
+        x3 = cloudArea.points[index_p3].x;
+        y3 = cloudArea.points[index_p3].y;
+        z3 = cloudArea.points[index_p3].z;
 
         //Heron's formula:
         a = sqrt(pow((x1 - x2),2) + pow((y1 - y2),2) + pow((z1 - z2),2));
@@ -335,41 +335,41 @@ float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
     return area;
 }
 
-void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr Hand_configuration, 
-                     pcl::PointCloud<pcl::PointXYZ>::Ptr Points_out,
-                     Eigen::Vector3f Ctr, 
-                     pcl::PointCloud<pcl::PointXYZ>::Ptr Points_in, 
-                     Eigen::Vector4f Min,
-                     Eigen::Vector4f Max, 
-                     Eigen::Quaternionf BBox_Rotation, 
-                     Eigen::Vector3f BBox_Translation, 
-                     bool f_coordinates) {
+void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointCloud, 
+                     pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloudOut,
+                     Eigen::Vector3f centroid, 
+                     pcl::PointCloud<pcl::PointXYZ>::Ptr pointCloudIn, 
+                     Eigen::Vector4f min,
+                     Eigen::Vector4f max, 
+                     Eigen::Quaternionf bboxRotation, 
+                     Eigen::Vector3f bboxTranslation, 
+                     bool fCoordinates) {
 
-    pcl::visualization::PCLVisualizer BBox_Visualizer ("3D Viewer");
-    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorOut(Points_out, 0, 255, 0); //Points out the box (green)
-    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorIn(Points_in, 0, 0, 255);  //Points in the box (blue)
-    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> grasp_cloud (Hand_configuration, 255, 0, 0); //Grasp (red)
-    BBox_Visualizer.setBackgroundColor(255,255,255); // white background
-    BBox_Visualizer.addPointCloud(Points_out, filteredColorOut, "cloud_out");
-    BBox_Visualizer.addPointCloud(Points_in, filteredColorIn, "cloud_in");
-    BBox_Visualizer.addPointCloud(Hand_configuration, grasp_cloud, "grasp_cloud");
-    BBox_Visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_out");
-    BBox_Visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_in");
-    BBox_Visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.2, "grasp_cloud");
-    if(f_coordinates) {
-        BBox_Visualizer.addCoordinateSystem(10,"world",0);
-        BBox_Visualizer.addCoordinateSystem(10,Ctr[0],Ctr[1],Ctr[2],"centroid",0);
+    pcl::visualization::PCLVisualizer visualizer("3D Point Cloud Result");
+    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorOut(pointCloudOut, 0, 255, 0); //Points out the box (green)
+    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorIn(pointCloudIn, 0, 0, 255);  //Points in the box (blue)
+    pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> graspPointCloud (handConfigurationPointCloud, 255, 0, 0); //Grasp (red)
+    visualizer.setBackgroundColor(255,255,255); // white background
+    visualizer.addPointCloud(pointCloudOut, filteredColorOut, "pointCloudOut");
+    visualizer.addPointCloud(pointCloudIn, filteredColorIn, "pointCloudIn");
+    visualizer.addPointCloud(handConfigurationPointCloud, graspPointCloud, "graspPointCloud");
+    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_out");
+    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_in");
+    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.2, "grasp_cloud");
+    if(fCoordinates) {
+        visualizer.addCoordinateSystem(10,"world",0);
+        visualizer.addCoordinateSystem(10, centroid[0], centroid[1], centroid[2], "centroid",0);
     }
-    BBox_Visualizer.addCube(BBox_Translation, BBox_Rotation, Max[0] - Min[0], Max[1] - Min[1], Max[2] - Min[2], "boundingbox", 0);
-    // BBox_Visualizer.setRepresentationToWireframeForAllActors(); // see bounding box lines
-    BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0.0, 0.0, 0.0, "boundingbox");
-    BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_LINE_WIDTH, 4, "boundingbox");
-    BBox_Visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_OPACITY, 0.2, "boundingbox");
+    visualizer.addCube(bboxTranslation, bboxRotation, max[0] - min[0], max[1] - min[1], max[2] - min[2], "boundingbox", 0);
+    // visualizer.setRepresentationToWireframeForAllActors(); // see bounding box lines
+    visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0.0, 0.0, 0.0, "boundingbox");
+    visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_LINE_WIDTH, 4, "boundingbox");
+    visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_OPACITY, 0.2, "boundingbox");
 
-    while(!BBox_Visualizer.wasStopped())
-        BBox_Visualizer.spinOnce();
+    while(!visualizer.wasStopped())
+        visualizer.spinOnce();
 
-    BBox_Visualizer.close();
+    visualizer.close();
 }
 
 bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT) {   
@@ -441,7 +441,7 @@ bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT
 
 bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT) { 
     //get the quality of each grasp from the .xml file and save it into a .txt file
-    ofstream GraspQuality(outQualityGraspTXT);
+    ofstream graspQuality(outQualityGraspTXT);
     double quality;
     pugi::xml_document doc;
     //Load .xml file
@@ -454,7 +454,7 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         quality = tool.attribute("quality").as_double();
-        GraspQuality << quality << endl;
+        graspQuality << quality << endl;
         i++;
     }
     return true;
@@ -463,7 +463,7 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
 bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
                         
     //Extract qualities
-    ofstream GraspQuality(qualitySortedTXT);
+    ofstream graspQuality(qualitySortedTXT);
     double quality;
     pugi::xml_document doc;
     //Load .xml file
@@ -476,7 +476,7 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         int i = 0;
         quality = tool.attribute("quality").as_double();
-        GraspQuality << quality << endl;
+        graspQuality << quality << endl;
         i++;
     }
     // Sort qualities
@@ -496,6 +496,7 @@ bool MVBB::getData(const char *inXML,
                    const char *outTransformationTXT, 
                    const char *outQualityGraspTXT, 
                    const char *qualitySortedTXT) {
+    
     extractTransforms(inXML, outTransformationTXT);
     extractGraspQuality(inXML, outQualityGraspTXT);
     qualitySort(inXML, qualitySortedTXT);

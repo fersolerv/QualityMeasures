@@ -79,17 +79,17 @@ def visualize(transformedGraspPointCloud, objectPointCloud, objectCroppedPointCl
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())
-    graspPointCloudPath = args['graspPointCloudPath']
-    objectPointCloudPath = args['objectPointCloudPath']
+    graspPointCloud = args['graspPointCloudPath']
+    objectPointCloud = args['objectPointCloudPath']
     transformationFile = args['transformationFilePath']
     
     #Pipeline
-    graspPointCloud = loadPointCloud(graspPointCloudPath)
-    objectPointCloud = loadPointCloud(objectPointCloudPath)
+    graspPointCloud = loadPointCloud(graspPointCloud)
+    objectPointCloud = loadPointCloud(objectPointCloud)
     filteredObjectPointCloud = filterPointCloud(objectPointCloud)
     cm = computeCenterPoint(filteredObjectPointCloud)
     pointCloudNormals = computeNormals(filteredObjectPointCloud, cm)
-    line = extractGraspNumber(graspPointCloudPath)
+    line = extractGraspNumber(graspPointCloud)
     transformation = returnTransformation(transformationFile, line)
     [transformedGraspPointCloud, bbox] = getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox)

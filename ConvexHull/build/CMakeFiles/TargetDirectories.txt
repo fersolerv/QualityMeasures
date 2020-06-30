@@ -1,3 +1,0 @@
-/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/rebuild_cache.dir
-/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir
-/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/edit_cache.dir

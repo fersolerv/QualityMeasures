@@ -94,4 +94,3 @@ if __name__ == "__main__":
     [transformedGraspPointCloud, bbox] = getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox)
     visualize(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
-    #TODO: Create a class in python and calculate area

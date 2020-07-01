@@ -1,0 +1,1 @@
+/scripts/python3 mvbb.py --graspPointCloudPath ../data/grasps/DetBotRight/pcd/DetBotGrasp2.pcd --objectPointCloudPath ../data/objects/PCD/DetergentBottle.pcd --transformationFilePath ../data/grasps/DetBotRight/txt/DetergentBottleRightGraspTransforms.txt

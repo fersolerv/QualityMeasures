@@ -2,7 +2,12 @@ from open3d import *
 import numpy as np
 from numpy.linalg import inv
 import array
+import logging, coloredlogs
 import time, math, os, sys, argparse, re
+
+LOG_LEVEL = logging.DEBUG
+logger = logging.getLogger('Quality Measures')
+coloredlogs.install(level=LOG_LEVEL, logger=logger)
 
 parser = argparse.ArgumentParser(description='Quality measures for transferring objects')
 parser.add_argument('--graspPointCloudPath', help='Grasp point cloud file path', required=True)
@@ -68,29 +73,37 @@ def computeQTpoints(transformedGraspPointCloud, objectPointCloud, bbox):
     partialInPoints = len(np.asarray(objectCroppedPointCloud.points))
     totalPoints = len(np.asarray(objectPointCloud.points))
     QTpoints = (totalPoints - partialInPoints) / totalPoints;
-    print("QTpoints for grasp is %d", QTpoints)
+    logger.info("QTpoints for grasp is %.4f" % QTpoints)
     return convex_hull, objectCroppedPointCloud
+
+def getPointCloudArea(objectPointCloud):
+    objectPointCloud.estimate_normals()
+    distances = objectPointCloud.compute_nearest_neighbor_distance()
+    avg_dist = np.mean(distances)
+    radius = 25 * avg_dist   
+    mesh = geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(objectPointCloud, utility.DoubleVector([radius, radius * 2]))
+    visualization.draw_geometries([mesh])
     
 def visualize(transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox, convex_hull):
     transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
     objectPointCloud.paint_uniform_color([0, 1, 0])
     objectCroppedPointCloud.paint_uniform_color([0, 0, 1])
-    visualization.draw_geometries([transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud], point_show_normal=False)
+    visualization.draw_geometries([transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox], point_show_normal=False)
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())
-    graspPointCloud = args['graspPointCloudPath']
-    objectPointCloud = args['objectPointCloudPath']
+    graspPointCloudPath = args['graspPointCloudPath']
+    objectPointCloudPath = args['objectPointCloudPath']
     transformationFile = args['transformationFilePath']
-    
     #Pipeline
-    graspPointCloud = loadPointCloud(graspPointCloud)
-    objectPointCloud = loadPointCloud(objectPointCloud)
+    graspPointCloud = loadPointCloud(graspPointCloudPath)
+    objectPointCloud = loadPointCloud(objectPointCloudPath)
     filteredObjectPointCloud = filterPointCloud(objectPointCloud)
     cm = computeCenterPoint(filteredObjectPointCloud)
     pointCloudNormals = computeNormals(filteredObjectPointCloud, cm)
-    line = extractGraspNumber(graspPointCloud)
+    line = extractGraspNumber(graspPointCloudPath)
     transformation = returnTransformation(transformationFile, line)
     [transformedGraspPointCloud, bbox] = getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox)
+    # getPointCloudArea(filteredObjectPointCloud)
     visualize(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)

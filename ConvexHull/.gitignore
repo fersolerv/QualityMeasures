@@ -1,4 +1,7 @@
 # CMake 
-# build/
-# data/
-# .vscode/
+build/
+data/
+.vscode/
+
+extractValues.sh
+run.sh

@@ -69,7 +69,6 @@ def computeQTpoints(transformedGraspPointCloud, objectPointCloud, bbox, line):
     hull, _ = transformedGraspPointCloud.compute_convex_hull()
     convex_hull = geometry.LineSet.create_from_triangle_mesh(hull)
     objectCroppedPointCloud = geometry.PointCloud.crop(objectPointCloud, bbox)
-    objectCroppedPointCloud.paint_uniform_color([0, 0, 1])
     partialInPoints = len(np.asarray(objectCroppedPointCloud.points))
     totalPoints = len(np.asarray(objectPointCloud.points))
     QTpoints = (totalPoints - partialInPoints) / totalPoints;
@@ -106,4 +105,4 @@ if __name__ == "__main__":
     [transformedGraspPointCloud, bbox] = getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
     # getPointCloudArea(filteredObjectPointCloud)
-    # visualize(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
+    visualize(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)

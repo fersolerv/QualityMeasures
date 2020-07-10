@@ -4,6 +4,7 @@ from numpy.linalg import inv
 import array
 import logging, coloredlogs
 import time, math, os, sys, argparse, re
+from quality import Quality
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -15,7 +16,7 @@ parser.add_argument('--objectPointCloudPath', help='Object point cloud file path
 parser.add_argument('--transformationFilePath', help='Transformation point cloud file path', required=True)
 
 def loadPointCloud(pointCloud):
-    pc = io.read_point_cloud(pointCloud)
+    pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
     return pc
 
 def filterPointCloud(objectpointCloud):
@@ -71,23 +72,24 @@ def computeQTpoints(transformedGraspPointCloud, objectPointCloud, bbox, line):
     objectCroppedPointCloud = geometry.PointCloud.crop(objectPointCloud, bbox)
     partialInPoints = len(np.asarray(objectCroppedPointCloud.points))
     totalPoints = len(np.asarray(objectPointCloud.points))
-    QTpoints = (totalPoints - partialInPoints) / totalPoints;
-    logger.info("QTpoints for grasp %d is %.4f" % (line, QTpoints))
+    QTpoints = (totalPoints - partialInPoints) / totalPoints
+    logger.info("QMTpoints for grasp %d is %.4f" % (line, QTpoints))
     return convex_hull, objectCroppedPointCloud
 
 def getPointCloudArea(objectPointCloud):
     objectPointCloud.estimate_normals()
     distances = objectPointCloud.compute_nearest_neighbor_distance()
     avg_dist = np.mean(distances)
-    radius = 15 * avg_dist   
-    mesh = geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(objectPointCloud, utility.DoubleVector([radius, radius * 2]))
-    visualization.draw_geometries([mesh])
+    radius = 10 * avg_dist   
+    mesh1 = geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(objectPointCloud, utility.DoubleVector([radius, radius * 2]))
+    # mesh2 = geometry.TriangleMesh.create_from_point_cloud_alpha_shape(objectPointCloud, 0.9)
+    # visualization.draw_geometries([mesh1])
     
 def visualize(transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox, convex_hull):
     transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
     objectPointCloud.paint_uniform_color([0, 1, 0])
     objectCroppedPointCloud.paint_uniform_color([0, 0, 1])
-    visualization.draw_geometries([transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox], point_show_normal=False)
+    visualization.draw_geometries([transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox], point_show_normal=False,)
 
 if __name__ == "__main__":
     args = vars(parser.parse_args())

@@ -10,5 +10,3 @@ class Quality:
         self.graspPointCloudPath = graspPointCloudPath
         self.objectPointCloudPath = objectPointCloudPath
         self.transformationFile = transformationFile
-    
-    

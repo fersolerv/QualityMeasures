@@ -74,6 +74,7 @@ int main(int argc, char **argv) {
         
     }
     else 
+
         PCL_ERROR("Write the command line correctly\n");
 
 }

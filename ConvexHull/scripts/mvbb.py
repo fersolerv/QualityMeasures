@@ -42,7 +42,7 @@ def computeNormals(pointCloud, centerPoint):
     return pointCloud
 
 def extractGraspNumber(graspPointCloudPath):
-    number = re.findall('\d+', graspPointCloudPath )
+    number = re.findall('\d+', graspPointCloudPath)
     number = int(number[0])
     return number
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from open3d import *
 import numpy as np
 from numpy.linalg import inv
@@ -5,6 +6,8 @@ import array
 import logging, coloredlogs
 import time, math, os, sys, argparse, re
 from quality import Quality
+import vtk
+import pyvista as pv
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -76,14 +79,28 @@ def computeQTpoints(transformedGraspPointCloud, objectPointCloud, bbox, line):
     logger.info("QMTpoints for grasp %d is %.4f" % (line, QTpoints))
     return convex_hull, objectCroppedPointCloud
 
-def getPointCloudArea(objectPointCloud):
-    objectPointCloud.estimate_normals()
-    distances = objectPointCloud.compute_nearest_neighbor_distance()
-    avg_dist = np.mean(distances)
-    radius = 10 * avg_dist   
-    mesh1 = geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(objectPointCloud, utility.DoubleVector([radius, radius * 2]))
-    # mesh2 = geometry.TriangleMesh.create_from_point_cloud_alpha_shape(objectPointCloud, 0.9)
-    # visualization.draw_geometries([mesh1])
+def getPointCloudArea(objectPointCloud, graspPointCloud, partialObjectPointCloud):    
+    objectPTS = np.asarray(objectPointCloud.points)
+    object = pv.PolyData(objectPTS)    
+    objectMesh = object.delaunay_3d(alpha=0.022)
+    objectWires = objectMesh.compute_cell_sizes(length=False, area=False, volume=False).extract_all_edges()
+
+    graspPTS = np.asarray(graspPointCloud.points)
+    grasp = pv.PolyData(graspPTS)
+    graspMesh = grasp.delaunay_3d(alpha=0.0115)
+    graspWires = graspMesh.compute_cell_sizes(length=False, area=False, volume=True).extract_all_edges()   
+
+    partialPTS = np.asarray(partialObjectPointCloud.points)
+    partial = pv.PolyData(partialPTS)
+    partialMesh = partial.delaunay_3d(alpha=0.03)
+    partialWires = partialMesh.compute_cell_sizes(length=True, area=False, volume=False).extract_all_edges() 
+    
+    plotter = pv.Plotter(polygon_smoothing=True, line_smoothing=True, point_smoothing=True, border=True, border_color='white')
+    plotter.add_mesh(objectMesh, color='green')
+    plotter.add_mesh(graspMesh, color='red')
+    plotter.add_mesh(partialMesh, color='blue')
+    # plotter.show_bounds(grid='front', location='outer', all_edges=True)
+    plotter.show(title="GRASP", full_screen=False) 
     
 def visualize(transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox, convex_hull):
     transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
@@ -96,6 +113,7 @@ if __name__ == "__main__":
     graspPointCloudPath = args['graspPointCloudPath']
     objectPointCloudPath = args['objectPointCloudPath']
     transformationFile = args['transformationFilePath']
+    
     #Pipeline
     graspPointCloud = loadPointCloud(graspPointCloudPath)
     objectPointCloud = loadPointCloud(objectPointCloudPath)
@@ -106,5 +124,5 @@ if __name__ == "__main__":
     transformation = returnTransformation(transformationFile, line)
     [transformedGraspPointCloud, bbox] = getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
-    # getPointCloudArea(filteredObjectPointCloud)
-    visualize(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
+    getPointCloudArea(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud)
+    #visualize(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)

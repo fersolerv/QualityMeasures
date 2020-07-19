@@ -148,7 +148,7 @@ Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint l
     transformation << num[0], num[1], num[2], num[3], 
                       num[4], num[5], num[6], num[7], 
                       num[8], num[9], num[10], num[11], 
-                      num[12], num[13], num[14], num[15];
+                      0, 0, 0, 1;
     read.close();
     return transformation;
 }
@@ -224,13 +224,13 @@ void MVBB::computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
 }
 
 float MVBB::computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
-                            pcl::PointCloud<pcl::Normal>::Ptr normals, 
-                            Eigen::Vector4f min, 
-                            Eigen::Vector4f max, 
-                            Eigen::Matrix4f projection,
-                            pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsOut, 
-                            pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsIn, 
-                            pcl::PointCloud<pcl::Normal>::Ptr &normalsOut) {
+                             pcl::PointCloud<pcl::Normal>::Ptr normals, 
+                             Eigen::Vector4f min, 
+                             Eigen::Vector4f max, 
+                             Eigen::Matrix4f projection,
+                             pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsOut, 
+                             pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsIn, 
+                             pcl::PointCloud<pcl::Normal>::Ptr &normalsOut) {
 
     Eigen::Affine3f boxTransform;
     boxTransform.matrix() = projection;

@@ -88,7 +88,8 @@ class Quality:
         return convex_hull, objectCroppedPointCloud
 
 
-    def visualizeGraspVTK(self, objectPointCloud, graspPointCloud, partialObjectPointCloud):    
+    def visualizeGraspVTK(self, objectPointCloud, graspPointCloud, partialObjectPointCloud, line):
+        line_str = str(line)  
         objectPTS = np.asarray(objectPointCloud.points)
         object = pv.PolyData(objectPTS)    
         objectMesh = object.delaunay_3d(alpha=0.022)
@@ -104,14 +105,19 @@ class Quality:
         partialMesh = partial.delaunay_3d(alpha=0.03)
         partialWires = partialMesh.compute_cell_sizes(length=True, area=False, volume=False).extract_all_edges() 
     
-        plotter = pv.Plotter(polygon_smoothing=True, line_smoothing=True, point_smoothing=True, border=True, border_color='white')
+        plotter = pv.Plotter(polygon_smoothing=True, 
+                             border_width=10.0,
+                             point_smoothing=True, 
+                             border=True, 
+                             border_color='white'
+                            )
         plotter.add_mesh(objectMesh, color='green')
         plotter.add_mesh(graspMesh, color='red')
         plotter.add_mesh(partialMesh, color='blue')
         # plotter.show_bounds(grid='front', location='outer', all_edges=True)
-        plotter.show(title="GRASP", full_screen=False) 
+        plotter.show(title="GRASP " + line_str, full_screen=False) 
 
-    
+
     def visualiazeGraspO3D(self, transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox, convex_hull):
         transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
         objectPointCloud.paint_uniform_color([0, 1, 0])

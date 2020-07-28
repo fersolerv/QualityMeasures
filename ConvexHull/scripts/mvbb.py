@@ -2,10 +2,8 @@
 from open3d import *
 import numpy as np
 from numpy.linalg import inv
-import array
 import logging, coloredlogs
-import time, math, os, sys, re
-import vtk
+import math, os, sys, re, array, vtk
 import pyvista as pv
 
 LOG_LEVEL = logging.DEBUG
@@ -37,10 +35,12 @@ class Quality:
 
     def computeCenterPoint(self, pointCloud):
         samplePoints = np.asarray(pointCloud.points)
-        accumulative = [0.0 ,0.0, 0.0]
+        accumulative = [0.0, 0.0, 0.0]
         for point in samplePoints:
             accumulative += point
-        return accumulative / len(samplePoints)
+            
+        cp = accumulative / len(samplePoints)
+        return cp
 
 
     def computeNormals(self, pointCloud, centerPoint):
@@ -114,7 +114,7 @@ class Quality:
         plotter.add_mesh(objectMesh, color='green')
         plotter.add_mesh(graspMesh, color='red')
         plotter.add_mesh(partialMesh, color='blue')
-        # plotter.show_bounds(grid='front', location='outer', all_edges=True)
+        plotter.show_bounds(grid='front', location='outer', all_edges=True)
         plotter.show(title="GRASP " + line_str, full_screen=False) 
 
 

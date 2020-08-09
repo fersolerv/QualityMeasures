@@ -7,7 +7,8 @@ ConvexHull::ConvexHull() {
     CM.setZero();
 }
 
-ConvexHull::ConvexHull(Eigen::Vector3f centerofmodel) {
+ConvexHull::ConvexHull(Eigen::Vector3f centerofmodel) 
+{
     Wrenches.clear();
     EWR.clear();
 
@@ -18,7 +19,8 @@ ConvexHull::~ConvexHull(){
 
 }
 
-bool ConvexHull::convertPoints(double *storePointsQHull) {
+bool ConvexHull::convertPoints(double *storePointsQHull) 
+{
 
     for (uint i = 0; i < Wrenches.size(); i++) {
         storePointsQHull[i * 6 + 0] = Wrenches[i].p[0];
@@ -32,12 +34,13 @@ bool ConvexHull::convertPoints(double *storePointsQHull) {
      return true;
 }
 
-bool ConvexHull::CreateConvexHull() {
+bool ConvexHull::CreateConvexHull() 
+{
 
     int Cpoints = (int)Wrenches.size();
 
-    if(Cpoints < 4) {
-
+    if(Cpoints < 4) 
+    {
         std::cout<<"Error: Need at least 4 points (number of points registered: "<< Cpoints <<" )"<<std::endl;
         return false;
     }
@@ -61,7 +64,8 @@ bool ConvexHull::CreateConvexHull() {
 
     exitcode = qh_new_qhull(dim,Cpoints,points,ismalloc,flags,outfile,errfile);
 
-    if(!exitcode) {
+    if(!exitcode) 
+    {
         facetT* facet_list = qh facet_list;
         int convexNumFaces = qh num_facets;
         int convexNumVertex = qh_setsize(qh_facetvertices(facet_list,NULL,false));
@@ -71,33 +75,32 @@ bool ConvexHull::CreateConvexHull() {
         int convexNumVertex2 = qh_setsize(qh_facetvertices(facet_list,NULL,false));
         double pCenter[6];
 
-        for(int u = 0; u < 6; u++) {
+        for(int u = 0; u < 6; u++) 
             pCenter[u] = 0;
-        }
-
+        
         double pZero[6];
 
-        for(int u = 0; u < 6; u++) {
+        for(int u = 0; u < 6; u++)
             pZero[u] = 0;
-        }
-
+        
         int nVertexCount = 0;
 
         FORALLvertices
         {
-            for(int u = 0; u< 6; u++) {
+            for(int u = 0; u< 6; u++)
                 pCenter[u] += vertex->point[u];
-            }
+        
             nVertexCount++;
         }
 
-        if(nVertexCount > 0){
-            for(int u = 0; u< 6; u++) {
+        if(nVertexCount > 0)
+        {
+            for(int u = 0; u< 6; u++)
                 pCenter[u] /= (float)nVertexCount;
-            }
         }
 
-        for(int u = 0; u< 3; u++) {
+        for(int u = 0; u< 3; u++)
+        {
             Result.center.p[u] = pCenter[u];
             Result.center.n[u] = pCenter[u+3];
         }
@@ -119,7 +122,8 @@ bool ConvexHull::CreateConvexHull() {
 
             FOREACHvertex_(facet->vertices)
             {
-                if(c < 6) {
+                if(c < 6) 
+                {
                     v[c].p[0] = vertex->point[0];
                     v[c].p[1] = vertex->point[1];
                     v[c].p[2] = vertex->point[2];
@@ -132,7 +136,8 @@ bool ConvexHull::CreateConvexHull() {
                     nIds[c] = (int)Result.vertices.size()-1;
                     c++;
                 }
-                else {
+                else 
+                {
                     std::cout<<"Error, facet with more than 6 vertices not supported ... face number: "<< nFacets<<std::endl;
                 }
             }
@@ -183,7 +188,8 @@ bool ConvexHull::CreateConvexHull() {
     return true;
 }
 
-void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints, int sides) {
+void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints, int sides) 
+{
 
     int count = 0;
     Mtools::ContactPoint temp, p;
@@ -195,7 +201,8 @@ void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints, int sides
     EWR.clear();
     float factor = 100;
 
-    while(iter != cpoints.end()) {
+    while(iter != cpoints.end()) 
+    {
         p.p = iter->n;
         temp.p = iter->p - CM;
         temp.n = -(iter->n) ;
@@ -207,8 +214,8 @@ void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints, int sides
         Sw.push_back(W);
 
         count ++;
-        if(count > sides-1) {
-
+        if(count > sides-1) 
+        {
             EWR.push_back(Sw);
             Sw.clear();
             count = 0;
@@ -217,18 +224,15 @@ void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints, int sides
     }
 }
 
-void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints) {
-
-
+void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints) 
+{
     Mtools::ContactPoint temp, p;
     std::vector<Mtools::ContactPoint>::iterator iter = cpoints.begin();
     Wrenches.clear();
-
     float factor = 100;
 
-
-    while(iter != cpoints.end()){
-
+    while(iter != cpoints.end())
+    {
         p.p = iter->n;
         temp.p = iter->p - CM;
         temp.n = -(iter->n);
@@ -239,22 +243,24 @@ void ConvexHull::Cwrenches(std::vector<Mtools::ContactPoint> &cpoints) {
     }
 }
 
-bool ConvexHull::isForceClosure() {
-
+bool ConvexHull::isForceClosure() 
+{
     std::vector<Mtools::TriangleFace6D>::iterator faceIterator;
-    for(faceIterator = Result.faces.begin(); faceIterator != Result.faces.end(); faceIterator++) {
+    for(faceIterator = Result.faces.begin(); faceIterator != Result.faces.end(); faceIterator++) 
+    {
         if(faceIterator->distPlaneZero > 1e-4)
             return false;
     }
     return true;
 }
 
-float ConvexHull::minOffset() {
-
+float ConvexHull::minOffset() 
+{
     float fRes = FLT_MAX;
     int nWrongFacets = 0;
 
-    for(size_t i = 0; i < (int)Result.faces.size(); i++) {
+    for(size_t i = 0; i < (int)Result.faces.size(); i++) 
+    {
         if(Result.faces.at(i).distNormCenter > 0)
             nWrongFacets++;
         else if(-(Result.faces.at(i).distNormCenter) < fRes)
@@ -269,18 +275,20 @@ float ConvexHull::minOffset() {
 }
 
 
-void ConvexHull::ChullCenter() {
-
+void ConvexHull::ChullCenter() 
+{
     std::vector<Mtools::ContactPoint>::iterator iter;
     Center.p.setZero();
     Center.n.setZero();
 
-    if(Result.vertices.size() == 0) {
+    if(Result.vertices.size() == 0) 
+    {
         std::cout<< "Error: No vertices..."<<std::endl;
         return;
     }
 
-    for(iter = Result.vertices.begin(); iter != Result.vertices.end(); iter++){
+    for(iter = Result.vertices.begin(); iter != Result.vertices.end(); iter++)
+    {
         Center.p += iter->p;
         Center.n += iter->n;
     }
@@ -289,8 +297,8 @@ void ConvexHull::ChullCenter() {
     Center.n /= (float)Result.vertices.size();
 }
 
-float ConvexHull::minDistCH() {
-
+float ConvexHull::minDistCH() 
+{
     ChullCenter();
     Mtools::ContactPoint CCenter;
     CCenter.p.setZero();
@@ -301,12 +309,14 @@ float ConvexHull::minDistCH() {
     float currentDist2;
     std::vector<Mtools::TriangleFace6D>::iterator faceIter;
 
-    for (faceIter = Result.faces.begin(); faceIter != Result.faces.end(); faceIter++) {
+    for (faceIter = Result.faces.begin(); faceIter != Result.faces.end(); faceIter++) 
+    {
         Mtools::ContactPoint faceCenter;
         faceCenter.p.setZero();
         faceCenter.n.setZero();
 
-        for (int j = 0; j < 6; j++) {
+        for (int j = 0; j < 6; j++) 
+        {
             faceCenter.p += (Result.vertices)[faceIter->id[j]].p;
             faceCenter.n += (Result.vertices)[faceIter->id[j]].n;
         }
@@ -315,7 +325,8 @@ float ConvexHull::minDistCH() {
         faceCenter.n /= 6.0f;
         currentDist2 = 0;
 
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < 3; j++) 
+        {
             dist[j] = (faceCenter.p(j) - CCenter.p(j));
             dist[j + 3] = (faceCenter.n(j) - CCenter.n(j));
             currentDist2 += dist[j] * dist[j];

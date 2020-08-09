@@ -4,7 +4,8 @@
 using namespace std;
 using namespace pcl::console;
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv) 
+{
 
     MVBB *qtl; qtl = new MVBB();
     wrench *wrc; wrc = new wrench();
@@ -15,7 +16,8 @@ int main(int argc, char **argv) {
     pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals(new pcl::PointCloud<pcl::Normal>);
     Eigen::Vector3f CM;
 
-    if(find_switch(argc, argv, "--computeQTM")) {
+    if(find_switch(argc, argv, "--computeQTM")) 
+    {
         
         string graspPointCloud = "";
         string objectPointCloud = "";
@@ -49,7 +51,8 @@ int main(int argc, char **argv) {
     else 
         PCL_ERROR("Write the command line correctly\n");
     
-    if(find_switch(argc, argv, "--extractValues")) {
+    if(find_switch(argc, argv, "--extractValues")) 
+    {
 
         const char *inXML, *outTransformationTXT, *outQualityGraspTXT, *qualitySortedTXT;
    
@@ -74,7 +77,6 @@ int main(int argc, char **argv) {
         
     }
     else 
-
         PCL_ERROR("Write the command line correctly\n");
 
 }

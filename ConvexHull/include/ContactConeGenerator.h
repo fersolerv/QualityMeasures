@@ -16,24 +16,24 @@
 
 class CCone
 {
-private:
+    private:
 
-    double unitforce;
-    double frictioncoef;
-    double frictionAngle;
-    double frictionConeRaid;
-    double frictionConeHeigh;
-    std::vector<Eigen::Vector3f > frictionRimPoints;
-    int conesides;
+        double unitforce;
+        double frictioncoef;
+        double frictionAngle;
+        double frictionConeRaid;
+        double frictionConeHeigh;
+        std::vector<Eigen::Vector3f > frictionRimPoints;
+        int conesides;
 
-public:
+    public:
 
-    CCone(float uForce, float fCoef, int cSides);
-    ~CCone();
+        CCone(float uForce, float fCoef, int cSides);
+        ~CCone();
 
-    void frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones);
-    void frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones, unsigned int id);
-    void frictionCones_2(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones, unsigned int id);
+        void frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones);
+        void frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones, unsigned int id);
+        void frictionCones_2(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint> &StoreCones, unsigned int id);
 
 };
 

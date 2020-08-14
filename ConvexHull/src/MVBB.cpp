@@ -5,6 +5,27 @@ using namespace std;
 MVBB::MVBB() {}
 MVBB::~MVBB(){};
 
+void showHelpQuality()
+{
+    cout << "Usage: ./TransferQualityMeasure --computeQTM -graspPointCloud [path + filename]  -objectPointCloud [path + filename] -transformationFile [path + file]\n" << endl;
+    cout << "    TransferQualityMeasure:        Executable file." << endl;
+    cout << "    --computeQTM:                  Method to use." << endl;
+    cout << "    -graspPointCloud:              Path where the grasp point cloud is. " << endl;
+    cout << "    -objectPointCloud:             Path where the object point cloud is. " << endl;
+    cout << "    -transformationFile:           Path where the transformations values are." << endl;
+}
+
+void showHelpExtractValues()
+{
+    cout << "Usage: ./TransferQualityMeasure --extractValues -transformationXMLFile [path + filename]  -outputGraspTransformationPath [path + filename] -outputGraspQualityPath [path + file] -outputSortedQualitiesPath [path + file]\n" << endl;
+    cout << "    TransferQualityMeasure:              Executable file." << endl;
+    cout << "    --extractValues:                     Method to use." << endl;
+    cout << "    -transformationXMLFile:              Path where the XML file is. " << endl;
+    cout << "    -outputGraspTransformationPath:      Path to put transformation values from file. " << endl;
+    cout << "    -outputGraspQualityPath:             Path to put the qualities values." << endl;
+    cout << "    -outputSortedQualitiesPath:          Path to put the sorted qualities values." << endl;
+}
+
 bool MVBB::getQualities(std::string graspPointCloudPath,
                         std::string objectPointCloudPath,
                         std::string transformationsFilePath,

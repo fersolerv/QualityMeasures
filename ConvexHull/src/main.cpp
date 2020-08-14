@@ -18,7 +18,6 @@ int main(int argc, char **argv)
 
     if(find_switch(argc, argv, "--computeQTM")) 
     {
-        
         string graspPointCloud = "";
         string objectPointCloud = "";
         string transformationsFile = "";
@@ -48,12 +47,15 @@ int main(int argc, char **argv)
         if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
             cout << "OWS can't be computed.\n";
     }
-    else 
+    else if(argc != 3)
+    {
         PCL_ERROR("Write the command line correctly\n");
+        qtl->showHelpQuality();
+        return -1;
+    }
     
     if(find_switch(argc, argv, "--extractValues")) 
     {
-
         const char *inXML, *outTransformationTXT, *outQualityGraspTXT, *qualitySortedTXT;
    
         int index = find_argument(argc, argv, "-transformationXMLFile"); // file.xml
@@ -76,7 +78,10 @@ int main(int argc, char **argv)
             cout << "Data extracted\n";
         
     }
-    else 
+    else if(argc != 3)
+    {
         PCL_ERROR("Write the command line correctly\n");
-
+        qtl->showHelpExtractValues();
+        return -1;
+    }
 }

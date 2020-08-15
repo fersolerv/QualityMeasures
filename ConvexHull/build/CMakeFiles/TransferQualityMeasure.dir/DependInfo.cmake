@@ -4,70 +4,37 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/parallels/Apps/QualityMeasures/ConvexHull/src/ContactConeGenerator.cpp" "/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/ContactConeGenerator.cpp.o"
-  "/home/parallels/Apps/QualityMeasures/ConvexHull/src/ConvexHull.cpp" "/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/ConvexHull.cpp.o"
-  "/home/parallels/Apps/QualityMeasures/ConvexHull/src/MVBB.cpp" "/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/MVBB.cpp.o"
-  "/home/parallels/Apps/QualityMeasures/ConvexHull/src/Mtools.cpp" "/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/Mtools.cpp.o"
-  "/home/parallels/Apps/QualityMeasures/ConvexHull/src/Wrenches.cpp" "/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/Wrenches.cpp.o"
-  "/home/parallels/Apps/QualityMeasures/ConvexHull/src/main.cpp" "/home/parallels/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/main.cpp.o"
+  "/home/fersolerv/Apps/QualityMeasures/ConvexHull/src/ContactConeGenerator.cpp" "/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/ContactConeGenerator.cpp.o"
+  "/home/fersolerv/Apps/QualityMeasures/ConvexHull/src/ConvexHull.cpp" "/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/ConvexHull.cpp.o"
+  "/home/fersolerv/Apps/QualityMeasures/ConvexHull/src/MVBB.cpp" "/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/MVBB.cpp.o"
+  "/home/fersolerv/Apps/QualityMeasures/ConvexHull/src/Mtools.cpp" "/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/Mtools.cpp.o"
+  "/home/fersolerv/Apps/QualityMeasures/ConvexHull/src/Wrenches.cpp" "/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/Wrenches.cpp.o"
+  "/home/fersolerv/Apps/QualityMeasures/ConvexHull/src/main.cpp" "/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "DISABLE_DAVIDSDK"
-  "DISABLE_DSSDK"
-  "DISABLE_ENSENSO"
   "DISABLE_LIBUSB_1_0"
   "DISABLE_PCAP"
   "DISABLE_PNG"
-  "DISABLE_RSSDK"
   "EIGEN_USE_NEW_STDVECTOR"
   "EIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET"
-  "FLANN_STATIC"
-  "QT_CORE_LIB"
-  "QT_GUI_LIB"
-  "QT_NO_DEBUG"
-  "QT_WIDGETS_LIB"
   "qh_QHpointer"
-  "vtkFiltersFlowPaths_AUTOINIT=1(vtkFiltersParallelFlowPaths)"
-  "vtkIOExodus_AUTOINIT=1(vtkIOParallelExodus)"
-  "vtkIOGeometry_AUTOINIT=1(vtkIOMPIParallel)"
-  "vtkIOImage_AUTOINIT=1(vtkIOMPIImage)"
-  "vtkIOParallel_AUTOINIT=1(vtkIOMPIParallel)"
-  "vtkIOSQL_AUTOINIT=2(vtkIOMySQL,vtkIOPostgreSQL)"
-  "vtkRenderingContext2D_AUTOINIT=1(vtkRenderingContextOpenGL)"
-  "vtkRenderingCore_AUTOINIT=3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL)"
-  "vtkRenderingFreeType_AUTOINIT=2(vtkRenderingFreeTypeFontConfig,vtkRenderingMatplotlib)"
-  "vtkRenderingLIC_AUTOINIT=1(vtkRenderingParallelLIC)"
-  "vtkRenderingVolume_AUTOINIT=1(vtkRenderingVolumeOpenGL)"
+  "vtkRenderingContext2D_AUTOINIT=1(vtkRenderingContextOpenGL2)"
+  "vtkRenderingCore_AUTOINIT=3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)"
   )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/usr/include/eigen3"
-  "/usr/include/vtk-6.3"
-  "/usr/include/freetype2"
-  "/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi"
-  "/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/opal/mca/event/libevent2022/libevent"
-  "/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi/opal/mca/event/libevent2022/libevent/include"
-  "/usr/lib/x86_64-linux-gnu/openmpi/include"
-  "/usr/include/python2.7"
-  "/usr/include/x86_64-linux-gnu"
-  "/usr/include/hdf5/openmpi"
-  "/usr/include/libxml2"
-  "/usr/include/jsoncpp"
-  "/usr/include/tcl"
   "../"
   "../include"
-  "/usr/include/pcl-1.8"
+  "/usr/include/eigen3"
+  "/usr/include/vtk-7.1"
+  "/usr/include/freetype2"
+  "/usr/include/pcl-1.10"
   "/usr/include/ni"
   "/usr/include/openni2"
-  "/usr/include/x86_64-linux-gnu/qt5"
-  "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
-  "/usr/include/x86_64-linux-gnu/qt5/QtGui"
-  "/usr/include/x86_64-linux-gnu/qt5/QtCore"
-  "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
   )
 
 # Targets to which this target links.

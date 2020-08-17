@@ -16,13 +16,13 @@ add_definitions(-DEIGEN_USE_NEW_STDVECTOR
                  
 find_package( PugiXML )
 if(PUGI_XML_FOUND)
-   #message( STATUS "PugiXML FOUND, using it")
-   #set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE  )
-   #include_directories( ${PUGI_XML_INCLUDE_DIR})
+   message( STATUS "PugiXML FOUND, using it")
+   set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE)
+   include_directories( ${PUGI_XML_INCLUDE_DIR})
 else(PUGI_XML_FOUND)
    message(STATUS "PugiXML not found, using internal copy")
-   #add_subdirectory ( pugixml )
-   #include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/pugixml )
+   add_subdirectory ( pugixml )
+   include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/pugixml )
 set(PUGI_XML_LIBRARIES libpugixml)
 endif(PUGI_XML_FOUND)
 

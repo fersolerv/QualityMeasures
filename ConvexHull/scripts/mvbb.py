@@ -118,7 +118,12 @@ class Quality:
         plotter.show(title="GRASP " + line_str, full_screen=False) 
 
 
-    def visualiazeGraspO3D(self, transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox, convex_hull):
+    def visualiazeGraspO3D(self, 
+                           transformedGraspPointCloud, 
+                           objectPointCloud, 
+                           objectCroppedPointCloud, 
+                           bbox, 
+                           convex_hull):
         transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
         objectPointCloud.paint_uniform_color([0, 1, 0])
         objectCroppedPointCloud.paint_uniform_color([0, 0, 1])

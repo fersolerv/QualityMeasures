@@ -31,8 +31,8 @@ endif(PUGI_XML_INCLUDE_DIRS)
 # Support the REQUIRED and QUIET arguments, and set PUGIXML_FOUND if found.
 include (FindPackageHandleStandardArgs)
 find_package_handle_standard_args (PugiXML REQUIRED_VARS
-                                  PUGI_XML_LIBRARIES
-                                  PUGI_XML_INCLUDE_DIRS)
+                                   PUGI_XML_LIBRARIES
+                                   PUGI_XML_INCLUDE_DIRS)
 
 if (PUGI_XML_FOUND)
     set (PUGIXML_LIBRARIES ${PUGIXML_LIBRARY})

@@ -64,6 +64,6 @@ bool wrench::computeOWSQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCl
     cout << "Total quality is: " << totalQuality << endl;
     cout << "Potential quality is: " << potentialQuality << endl; 
     cout << "Quality lost based on OWS is: " << LostQualityOWS << endl;
-    cout << "QTows is: " << QualityOWS << endl;
+    cout << "\033[1;36mQTows is: " << QualityOWS << "\033[0m" << endl;
     return true;
 }

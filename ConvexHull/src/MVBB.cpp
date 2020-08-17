@@ -12,7 +12,7 @@ void MVBB::showHelpQuality()
     cout << "    --computeQTM:                  Method to use." << endl;
     cout << "    -graspPointCloud:              Path where the grasp point cloud is. " << endl;
     cout << "    -objectPointCloud:             Path where the object point cloud is. " << endl;
-    cout << "    -transformationFile:           Path where the transformations values are." << endl;
+    cout << "    -transformationFile:           Path where the transformations values are.\n" << endl;
 }
 
 void MVBB::showHelpExtractValues()
@@ -23,7 +23,7 @@ void MVBB::showHelpExtractValues()
     cout << "    -transformationXMLFile:              Path where the XML file is. " << endl;
     cout << "    -outputGraspTransformationPath:      Path to put transformation values from file. " << endl;
     cout << "    -outputGraspQualityPath:             Path to put the qualities values." << endl;
-    cout << "    -outputSortedQualitiesPath:          Path to put the sorted qualities values." << endl;
+    cout << "    -outputSortedQualitiesPath:          Path to put the sorted qualities values.\n" << endl;
 }
 
 bool MVBB::getQualities(std::string graspPointCloudPath,
@@ -55,19 +55,19 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         float TotalObjectArea = getPointCloudArea(objectPC);
         float partialObjectArea = getPointCloudArea(partialObjectPC);
         double QTarea = partialObjectArea / TotalObjectArea;
-        cout << "QTpoints for grasp " << line << " is: " << QTpoints << endl;
-        cout << "QTarea for grasp " << line << " is: " << QTarea << endl;
+        cout << "\033[1;36mQTpoints for grasp " << line << " is: " << QTpoints << "\033[0m" << endl;
+        cout << "\033[1;36mQTarea for grasp " << line << " is: " << QTarea << "\033[0m" << endl;
         // visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
         return true;
 }
 
 bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) 
 {
-    if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) {
+    if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) 
+    {
         PCL_ERROR ("Can't read file .pcd \n");
         return false;
     }
-
     return true;
 }
 

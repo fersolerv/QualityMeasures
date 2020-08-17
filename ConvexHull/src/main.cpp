@@ -6,7 +6,6 @@ using namespace pcl::console;
 
 int main(int argc, char **argv) 
 {
-
     MVBB *qtl; qtl = new MVBB();
     wrench *wrc; wrc = new wrench();
 

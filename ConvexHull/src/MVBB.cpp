@@ -81,15 +81,19 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
     norms.clear();
     obj.open("/home/fernando/PHD/Applications/VRMLtoPCD/build/out/Object.txt");
     //read txt file that contains the points and normals provided by simox
-    if(obj.is_open()) {
-        do {
-            if (obj.eof()) {
+    if(obj.is_open()) 
+    {
+        do 
+        {
+            if (obj.eof()) 
+            {
                 break;
                 return false;
             }
             point.clear();
             norm.clear();
-            for(int i = 0; i < 6; i ++) {
+            for(int i = 0; i < 6; i ++) 
+            {
                 if(i < 3) 
                     obj >> val_point;
                 else 
@@ -104,12 +108,14 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
         //Convert the points into PCL format
         C_Object->resize(points.size());
         normals->resize(norms.size());
-        for(size_t j = 0; j < points.size(); j++) {
+        for(size_t j = 0; j < points.size(); j++) 
+        {
             C_Object->points[j].x = points.at(j).at(0);
             C_Object->points[j].y = points.at(j).at(1);
             C_Object->points[j].z = points.at(j).at(2);
         }
-        for(size_t k = 0; k < norms.size(); k++) {
+        for(size_t k = 0; k < norms.size(); k++) 
+        {
             normals->points[k].normal[0] = norms.at(k).at(0);
             normals->points[k].normal[0] = norms.at(k).at(1);
             normals->points[k].normal[0] = norms.at(k).at(2);
@@ -123,7 +129,8 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
 void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered) 
 {
     
-    if (original->points.size() > 900000) {
+    if (original->points.size() > 900000) 
+    {
         pcl::octree::OctreePointCloudSearch<pcl::PointXYZ > octree (128.0f);
         octree.setInputCloud(original);
         octree.addPointsFromInputCloud();
@@ -141,10 +148,11 @@ int MVBB::extractGraspNumber(string graspPointCloudPath)
 {
     // For atoi, the input string has to start with a digit, so lets search for the first digit
     size_t i = 0;
-    for ( ; i < graspPointCloudPath.length(); i++ ) { 
+    for ( ; i < graspPointCloudPath.length(); i++ ) 
+    { 
         if (isdigit(graspPointCloudPath[i])) 
             break; 
-        }
+    }
     // remove the first chars, which aren't digits
     graspPointCloudPath = graspPointCloudPath.substr(i, graspPointCloudPath.length() - i );
     int number = atoi(graspPointCloudPath.c_str());
@@ -166,7 +174,8 @@ Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint l
     std::stringstream ss(sLine);
 
     float i;
-    while (ss >> i) {
+    while (ss >> i) 
+    {
         num.push_back(i);
         if (ss.peek() == ',')
             ss.ignore();
@@ -187,7 +196,6 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConf
                                    Eigen::Matrix4f &projection,
                                    Eigen::Matrix4f transformation) 
 {
-
     Eigen::Matrix4f Tinv;
     Tinv = transformation.inverse();
 
@@ -237,7 +245,6 @@ void MVBB::computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
                           pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
                           Eigen::Vector3f &CM) 
 {
-    
     Eigen::Vector4f centroid;
     pcl::compute3DCentroid (*C_Object, centroid);
     CM << centroid[0], centroid[1], centroid[2];
@@ -260,7 +267,6 @@ float MVBB::computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
                              pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsIn, 
                              pcl::PointCloud<pcl::Normal>::Ptr &normalsOut) 
 {
-
     Eigen::Affine3f boxTransform;
     boxTransform.matrix() = projection;
     //Filter Points Outside the CropBox
@@ -290,7 +296,6 @@ float MVBB::computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
 
 float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) 
 {
-
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
     pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
     pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
@@ -386,7 +391,8 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
     visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_out");
     visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_in");
     visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.2, "grasp_cloud");
-    if(fCoordinates) {
+    if(fCoordinates) 
+    {
         visualizer.addCoordinateSystem(10,"world",0);
         visualizer.addCoordinateSystem(10, centroid[0], centroid[1], centroid[2], "centroid",0);
     }
@@ -418,7 +424,6 @@ bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) 
     {
-
         pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
         xx = node.attribute("c1").as_double();
         xy = node.attribute("c2").as_double();
@@ -495,8 +500,7 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
 }
 
 bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) 
-{
-                        
+{          
     //Extract qualities
     ofstream graspQuality(qualitySortedTXT);
     double quality;

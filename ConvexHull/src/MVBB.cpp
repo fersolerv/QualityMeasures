@@ -5,7 +5,7 @@ using namespace std;
 MVBB::MVBB() {}
 MVBB::~MVBB(){};
 
-void showHelpQuality()
+void MVBB::showHelpQuality()
 {
     cout << "Usage: ./TransferQualityMeasure --computeQTM -graspPointCloud [path + filename]  -objectPointCloud [path + filename] -transformationFile [path + file]\n" << endl;
     cout << "    TransferQualityMeasure:        Executable file." << endl;
@@ -15,7 +15,7 @@ void showHelpQuality()
     cout << "    -transformationFile:           Path where the transformations values are." << endl;
 }
 
-void showHelpExtractValues()
+void MVBB::showHelpExtractValues()
 {
     cout << "Usage: ./TransferQualityMeasure --extractValues -transformationXMLFile [path + filename]  -outputGraspTransformationPath [path + filename] -outputGraspQualityPath [path + file] -outputSortedQualitiesPath [path + file]\n" << endl;
     cout << "    TransferQualityMeasure:              Executable file." << endl;
@@ -57,7 +57,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         double QTarea = partialObjectArea / TotalObjectArea;
         cout << "QTpoints for grasp " << line << " is: " << QTpoints << endl;
         cout << "QTarea for grasp " << line << " is: " << QTarea << endl;
-        //visualize(graspPointCloud, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
+        // visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
         return true;
 }
 
@@ -67,6 +67,8 @@ bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
         PCL_ERROR ("Can't read file .pcd \n");
         return false;
     }
+
+    return true;
 }
 
 bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) 
@@ -528,6 +530,7 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT)
     }
 
     sort(rows.begin(), rows.end());
+    return true;
 }
 
 bool MVBB::getData(const char *inXML, 

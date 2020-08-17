@@ -477,7 +477,10 @@ PCL_VISUALIZATION_LIBRARY_DEBUG:FILEPATH=/usr/lib/x86_64-linux-gnu/libpcl_visual
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
 //Path to a file.
-PUGI_XML_INCLUDE_DIRS:PATH=PUGI_XML_INCLUDE_DIRS-NOTFOUND
+PUGI_XML_INCLUDE_DIRS:PATH=/usr/include
+
+//Path to a library.
+PUGI_XML_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libpugixml.so
 
 //QHull include dir.
 QHULL_INCLUDE_DIR:PATH=/usr/include
@@ -760,6 +763,8 @@ FIND_PACKAGE_MESSAGE_DETAILS_PCL_SURFACE:INTERNAL=[/usr/lib/x86_64-linux-gnu/lib
 FIND_PACKAGE_MESSAGE_DETAILS_PCL_TRACKING:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpcl_tracking.so][/usr/include/pcl-1.10][v()]
 //Details about finding PCL_VISUALIZATION
 FIND_PACKAGE_MESSAGE_DETAILS_PCL_VISUALIZATION:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpcl_visualization.so][/usr/include/pcl-1.10][v()]
+//Details about finding PugiXML
+FIND_PACKAGE_MESSAGE_DETAILS_PugiXML:INTERNAL=[/usr/lib/x86_64-linux-gnu/libpugixml.so][/usr/include][v()]
 //Details about finding Qhull
 FIND_PACKAGE_MESSAGE_DETAILS_Qhull:INTERNAL=[/usr/lib/x86_64-linux-gnu/libqhull.so][/usr/include][v()]
 //Details about finding USB_10

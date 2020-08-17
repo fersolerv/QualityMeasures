@@ -155,6 +155,7 @@ TransferQualityMeasure: CMakeFiles/TransferQualityMeasure.dir/src/MVBB.cpp.o
 TransferQualityMeasure: CMakeFiles/TransferQualityMeasure.dir/src/Wrenches.cpp.o
 TransferQualityMeasure: CMakeFiles/TransferQualityMeasure.dir/build.make
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libqhull.so
+TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libpugixml.so
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libpcl_apps.so
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libpcl_people.so
@@ -183,6 +184,7 @@ TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libvtkViewsCore-7.1.so.7.1p.1
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libvtkRenderingContextOpenGL2-7.1.so.7.1p.1
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libflann_cpp.so
+TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libpugixml.so
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libboost_system.so
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 TransferQualityMeasure: /usr/lib/x86_64-linux-gnu/libboost_date_time.so

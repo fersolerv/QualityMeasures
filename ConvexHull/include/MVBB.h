@@ -41,12 +41,12 @@
 #include <vtkSmartPointer.h>
 #include <vtkRenderer.h>
 #include <pcl/surface/gp3.h>
-#include "pugixml.hpp"
 #include <pcl/console/print.h>
 #include <pcl/sample_consensus/ransac.h>
 #include <pcl/sample_consensus/sac_model_plane.h>
 #include <pcl/sample_consensus/sac_model_sphere.h>
 #include <pcl/features/normal_3d_omp.h>
+#include "../libs/pugixml/src/pugixml.hpp"
 
 class MVBB
 {

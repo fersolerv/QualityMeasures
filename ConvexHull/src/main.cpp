@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals(new pcl::PointCloud<pcl::Normal>);
     Eigen::Vector3f CM;
 
-    if(find_switch(argc, argv, "--computeQTM")) 
+    if(find_switch(argc, argv, "--computeQTM") && argc == 8)
     {
         string graspPointCloud = "";
         string objectPointCloud = "";
@@ -42,19 +42,18 @@ int main(int argc, char **argv)
                               objectNormals, 
                               partialObjectNormals, 
                               CM))
-            cout << "Cannot perform the computation" << endl;
-        
-        if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
-            cout << "OWS can't be computed.\n";
+            cout << "The qualities can't be computed" << endl;        
+        // if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
+        //     cout << "OWS can't be computed.\n";
     }
-    else if(argc != 3)
+    else
     {
-        PCL_ERROR("Write the command line correctly\n");
+        PCL_ERROR("Write the command line correctly to compute qualities\n");
         qtl->showHelpQuality();
         return -1;
     }
     
-    if(find_switch(argc, argv, "--extractValues")) 
+    if(find_switch(argc, argv, "--extractValues") && argc == 10) 
     {
         const char *inXML, *outTransformationTXT, *outQualityGraspTXT, *qualitySortedTXT;
    
@@ -77,10 +76,9 @@ int main(int argc, char **argv)
         if(qtl->getData(inXML, outTransformationTXT, outQualityGraspTXT, qualitySortedTXT))
             cout << "Data extracted\n";
         
-    }
-    else if(argc != 3)
+    } else
     {
-        PCL_ERROR("Write the command line correctly\n");
+        PCL_ERROR("Write the command line correctly to extract values\n");
         qtl->showHelpExtractValues();
         return -1;
     }

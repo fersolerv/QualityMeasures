@@ -64,7 +64,9 @@ private:
                                  Eigen::Vector4f &bax, 
                                  Eigen::Matrix4f &projection,
                                  Eigen::Matrix4f transform);
-    void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, pcl::PointCloud<pcl::Normal>::Ptr &Normals, Eigen::Vector3f &CM);
+    void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
+                        pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
+                        Eigen::Vector3f &CM);
     float computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                            pcl::PointCloud<pcl::Normal>::Ptr Normals, 
                            Eigen::Vector4f min, 

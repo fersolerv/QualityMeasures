@@ -40,8 +40,5 @@ public:
                            pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals, 
                            Eigen::Vector3f CM);
 };
-
-
-
 #endif
 

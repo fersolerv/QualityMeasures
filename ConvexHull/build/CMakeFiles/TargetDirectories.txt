@@ -1,3 +1,0 @@
-/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/rebuild_cache.dir
-/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/edit_cache.dir
-/home/fersolerv/Apps/QualityMeasures/ConvexHull/build/CMakeFiles/TransferQualityMeasure.dir

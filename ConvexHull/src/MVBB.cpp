@@ -5,8 +5,7 @@ using namespace std;
 MVBB::MVBB() {}
 MVBB::~MVBB(){};
 
-void MVBB::showHelpQuality()
-{
+void MVBB::showHelpQuality() {
     cout << "Usage: ./TransferQualityMeasure --computeQTM -graspPointCloud [path + filename]  -objectPointCloud [path + filename] -transformationFile [path + file]\n" << endl;
     cout << "    TransferQualityMeasure:        Executable file." << endl;
     cout << "    --computeQTM:                  Method to use." << endl;
@@ -15,8 +14,7 @@ void MVBB::showHelpQuality()
     cout << "    -transformationFile:           Path where the transformations values are.\n" << endl;
 }
 
-void MVBB::showHelpExtractValues()
-{
+void MVBB::showHelpExtractValues() {
     cout << "Usage: ./TransferQualityMeasure --extractValues -transformationXMLFile [path + filename]  -outputGraspTransformationPath [path + filename] -outputGraspQualityPath [path + file] -outputSortedQualitiesPath [path + file]\n" << endl;
     cout << "    TransferQualityMeasure:              Executable file." << endl;
     cout << "    --extractValues:                     Method to use." << endl;
@@ -33,8 +31,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
                         pcl::PointCloud<pcl::PointXYZ>::Ptr &partialObjectPC,
                         pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
                         pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
-                        Eigen::Vector3f &CM) 
-{
+                        Eigen::Vector3f &CM) {
         pcl::PointCloud<pcl::PointXYZ>::Ptr objectPC(new pcl::PointCloud<pcl::PointXYZ>);
         pcl::PointCloud<pcl::PointXYZ>::Ptr graspPC(new pcl::PointCloud<pcl::PointXYZ>);
         pcl::PointCloud<pcl::PointXYZ>::Ptr cloudIn(new pcl::PointCloud<pcl::PointXYZ>);
@@ -61,8 +58,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         return true;
 }
 
-bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) 
-{
+bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) {
     if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) 
     {
         PCL_ERROR ("Can't read file .pcd \n");
@@ -71,8 +67,7 @@ bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
     return true;
 }
 
-bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) 
-{
+bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) {
     std::fstream obj;
     std::vector<std::vector <double>> points;
     std::vector<std::vector <double>> norms;
@@ -83,19 +78,15 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
     norms.clear();
     obj.open("/home/fernando/PHD/Applications/VRMLtoPCD/build/out/Object.txt");
     //read txt file that contains the points and normals provided by simox
-    if(obj.is_open()) 
-    {
-        do 
-        {
-            if (obj.eof()) 
-            {
+    if(obj.is_open()) {
+        do {
+            if (obj.eof()) {
                 break;
                 return false;
             }
             point.clear();
             norm.clear();
-            for(int i = 0; i < 6; i ++) 
-            {
+            for(int i = 0; i < 6; i ++) {
                 if(i < 3) 
                     obj >> val_point;
                 else 
@@ -110,14 +101,12 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
         //Convert the points into PCL format
         C_Object->resize(points.size());
         normals->resize(norms.size());
-        for(size_t j = 0; j < points.size(); j++) 
-        {
+        for(size_t j = 0; j < points.size(); j++) {
             C_Object->points[j].x = points.at(j).at(0);
             C_Object->points[j].y = points.at(j).at(1);
             C_Object->points[j].z = points.at(j).at(2);
         }
-        for(size_t k = 0; k < norms.size(); k++) 
-        {
+        for(size_t k = 0; k < norms.size(); k++) {
             normals->points[k].normal[0] = norms.at(k).at(0);
             normals->points[k].normal[0] = norms.at(k).at(1);
             normals->points[k].normal[0] = norms.at(k).at(2);
@@ -128,11 +117,9 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
     return true;
 }
 
-void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered) 
-{
+void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered) {
     
-    if (original->points.size() > 900000) 
-    {
+    if (original->points.size() > 900000) {
         pcl::octree::OctreePointCloudSearch<pcl::PointXYZ > octree (128.0f);
         octree.setInputCloud(original);
         octree.addPointsFromInputCloud();
@@ -146,12 +133,10 @@ void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::P
     else filtered = original;  
 }
 
-int MVBB::extractGraspNumber(string graspPointCloudPath) 
-{
+int MVBB::extractGraspNumber(string graspPointCloudPath) {
     // For atoi, the input string has to start with a digit, so lets search for the first digit
     size_t i = 0;
-    for ( ; i < graspPointCloudPath.length(); i++ ) 
-    { 
+    for ( ; i < graspPointCloudPath.length(); i++ ) { 
         if (isdigit(graspPointCloudPath[i])) 
             break; 
     }
@@ -161,8 +146,7 @@ int MVBB::extractGraspNumber(string graspPointCloudPath)
     return number;
 }
 
-Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint line) 
-{
+Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint line) {
     string sLine = "";
     ifstream read;
     read.open(transformationFilePath);
@@ -176,12 +160,12 @@ Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint l
     std::stringstream ss(sLine);
 
     float i;
-    while (ss >> i) 
-    {
+    while (ss >> i) {
         num.push_back(i);
         if (ss.peek() == ',')
             ss.ignore();
     }
+    
     transformation << num[0], num[1], num[2], num[3], 
                       num[4], num[5], num[6], num[7], 
                       num[8], num[9], num[10], num[11], 
@@ -196,8 +180,7 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConf
                                    Eigen::Vector4f &min, 
                                    Eigen::Vector4f &max, 
                                    Eigen::Matrix4f &projection,
-                                   Eigen::Matrix4f transformation) 
-{
+                                   Eigen::Matrix4f transformation) {
     Eigen::Matrix4f Tinv;
     Tinv = transformation.inverse();
 
@@ -245,8 +228,7 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConf
 
 void MVBB::computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                           pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
-                          Eigen::Vector3f &CM) 
-{
+                          Eigen::Vector3f &CM) {
     Eigen::Vector4f centroid;
     pcl::compute3DCentroid (*C_Object, centroid);
     CM << centroid[0], centroid[1], centroid[2];
@@ -267,8 +249,8 @@ float MVBB::computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
                              Eigen::Matrix4f projection,
                              pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsOut, 
                              pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsIn, 
-                             pcl::PointCloud<pcl::Normal>::Ptr &normalsOut) 
-{
+                             pcl::PointCloud<pcl::Normal>::Ptr &normalsOut) {
+
     Eigen::Affine3f boxTransform;
     boxTransform.matrix() = projection;
     //Filter Points Outside the CropBox
@@ -296,8 +278,7 @@ float MVBB::computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
     return QTpoints;
 }
 
-float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) 
-{
+float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
     pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
     pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
@@ -393,8 +374,7 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
     visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_out");
     visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_in");
     visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.2, "grasp_cloud");
-    if(fCoordinates) 
-    {
+    if(fCoordinates) {
         visualizer.addCoordinateSystem(10,"world",0);
         visualizer.addCoordinateSystem(10, centroid[0], centroid[1], centroid[2], "centroid",0);
     }
@@ -410,8 +390,7 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
     visualizer.close();
 }
 
-bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT) 
-{   
+bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT) {   
     //get the matrix transformation of each grasp from the .xml file and save it into a .txt file
     ofstream transform(outTransformationTXT);
     double xx, xy, xz, yx, yy, yz, zx, zy, zz, x1, y1, z1, p1, p2, p3, p4;
@@ -424,8 +403,7 @@ bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT
         std::cout << "Problem file loaded"<<std::endl;
     
     int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) 
-    {
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
         xx = node.attribute("c1").as_double();
         xy = node.attribute("c2").as_double();
@@ -478,8 +456,7 @@ bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT
     return true;
 }
 
-bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT) 
-{ 
+bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT) { 
     //get the quality of each grasp from the .xml file and save it into a .txt file
     ofstream graspQuality(outQualityGraspTXT);
     double quality;
@@ -492,8 +469,7 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
         cout << "Problem file loaded" << endl;
     
     int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) 
-    {
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         quality = tool.attribute("quality").as_double();
         graspQuality << quality << endl;
         i++;
@@ -501,8 +477,7 @@ bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT
     return true;
 }
 
-bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) 
-{          
+bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {          
     //Extract qualities
     ofstream graspQuality(qualitySortedTXT);
     double quality;
@@ -514,8 +489,7 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT)
     else
         cout << "Problem file loaded" << endl;
 
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) 
-    {
+    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
         int i = 0;
         quality = tool.attribute("quality").as_double();
         graspQuality << quality << endl;
@@ -526,8 +500,7 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT)
     vector<string> rows;
 
     // Read all the lines and add them to the rows vector
-    while(!file.eof()) 
-    {
+    while(!file.eof()) {
         string line;
         getline(file, line);
         rows.push_back(line);
@@ -540,8 +513,7 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT)
 bool MVBB::getData(const char *inXML, 
                    const char *outTransformationTXT, 
                    const char *outQualityGraspTXT, 
-                   const char *qualitySortedTXT) 
-{    
+                   const char *qualitySortedTXT) {    
     extractTransforms(inXML, outTransformationTXT);
     extractGraspQuality(inXML, outQualityGraspTXT);
     qualitySort(inXML, qualitySortedTXT);

@@ -32,6 +32,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
                         pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
                         pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
                         Eigen::Vector3f &CM) {
+        
         pcl::PointCloud<pcl::PointXYZ>::Ptr objectPC(new pcl::PointCloud<pcl::PointXYZ>);
         pcl::PointCloud<pcl::PointXYZ>::Ptr graspPC(new pcl::PointCloud<pcl::PointXYZ>);
         pcl::PointCloud<pcl::PointXYZ>::Ptr cloudIn(new pcl::PointCloud<pcl::PointXYZ>);
@@ -41,30 +42,30 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         Eigen::Matrix4f projection;
 
         //Pipeline
-        loadPointCloud(graspPointCloudPath, graspPC);
-        loadPointCloud(objectPointCloudPath, objectPC);
-        filterPointCloud(objectPC, objectPCFiltered);
-        computeNormals(objectPCFiltered, objectNormals, CM);
-        int line = extractGraspNumber(graspPointCloudPath);
-        Eigen::Matrix4f transformation = returnTransformation(transformationsFilePath, line);
-        getHandPCTransformation(graspPC, rotation, translation, min, max, projection, transformation);
-        float QTpoints = computeQTMpoints(objectPCFiltered, objectNormals, min, max, projection, partialObjectPC, cloudIn, partialObjectNormals);
-        float TotalObjectArea = getPointCloudArea(objectPC);
-        float partialObjectArea = getPointCloudArea(partialObjectPC);
+        if(this->loadPointCloud(graspPointCloudPath, graspPC) != true)
+            PCL_ERROR ("Can't read Grasp Point Cloud (.pcd file)\n");
+        if(this->loadPointCloud(objectPointCloudPath, objectPC) != true) 
+            PCL_ERROR ("Can't read Object Point Cloud (.pcd file)\n");
+        this->filterPointCloud(objectPC, objectPCFiltered);
+        this->computeNormals(objectPCFiltered, objectNormals, CM);
+        int line = this->extractGraspNumber(graspPointCloudPath);
+        Eigen::Matrix4f transformation = this->returnTransformation(transformationsFilePath, line);
+        this->getHandPCTransformation(graspPC, rotation, translation, min, max, projection, transformation);
+        float QTpoints = this->computeQTMpoints(objectPCFiltered, objectNormals, min, max, projection, partialObjectPC, cloudIn, partialObjectNormals);
+        float TotalObjectArea = this->getPointCloudArea(objectPC);
+        float partialObjectArea = this->getPointCloudArea(partialObjectPC);
         double QTarea = partialObjectArea / TotalObjectArea;
         cout << "\033[1;36mQTpoints for grasp " << line << " is: " << QTpoints << "\033[0m" << endl;
         cout << "\033[1;36mQTarea for grasp " << line << " is: " << QTarea << "\033[0m" << endl;
-        // visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
+        // this->visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
         return true;
 }
 
 bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) {
-    if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) 
-    {
-        PCL_ERROR ("Can't read file .pcd \n");
+    if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) {
         return false;
     }
-    return true;
+    else return true;
 }
 
 bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) {
@@ -361,8 +362,7 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
                      Eigen::Vector4f max, 
                      Eigen::Quaternionf bboxRotation, 
                      Eigen::Vector3f bboxTranslation, 
-                     bool fCoordinates) 
-{
+                     bool fCoordinates) {
     pcl::visualization::PCLVisualizer visualizer("3D Point Cloud Result");
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorOut(pointCloudOut, 0, 255, 0); //Points out the box (green)
     pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> filteredColorIn(pointCloudIn, 0, 0, 255);  //Points in the box (blue)

@@ -1,7 +1,6 @@
 #include "ContactConeGenerator.h"
 
-CCone::CCone(float uForce, float fCoef, int cSides) 
-{
+CCone::CCone(float uForce, float fCoef, int cSides) {
     //Generation of generic friction cones
     this->unitforce = uForce;
     this->frictioncoef = fCoef;
@@ -10,8 +9,7 @@ CCone::CCone(float uForce, float fCoef, int cSides)
     this->frictionConeRaid = unitforce * sin(frictionAngle);
     this->frictionConeHeigh = unitforce * cos(frictionAngle);
 
-    for(int i = 0; i < conesides; i++)
-    {
+    for(int i = 0; i < conesides; i++) {
         Eigen::Vector3f p;
         p(0) = unitforce * (float)(cos(frictionAngle) * cos(i * 2.0 * M_PI / conesides));
         p(1) = unitforce * (float)(cos(frictionAngle) * sin(i * 2.0 * M_PI / conesides));
@@ -21,16 +19,14 @@ CCone::CCone(float uForce, float fCoef, int cSides)
 
 }
 
-CCone::~CCone(){
+CCone::~CCone() {
 
     frictionRimPoints.clear();
 }
 
-void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint>& StoreCones) 
-{
+void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoint>& StoreCones) {
     bool printInfo =  false;
-    if(printInfo) 
-    {
+    if(printInfo) {
         std::cout<< "Compute Friction Cones" << std::endl;
         std::cout<< "Point: " << std::endl;
         std::cout<< p.p << std::endl;
@@ -45,8 +41,7 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
 
     Eigen::Vector3f conePoint;
 
-    for(int i = 0; i < conesides; i++) 
-    {
+    for(int i = 0; i < conesides; i++) {
         Mtools::ContactPoint nConePoint;
         Eigen::Vector3f conePointOrg = frictionRimPoints[i];
         conePoint = Mtools::TPosition(conePointOrg, ObNorT);
@@ -54,8 +49,7 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
         nConePoint.n = conePoint;
         nConePoint.n.normalize();
 
-        if(printInfo) 
-        {
+        if(printInfo) {
             std::cout<< "Loop " << i <<std::endl;
             std::cout<< "nCone: " << std::endl;
             std::cout<< nConePoint.p << std::endl;
@@ -68,11 +62,9 @@ void CCone::frictionCones(Mtools::ContactPoint p, std::vector<Mtools::ContactPoi
 
 void CCone::frictionCones(Mtools::ContactPoint p, 
                           std::vector<Mtools::ContactPoint>& StoreCones, 
-                          unsigned int id) 
-{
+                          unsigned int id) {
     bool printInfo =  false;
-    if(printInfo) 
-    {
+    if(printInfo) {
         std::cout<< "Compute Friction Cones" << std::endl;
         std::cout<< "Point: " << std::endl;
         std::cout<< p.p << std::endl;
@@ -86,8 +78,7 @@ void CCone::frictionCones(Mtools::ContactPoint p,
     Eigen::Matrix4f ObNorT = Mtools::quat2eigen4f(ObNorRot);
 
     Eigen::Vector3f conePoint;
-    for(int i = 0; i < conesides; i++) 
-    {
+    for(int i = 0; i < conesides; i++) {
         Mtools::ContactPoint nConePoint;
         Eigen::Vector3f conePointOrg = frictionRimPoints[i];
         conePoint = Mtools::TPosition(conePointOrg, ObNorT);
@@ -96,8 +87,7 @@ void CCone::frictionCones(Mtools::ContactPoint p,
         nConePoint.n.normalize();
         nConePoint.id = id;
 
-        if(printInfo) 
-        {
+        if(printInfo) {
             std::cout<< "Loop " << i <<std::endl;
             std::cout<< "nCone: " << std::endl;
             std::cout<< nConePoint.p <<" "<<id<< std::endl;
@@ -111,13 +101,11 @@ void CCone::frictionCones(Mtools::ContactPoint p,
 
 void CCone::frictionCones_2(Mtools::ContactPoint p,
                             std::vector<Mtools::ContactPoint> &StoreCones, 
-                            unsigned int id) 
-{
+                            unsigned int id) {
 
     bool printInfo =  false;
 
-    if(printInfo) 
-    {
+    if(printInfo) {
         std::cout<< "Compute Friction Cones" << std::endl;
         std::cout<< "Point: " << std::endl;
         std::cout<< p.p << std::endl;
@@ -125,8 +113,7 @@ void CCone::frictionCones_2(Mtools::ContactPoint p,
         std::cout<< p.n << std::endl;
     }
 
-    for(int i = 0; i < conesides; i++) 
-    {
+    for(int i = 0; i < conesides; i++) {
         Mtools::ContactPoint S;
         S.n[0] = (p.n[0]);
         S.n[1] = (p.n[1]+(frictioncoef*cos((2*i*M_PI)/conesides)));
@@ -135,8 +122,7 @@ void CCone::frictionCones_2(Mtools::ContactPoint p,
         S.id = id;
         S.n.normalize();
 
-        if(printInfo) 
-        {
+        if(printInfo) {
             std::cout << "Loop " << i <<std::endl;
             std::cout << "nCone: " << std::endl;
             std::cout << S.n << std::endl;

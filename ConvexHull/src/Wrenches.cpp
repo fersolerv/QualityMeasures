@@ -9,8 +9,7 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
                         Eigen::Vector3f CM,
                         float uforce,
                         float mu,
-                        float csides) 
-{
+                        float csides) {
     
     boost::posix_time::ptime totalst, totalend;
     std::vector <Mtools::ContactPoint> points;
@@ -26,8 +25,7 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
     fcones.clear();
 
     //save points into a variable "contact points"
-    for(int i = 0; i < objectPointCloud->points.size(); i ++) 
-    {
+    for(int i = 0; i < objectPointCloud->points.size(); i ++) {
        point << objectPointCloud->points.at(i).x, objectPointCloud->points.at(i).y, objectPointCloud->points.at(i).z;
        norm << objectNormals->points.at(i).normal[0], objectNormals->points.at(i).normal[1], objectNormals->points.at(i).normal[2];
        graspPoint.p = point;
@@ -38,10 +36,8 @@ float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud,
     //Compute friction cones for every point
     for(int i = 0; i < points.size(); i++)
        cone->frictionCones(points.at(i), fcones, i);
-    
     chull->Cwrenches(fcones); //Compute wrenches
     chull->CreateConvexHull();  //Compute the convex hull of the wrench
-
     if(chull->isForceClosure()) 
         std::cout<<"Force Closure"<<std::endl;
     else 
@@ -55,8 +51,8 @@ bool wrench::computeOWSQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCl
                                pcl::PointCloud<pcl::Normal>::Ptr objectNormals, 
                                pcl::PointCloud<pcl::PointXYZ>::Ptr partialObjectPointCloud, 
                                pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals, 
-                               Eigen::Vector3f CM) 
-{
+                               Eigen::Vector3f CM) {
+
     float totalQuality = computeOWS(objectPointCloud, objectNormals, CM, 1.0, 1, 6);
     float potentialQuality = computeOWS(partialObjectPointCloud, partialObjectNormals, CM, 1.0, 0.4, 6);
     float LostQualityOWS = (totalQuality - potentialQuality) / totalQuality;

@@ -1,10 +1,11 @@
 #include "../include/MVBB.h"
+#include "../MULTI_POOL/multi_pool.hpp"
 #include "Wrenches.h"
 #include <chrono>
 
 using namespace std;
 using namespace pcl::console;
-using namespace std::chrono;
+using namespace chrono;
 
 int main(int argc, char **argv) {
     MVBB *qtl; qtl = new MVBB();
@@ -15,6 +16,11 @@ int main(int argc, char **argv) {
     pcl::PointCloud<pcl::Normal>::Ptr objectNormals(new pcl::PointCloud<pcl::Normal>);
     pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals(new pcl::PointCloud<pcl::Normal>);
     Eigen::Vector3f CM;
+    
+    // Multi threading
+    int threads = std::thread::hardware_concurrency();
+    MultiPool multiPool_(threads);
+    vector<future<bool>> future_vector;
 
     if(find_switch(argc, argv, "--computeQTM") && argc == 8) {
         auto t1 = high_resolution_clock::now();
@@ -44,13 +50,13 @@ int main(int argc, char **argv) {
                               CM))      
             PCL_ERROR("The qualities can't be computed\n");  
 
-        if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
-            PCL_ERROR("OWS can't be computed.\n");
+        // if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
+        //     PCL_ERROR("OWS can't be computed.\n");
         
         auto t2 = high_resolution_clock::now();
         auto duration = duration_cast<seconds>(t2 - t1).count();
         cout << "Time to compute quality is " << duration << " seconds.\n";
-        return 0;
+
     }
     else if(find_switch(argc, argv, "--computeQTM") && argc != 8) {
         PCL_ERROR("Write the command line correctly to compute qualities\n\n");
@@ -64,7 +70,7 @@ int main(int argc, char **argv) {
         int index = find_argument(argc, argv, "-transformationXMLFile"); // file.xml
         if(index > 0)
             inXML = argv[index + 1];
-        
+
         index = find_argument(argc, argv, "-outputGraspTransformationPath"); // file.txt
         if(index > 0)
             outTransformationTXT = argv[index + 1];
@@ -92,9 +98,10 @@ int main(int argc, char **argv) {
         qtl->showHelpExtractValues();
         return -1;
     }
-
     else {
         PCL_ERROR("Can't do anything. Please review the possible errors.\n");
         return -1;
     }
+
+    return 0;
 }

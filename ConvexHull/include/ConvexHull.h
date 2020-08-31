@@ -13,13 +13,11 @@
 #include <cmath> 
 #include "Mtools.h"
 
-extern "C"
-{
+extern "C" {
 #include "libqhull/qhull_a.h"
 }
 
-class ConvexHull
-{
+class ConvexHull {
 private:
 
     bool convertPoints(double* storePointsQHull);

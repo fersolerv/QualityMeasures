@@ -5,4 +5,7 @@ data/
 
 extractValues.sh
 run.sh
+buld.sh
 scripts/pythonRun.sh
+
+MULTI_POOL/

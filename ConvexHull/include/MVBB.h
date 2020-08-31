@@ -3,6 +3,7 @@
 
 #include <boost/thread/thread.hpp>
 #include <boost/make_shared.hpp>
+#include <boost/shared_ptr.hpp>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -13,6 +14,7 @@
 #include <iterator>
 #include <vector>
 #include <math.h>
+#include <future>
 #include "MVBB.h"
 #include "Wrenches.h"
 #include <Eigen/Geometry>

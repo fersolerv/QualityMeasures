@@ -1,7 +1,6 @@
 #include "Mtools.h"
 
-Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vector3f &to)
-{
+Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vector3f &to) {
 
     Eigen::Vector3f fN = from;
     fN.normalize();
@@ -30,8 +29,7 @@ Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vect
             q.w = 0.0f;
         }
     }
-    else 
-    {
+    else {
         //not parallel
         crossvec.normalize();
         crossvec *= (float)sqrt(0.5f * fabs(1.0f - d));
@@ -43,13 +41,11 @@ Mtools::Quaternion Mtools::getRot(const Eigen::Vector3f &from, const Eigen::Vect
     return q;
 }
 
-Eigen::Matrix4f Mtools::quat2eigen4f(const Quaternion q) 
-{
+Eigen::Matrix4f Mtools::quat2eigen4f(const Quaternion q) {
     return quat2eigen4f(q.x, q.y, q.z, q.w);
 }
 
-Eigen::Matrix4f Mtools::quat2eigen4f(float x, float y, float z, float w) 
-{
+Eigen::Matrix4f Mtools::quat2eigen4f(float x, float y, float z, float w) {
     Eigen::Matrix4f m;
     m.setIdentity();
     Eigen::Quaternionf q(w, x, y, z);
@@ -59,8 +55,7 @@ Eigen::Matrix4f Mtools::quat2eigen4f(float x, float y, float z, float w)
     return m;
 }
 
-Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m) 
-{
+Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m) {
     Eigen::Matrix3f m3 = m.block(0,0,3,3);
     Eigen::Quaternionf q(m3);
     Quaternion qr;
@@ -71,8 +66,7 @@ Mtools::Quaternion Mtools::eigen4f2quat(const Eigen::Matrix4f &m)
     return qr;
 }
 
-float Mtools::getAng(const Quaternion &q) 
-{
+float Mtools::getAng(const Quaternion &q) {
     float n = sqrt(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
     if(n < 1e-10) 
         return 0.0f;
@@ -80,15 +74,13 @@ float Mtools::getAng(const Quaternion &q)
     return (float)(2.0f * acosf(q.w * n));
 }
 
-Eigen::Vector3f Mtools::TPosition(const Eigen::Vector3f &pos, const Eigen::Matrix4f &m) 
-{
+Eigen::Vector3f Mtools::TPosition(const Eigen::Vector3f &pos, const Eigen::Matrix4f &m) {
     Eigen::Vector4f t(pos.x(), pos.y(), pos.z(), 1);
     t = m * t;
     return t.head(3);
 }
 
-float Mtools::calculateQuality(float GWSOffset, float OWSOffset)
-{
+float Mtools::calculateQuality(float GWSOffset, float OWSOffset) {
     float Quality;
     
     if(OWSOffset != 0) 
@@ -98,6 +90,3 @@ float Mtools::calculateQuality(float GWSOffset, float OWSOffset)
     
     return Quality;
 }
-
-
-

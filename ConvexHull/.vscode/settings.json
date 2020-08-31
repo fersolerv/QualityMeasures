@@ -67,5 +67,6 @@
         "valarray": "cpp",
         "core": "cpp",
         "numericaldiff": "cpp"
-    }
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

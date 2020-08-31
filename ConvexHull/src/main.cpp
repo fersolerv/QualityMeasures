@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
     pcl::PointCloud<pcl::Normal>::Ptr objectNormals(new pcl::PointCloud<pcl::Normal>);
     pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals(new pcl::PointCloud<pcl::Normal>);
     Eigen::Vector3f CM;
+    auto t1 = high_resolution_clock::now();
     
     // Multi threading
     int threads = std::thread::hardware_concurrency();
@@ -23,7 +24,6 @@ int main(int argc, char **argv) {
     vector<future<bool>> future_vector;
 
     if(find_switch(argc, argv, "--computeQTM") && argc == 8) {
-        auto t1 = high_resolution_clock::now();
         string graspPointCloud = "";
         string objectPointCloud = "";
         string transformationsFile = "";
@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
         
         auto t2 = high_resolution_clock::now();
         auto duration = duration_cast<seconds>(t2 - t1).count();
-        cout << "Time to compute quality is " << duration << " seconds.\n";
+        cout << "\033[1;32mTime to compute quality is " << duration << " seconds.\033[0m\n";
 
     }
     else if(find_switch(argc, argv, "--computeQTM") && argc != 8) {
@@ -96,10 +96,6 @@ int main(int argc, char **argv) {
     else if(find_switch(argc, argv, "--extractValues") && argc != 10) {
         PCL_ERROR("Write the command line correctly to extract values\n\n");
         qtl->showHelpExtractValues();
-        return -1;
-    }
-    else {
-        PCL_ERROR("Can't do anything. Please review the possible errors.\n");
         return -1;
     }
 

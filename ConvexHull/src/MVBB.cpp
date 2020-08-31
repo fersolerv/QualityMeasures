@@ -57,7 +57,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         double QTarea = partialObjectArea / TotalObjectArea;
         cout << "\033[1;36mQTpoints for grasp " << line << " is: " << QTpoints << "\033[0m" << endl;
         cout << "\033[1;36mQTarea for grasp " << line << " is: " << QTarea << "\033[0m" << endl;
-        // this->visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
+        this->visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
         return true;
 }
 
@@ -371,15 +371,16 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
     visualizer.addPointCloud(pointCloudOut, filteredColorOut, "pointCloudOut");
     visualizer.addPointCloud(pointCloudIn, filteredColorIn, "pointCloudIn");
     visualizer.addPointCloud(handConfigurationPointCloud, graspPointCloud, "graspPointCloud");
-    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_out");
-    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "cloud_in");
-    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.2, "grasp_cloud");
+    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "pointCloudOut");
+    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "pointCloudIn");
+    visualizer.setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2.8, "graspPointCloud");
+    
     if(fCoordinates) {
         visualizer.addCoordinateSystem(10,"world",0);
         visualizer.addCoordinateSystem(10, centroid[0], centroid[1], centroid[2], "centroid",0);
     }
     visualizer.addCube(bboxTranslation, bboxRotation, max[0] - min[0], max[1] - min[1], max[2] - min[2], "boundingbox", 0);
-    // visualizer.setRepresentationToWireframeForAllActors(); // see bounding box lines
+    visualizer.setRepresentationToWireframeForAllActors(); // see bounding box lines
     visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0.0, 0.0, 0.0, "boundingbox");
     visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_LINE_WIDTH, 4, "boundingbox");
     visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_OPACITY, 0.2, "boundingbox");

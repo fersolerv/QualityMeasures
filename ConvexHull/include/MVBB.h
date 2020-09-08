@@ -1,9 +1,6 @@
 #ifndef MVBB_H
 #define MVBB_H
 
-#include <boost/thread/thread.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -14,7 +11,6 @@
 #include <iterator>
 #include <vector>
 #include <math.h>
-#include <future>
 #include "MVBB.h"
 #include "Wrenches.h"
 #include <Eigen/Geometry>
@@ -55,10 +51,15 @@ class MVBB
 
 private:
     bool loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud);
+    
     bool readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals);
+    
     void filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::PointCloud<pcl::PointXYZ>::Ptr &filtered);
+    
     int extractGraspNumber(string graspPointCloudPath);
+    
     Eigen::Matrix4f returnTransformation(string transformationFilePath, uint line);
+    
     void getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConfiguration, 
                                  Eigen::Quaternionf &bboxRotation,
                                  Eigen::Vector3f &bboxTraslation, 
@@ -66,9 +67,11 @@ private:
                                  Eigen::Vector4f &bax, 
                                  Eigen::Matrix4f &projection,
                                  Eigen::Matrix4f transform);
+    
     void computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                         pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
                         Eigen::Vector3f &CM);
+    
     float computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                            pcl::PointCloud<pcl::Normal>::Ptr Normals, 
                            Eigen::Vector4f min, 
@@ -77,6 +80,7 @@ private:
                            pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsOut, 
                            pcl::PointCloud<pcl::PointXYZ>::Ptr &pointsIn, 
                            pcl::PointCloud<pcl::Normal>::Ptr &NormalsOut);
+    
     void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfiguration, 
                    pcl::PointCloud<pcl::PointXYZ>::Ptr pointsOut, 
                    Eigen::Vector3f centroid,
@@ -86,17 +90,25 @@ private:
                    Eigen::Quaternionf bboxRotation, 
                    Eigen::Vector3f bboxTranslation,
                    bool fCordinates);
+                    
     float getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object);
+    
     bool extractTransforms(const char *inXML, const char *outTransformationTXT);
+    
     bool extractGraspQuality(const char *inXML, const char *outQualityGraspTXT);
+    
     bool qualitySort(const char *inXML, const char *qualitySortedTXT);
     
 public:
     MVBB();
-    ~MVBB();
+    //~MVBB();
 
     void showHelpQuality();
+    
     void showHelpExtractValues();
+
+    string changeGraspNumber(string graspPointCloud, int graspNumber);
+    
     bool getQualities(string graspPointCloudPath,
                       string objectPointCloudPath,
                       string transformationsFile,
@@ -105,11 +117,19 @@ public:
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormals,
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormalsOut, 
                       Eigen::Vector3f &CM);
+
     bool getData(const char *inXML, 
                  const char *outTransformationTXT, 
                  const char *outQualityGraspTXT, 
                  const char *qualitySortedTXT);
-    
+
+    bool computeQualities(std::string graspPointCloudPath,
+                          std::string objectPointCloudPath,
+                          std::string transformationsFilePath,
+                          pcl::PointCloud<pcl::PointXYZ>::Ptr &objectPCFiltered, 
+                          pcl::PointCloud<pcl::PointXYZ>::Ptr &partialObjectPC,
+                          pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
+                          pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
+                          Eigen::Vector3f &CM);
 };
 #endif
-

@@ -8,4 +8,4 @@ run.sh
 buld.sh
 scripts/pythonRun.sh
 
-MULTI_POOL/
+THREAD_POOL/

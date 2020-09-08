@@ -52,7 +52,7 @@ SET(SRC src/main.cpp
         src/Wrenches.cpp)
         #src/FilterObject.cpp)
 
-add_subdirectory(MULTI_POOL)
+add_subdirectory(THREAD_POOL)
         
 add_executable(TransferQualityMeasure ${SRC})
 
@@ -62,7 +62,7 @@ target_link_libraries(TransferQualityMeasure ${QHULL_LIBRARIES}
                                              ${PUGI_XML_LIBRARIES}
                                              ${PCL_LIBRARIES}
                                              ${PCL_IO_LIBRARIES}
-                                             MULTI_POOL
+                                             THREAD_POOL
                                              pugixml)
                                              
 #add_executable(FilterObject ${SRC})                                             

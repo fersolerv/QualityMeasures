@@ -1,9 +1,14 @@
 #include "MVBB.h"
+#include <boost/algorithm/string/replace.hpp>
+#include <thread_pool.hpp>
+// #include <boost/thread/thread.hpp>
+#include <boost/make_shared.hpp>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 
 MVBB::MVBB() {}
-MVBB::~MVBB(){};
+//MVBB::~MVBB(){};
 
 void MVBB::showHelpQuality() {
     cout << "Usage: ./TransferQualityMeasure --computeQTM -graspPointCloud [path + filename]  -objectPointCloud [path + filename] -transformationFile [path + file]\n" << endl;
@@ -57,15 +62,49 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         double QTarea = partialObjectArea / TotalObjectArea;
         cout << "\033[1;36mQTpoints for grasp " << line << " is: " << QTpoints << "\033[0m" << endl;
         cout << "\033[1;36mQTarea for grasp " << line << " is: " << QTarea << "\033[0m" << endl;
-        this->visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
+        cout << " \n";
+        // this->visualize(graspPC, partialObjectPC, CM, cloudIn, min, max, rotation, translation, false);
         return true;
 }
 
+void MVBB::computeQualities(std::string graspPointCloudPath,
+                            std::string objectPointCloudPath,
+                            std::string transformationsFilePath,
+                            pcl::PointCloud<pcl::PointXYZ>::Ptr &objectPCFiltered, 
+                            pcl::PointCloud<pcl::PointXYZ>::Ptr &partialObjectPC,
+                            pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
+                            pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
+                            Eigen::Vector3f &CM) {
+    
+        // Multi-threading
+        int threads = std::thread::hardware_concurrency();
+        ThreadPool multiPool_(threads);
+        vector<future<bool>> future_vector;
+        
+        for(int index = 1; index <= 30; index++) {
+            string graspPointCloud = MVBB::changeGraspNumber(graspPointCloudPath, index);
+            future_vector.emplace_back(
+                multiPool_.enqueue(
+                    &MVBB::getQualities,
+                    this,
+                    graspPointCloud,
+                    objectPointCloudPath,
+                    transformationsFilePath,
+                    objectPCFiltered,
+                    partialObjectPC,
+                    objectNormals,
+                    partialObjectNormals,
+                    CM
+                )
+            );
+        }
+}
+
 bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) {
-    if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) {
+    if (pcl::io::loadPCDFile<pcl::PointXYZ> (path, *pointCloud) == -1) 
         return false;
-    }
-    else return true;
+    else   
+        return true;
 }
 
 bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) {
@@ -87,7 +126,7 @@ bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointC
             }
             point.clear();
             norm.clear();
-            for(int i = 0; i < 6; i ++) {
+            for(int i = 0; i < 6; i++) {
                 if(i < 3) 
                     obj >> val_point;
                 else 
@@ -145,6 +184,31 @@ int MVBB::extractGraspNumber(string graspPointCloudPath) {
     graspPointCloudPath = graspPointCloudPath.substr(i, graspPointCloudPath.length() - i );
     int number = atoi(graspPointCloudPath.c_str());
     return number;
+}
+
+string MVBB::changeGraspNumber(string graspPointCloudPath, int graspNumber) {
+    
+    // Convert grasp number in string
+    string graspStr = std::to_string(graspNumber);
+
+    // Find digit in string
+    string graspPCString;
+    string newGraspPointCloudPath;
+    size_t i = 0;
+    for ( ; i < graspPointCloudPath.length(); i++ ) {
+        if (isdigit(graspPointCloudPath[i])) {
+            break;
+        }
+    }
+    graspPCString = graspPointCloudPath.substr(i, graspPointCloudPath.length() - i );
+    int number = atoi(graspPCString.c_str());
+    string num = std::to_string(number);
+
+    // in place
+    newGraspPointCloudPath = graspPointCloudPath;
+    boost::replace_all(newGraspPointCloudPath, num, graspStr);
+
+    return newGraspPointCloudPath;
 }
 
 Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint line) {
@@ -280,6 +344,7 @@ float MVBB::computeQTMpoints(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object,
 }
 
 float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
+    
     pcl::NormalEstimation<pcl::PointXYZ, pcl::Normal> n;
     pcl::PointCloud<pcl::Normal>::Ptr normals (new pcl::PointCloud<pcl::Normal>);
     pcl::search::KdTree<pcl::PointXYZ>::Ptr tree (new pcl::search::KdTree<pcl::PointXYZ>);
@@ -307,7 +372,7 @@ float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
 
     // Set typical values for the parameters
     gp.setMu(5.0);
-    gp.setMaximumNearestNeighbors(100);
+    gp.setMaximumNearestNeighbors(2500);
     gp.setMaximumSurfaceAngle(M_PI / 4); // 45 degrees
     gp.setMinimumAngle(M_PI / 18); // 10 degrees
     gp.setMaximumAngle(2 * (M_PI / 3)); // 120 degrees
@@ -405,6 +470,7 @@ bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT
     
     int i = 0;
     for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
+        
         pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
         xx = node.attribute("c1").as_double();
         xy = node.attribute("c2").as_double();
@@ -514,7 +580,8 @@ bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {
 bool MVBB::getData(const char *inXML, 
                    const char *outTransformationTXT, 
                    const char *outQualityGraspTXT, 
-                   const char *qualitySortedTXT) {    
+                   const char *qualitySortedTXT) {  
+
     extractTransforms(inXML, outTransformationTXT);
     extractGraspQuality(inXML, outQualityGraspTXT);
     qualitySort(inXML, qualitySortedTXT);

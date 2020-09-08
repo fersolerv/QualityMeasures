@@ -27,7 +27,7 @@ class CCone
         int conesides;
 
     public:
-
+    
         CCone(float uForce, float fCoef, int cSides);
         ~CCone();
 

@@ -1,5 +1,4 @@
 #include "../include/MVBB.h"
-#include "../MULTI_POOL/multi_pool.hpp"
 #include "Wrenches.h"
 #include <chrono>
 
@@ -8,6 +7,7 @@ using namespace pcl::console;
 using namespace chrono;
 
 int main(int argc, char **argv) {
+
     MVBB *qtl; qtl = new MVBB();
     wrench *wrc; wrc = new wrench();
 
@@ -16,12 +16,8 @@ int main(int argc, char **argv) {
     pcl::PointCloud<pcl::Normal>::Ptr objectNormals(new pcl::PointCloud<pcl::Normal>);
     pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals(new pcl::PointCloud<pcl::Normal>);
     Eigen::Vector3f CM;
+    int index = 1;
     auto t1 = high_resolution_clock::now();
-    
-    // Multi threading
-    int threads = std::thread::hardware_concurrency();
-    MultiPool multiPool_(threads);
-    vector<future<bool>> future_vector;
 
     if(find_switch(argc, argv, "--computeQTM") && argc == 8) {
         string graspPointCloud = "";
@@ -38,20 +34,23 @@ int main(int argc, char **argv) {
         
         index = find_argument(argc, argv, "-transformationFile");
         if(index > 0)
-            transformationsFile = argv[index + 1];
+            transformationsFile = argv[index + 1];        
+            // if(!qtl->getQualities(graspPointCloud,
+            //                       objectPointCloud,
+            //                       transformationsFile,
+            //                       objectPCFiltered, 
+            //                       partialObjectPC, 
+            //                       objectNormals, 
+            //                       partialObjectNormals, 
+            //                       CM,
+            //                       index))      
+            // PCL_ERROR("The qualities can't be computed\n");
 
-        if(!qtl->getQualities(graspPointCloud,
-                              objectPointCloud,
-                              transformationsFile,
-                              objectPCFiltered, 
-                              partialObjectPC, 
-                              objectNormals, 
-                              partialObjectNormals, 
-                              CM))      
-            PCL_ERROR("The qualities can't be computed\n");  
 
-        // if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM))
+        // if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM)) {
         //     PCL_ERROR("OWS can't be computed.\n");
+        //     return -1;
+        // }
         
         auto t2 = high_resolution_clock::now();
         auto duration = duration_cast<seconds>(t2 - t1).count();

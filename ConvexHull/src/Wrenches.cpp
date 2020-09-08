@@ -53,8 +53,8 @@ bool wrench::computeOWSQuality(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCl
                                pcl::PointCloud<pcl::Normal>::Ptr partialObjectNormals, 
                                Eigen::Vector3f CM) {
 
-    float totalQuality = computeOWS(objectPointCloud, objectNormals, CM, 1.0, 1, 6);
-    float potentialQuality = computeOWS(partialObjectPointCloud, partialObjectNormals, CM, 1.0, 0.4, 6);
+    float totalQuality = this->computeOWS(objectPointCloud, objectNormals, CM, 1.0, 1, 6);
+    float potentialQuality = this->computeOWS(partialObjectPointCloud, partialObjectNormals, CM, 1.0, 0.4, 6);
     float LostQualityOWS = (totalQuality - potentialQuality) / totalQuality;
     float QualityOWS = 1 - ((totalQuality - potentialQuality) / totalQuality);
     cout << "Total quality is: " << totalQuality << endl;

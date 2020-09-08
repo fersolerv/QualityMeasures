@@ -83,7 +83,7 @@ void MVBB::computeQualities(std::string graspPointCloudPath,
         for(int index = 1; index <= 30; index++) {
             string graspPointCloud = MVBB::changeGraspNumber(graspPointCloudPath, index);
             future_vector.emplace_back(
-                multiPool_.enqueue(
+                multiPool_.enqueue( 
                     &MVBB::getQualities,
                     this,
                     graspPointCloud,

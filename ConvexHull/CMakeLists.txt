@@ -49,7 +49,8 @@ SET(SRC src/main.cpp
         src/ConvexHull.cpp
         src/Mtools.cpp
         src/MVBB.cpp
-        src/Wrenches.cpp)
+        src/Wrenches.cpp
+        src/Data.cpp)
         #src/FilterObject.cpp)
 
 add_subdirectory(THREAD_POOL)

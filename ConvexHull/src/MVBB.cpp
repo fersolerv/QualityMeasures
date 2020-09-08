@@ -1,32 +1,13 @@
 #include "MVBB.h"
-#include <boost/algorithm/string/replace.hpp>
+#include "../include/Data.h"
 #include <thread_pool.hpp>
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
+// #include <boost/make_shared.hpp>
+// #include <boost/shared_ptr.hpp>
 
 using namespace std;
 
 MVBB::MVBB() {}
-//MVBB::~MVBB(){};
-
-void MVBB::showHelpQuality() {
-    cout << "Usage: ./TransferQualityMeasure --computeQTM -graspPointCloud [path + filename]  -objectPointCloud [path + filename] -transformationFile [path + file]\n" << endl;
-    cout << "    TransferQualityMeasure:        Executable file." << endl;
-    cout << "    --computeQTM:                  Method to use." << endl;
-    cout << "    -graspPointCloud:              Path where the grasp point cloud is. " << endl;
-    cout << "    -objectPointCloud:             Path where the object point cloud is. " << endl;
-    cout << "    -transformationFile:           Path where the transformations values are.\n" << endl;
-}
-
-void MVBB::showHelpExtractValues() {
-    cout << "Usage: ./TransferQualityMeasure --extractValues -transformationXMLFile [path + filename]  -outputGraspTransformationPath [path + filename] -outputGraspQualityPath [path + file] -outputSortedQualitiesPath [path + file]\n" << endl;
-    cout << "    TransferQualityMeasure:              Executable file." << endl;
-    cout << "    --extractValues:                     Method to use." << endl;
-    cout << "    -transformationXMLFile:              Path where the XML file is. " << endl;
-    cout << "    -outputGraspTransformationPath:      Path to put transformation values from file. " << endl;
-    cout << "    -outputGraspQualityPath:             Path to put the qualities values." << endl;
-    cout << "    -outputSortedQualitiesPath:          Path to put the sorted qualities values.\n" << endl;
-}
+MVBB::~MVBB(){};
 
 bool MVBB::getQualities(std::string graspPointCloudPath,
                         std::string objectPointCloudPath,
@@ -36,7 +17,8 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
                         pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
                         pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
                         Eigen::Vector3f &CM) {
-        
+
+        Data *data; data = new Data();
         pcl::PointCloud<pcl::PointXYZ>::Ptr objectPC(new pcl::PointCloud<pcl::PointXYZ>);
         pcl::PointCloud<pcl::PointXYZ>::Ptr graspPC(new pcl::PointCloud<pcl::PointXYZ>);
         pcl::PointCloud<pcl::PointXYZ>::Ptr cloudIn(new pcl::PointCloud<pcl::PointXYZ>);
@@ -52,7 +34,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
             PCL_ERROR ("Can't read Object Point Cloud (.pcd file)\n");
         this->filterPointCloud(objectPC, objectPCFiltered);
         this->computeNormals(objectPCFiltered, objectNormals, CM);
-        int line = this->extractGraspNumber(graspPointCloudPath);
+        int line = data->extractGraspNumber(graspPointCloudPath);
         Eigen::Matrix4f transformation = this->returnTransformation(transformationsFilePath, line);
         this->getHandPCTransformation(graspPC, rotation, translation, min, max, projection, transformation);
         float QTpoints = this->computeQTMpoints(objectPCFiltered, objectNormals, min, max, projection, partialObjectPC, cloudIn, partialObjectNormals);
@@ -74,14 +56,15 @@ void MVBB::computeQualities(std::string graspPointCloudPath,
                             pcl::PointCloud<pcl::Normal>::Ptr &objectNormals, 
                             pcl::PointCloud<pcl::Normal>::Ptr &partialObjectNormals, 
                             Eigen::Vector3f &CM) {
-    
+
+        Data *data; data = new Data();
         // Multi-threading
         int threads = std::thread::hardware_concurrency();
         ThreadPool multiPool_(threads);
         vector<future<bool>> future_vector;
         
         for(int index = 1; index <= 30; index++) {
-            string graspPointCloud = MVBB::changeGraspNumber(graspPointCloudPath, index);
+            string graspPointCloud = data->changeGraspNumber(graspPointCloudPath, index);
             future_vector.emplace_back(
                 multiPool_.enqueue( 
                     &MVBB::getQualities,
@@ -170,44 +153,6 @@ void MVBB::filterPointCloud(pcl::PointCloud<pcl::PointXYZ>::Ptr original, pcl::P
         cout << "Object point cloud filtered with " << filtered->points.size() << " points." << endl;
     }
     else filtered = original;  
-}
-
-int MVBB::extractGraspNumber(string graspPointCloudPath) {
-    // For atoi, the input string has to start with a digit, so lets search for the first digit
-    size_t i = 0;
-    for ( ; i < graspPointCloudPath.length(); i++ ) { 
-        if (isdigit(graspPointCloudPath[i])) 
-            break; 
-    }
-    // remove the first chars, which aren't digits
-    graspPointCloudPath = graspPointCloudPath.substr(i, graspPointCloudPath.length() - i );
-    int number = atoi(graspPointCloudPath.c_str());
-    return number;
-}
-
-string MVBB::changeGraspNumber(string graspPointCloudPath, int graspNumber) {
-    
-    // Convert grasp number in string
-    string graspStr = std::to_string(graspNumber);
-
-    // Find digit in string
-    string graspPCString;
-    string newGraspPointCloudPath;
-    size_t i = 0;
-    for ( ; i < graspPointCloudPath.length(); i++ ) {
-        if (isdigit(graspPointCloudPath[i])) {
-            break;
-        }
-    }
-    graspPCString = graspPointCloudPath.substr(i, graspPointCloudPath.length() - i );
-    int number = atoi(graspPCString.c_str());
-    string num = std::to_string(number);
-
-    // in place
-    newGraspPointCloudPath = graspPointCloudPath;
-    boost::replace_all(newGraspPointCloudPath, num, graspStr);
-
-    return newGraspPointCloudPath;
 }
 
 Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint line) {
@@ -453,136 +398,4 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
         visualizer.spinOnce();
 
     visualizer.close();
-}
-
-bool MVBB::extractTransforms(const char *inXML, const char *outTransformationTXT) {   
-    //get the matrix transformation of each grasp from the .xml file and save it into a .txt file
-    ofstream transform(outTransformationTXT);
-    double xx, xy, xz, yx, yy, yz, zx, zy, zz, x1, y1, z1, p1, p2, p3, p4;
-    pugi::xml_document doc;
-    //Load .xml file
-    pugi::xml_parse_result result = doc.load_file(inXML);
-    if (!result) 
-        std::cout << "Parse error: " << result.description() << ", character pos = " << result.offset<<std::endl;
-    else 
-        std::cout << "Problem file loaded"<<std::endl;
-    
-    int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
-        
-        pugi::xml_node node = tool.child("Transform").child("Matrix4x4").child("row1");
-        xx = node.attribute("c1").as_double();
-        xy = node.attribute("c2").as_double();
-        xz = node.attribute("c3").as_double();
-        x1 = node.attribute("c4").as_double();
-
-        node = tool.child("Transform").child("Matrix4x4").child("row2");
-
-        yx = node.attribute("c1").as_double();
-        yy = node.attribute("c2").as_double();
-        yz = node.attribute("c3").as_double();
-        y1 = node.attribute("c4").as_double();
-
-        node = tool.child("Transform").child("Matrix4x4").child("row3");
-
-        zx = node.attribute("c1").as_double();
-        zy = node.attribute("c2").as_double();
-        zz = node.attribute("c3").as_double();
-        z1 = node.attribute("c4").as_double();
-
-        node = tool.child("Transform").child("Matrix4x4").child("row4");
-
-        p1 = node.attribute("c1").as_double();
-        p2 = node.attribute("c2").as_double();
-        p3 = node.attribute("c3").as_double();
-        p4 = node.attribute("c4").as_double();
-
-        transform << xx << ", ";
-        transform << xy << ", ";
-        transform << xz << ", ";
-        transform << x1 << ", ";
-
-        transform << yx << ", ";
-        transform << yy << ", ";
-        transform << yz << ", ";
-        transform << y1 << ", ";
-
-        transform << zx << ", ";
-        transform << zy << ", ";
-        transform << zz << ", ";
-        transform << z1 << ", ";
-
-        transform << p1 << ", ";
-        transform << p2 << ", ";
-        transform << p3 << ", ";
-        transform << p4 << ";" << endl;
-
-        i++;
-    }
-    return true;
-}
-
-bool MVBB::extractGraspQuality(const char *inXML, const char *outQualityGraspTXT) { 
-    //get the quality of each grasp from the .xml file and save it into a .txt file
-    ofstream graspQuality(outQualityGraspTXT);
-    double quality;
-    pugi::xml_document doc;
-    //Load .xml file
-    pugi::xml_parse_result result = doc.load_file(inXML);
-    if (!result) 
-        cout << "Parse error: " << result.description() << ", character pos = " << result.offset << endl;
-    else 
-        cout << "Problem file loaded" << endl;
-    
-    int i = 0;
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
-        quality = tool.attribute("quality").as_double();
-        graspQuality << quality << endl;
-        i++;
-    }
-    return true;
-}
-
-bool MVBB::qualitySort(const char *inXML, const char *qualitySortedTXT) {          
-    //Extract qualities
-    ofstream graspQuality(qualitySortedTXT);
-    double quality;
-    pugi::xml_document doc;
-    //Load .xml file
-    pugi::xml_parse_result result = doc.load_file(inXML);
-    if (!result)
-        cout << "Parse error: " << result.description()<< ", character pos = " << result.offset << endl;
-    else
-        cout << "Problem file loaded" << endl;
-
-    for(pugi::xml_node tool = doc.child("ManipulationObject").child("GraspSet").child("Grasp"); tool; tool = tool.next_sibling("Grasp")) {
-        int i = 0;
-        quality = tool.attribute("quality").as_double();
-        graspQuality << quality << endl;
-        i++;
-    }
-    // Sort qualities
-    ifstream file(qualitySortedTXT);
-    vector<string> rows;
-
-    // Read all the lines and add them to the rows vector
-    while(!file.eof()) {
-        string line;
-        getline(file, line);
-        rows.push_back(line);
-    }
-
-    sort(rows.begin(), rows.end());
-    return true;
-}
-
-bool MVBB::getData(const char *inXML, 
-                   const char *outTransformationTXT, 
-                   const char *outQualityGraspTXT, 
-                   const char *qualitySortedTXT) {  
-
-    extractTransforms(inXML, outTransformationTXT);
-    extractGraspQuality(inXML, outQualityGraspTXT);
-    qualitySort(inXML, qualitySortedTXT);
-    return true;
 }

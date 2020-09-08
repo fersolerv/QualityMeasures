@@ -1,5 +1,6 @@
 #include "../include/MVBB.h"
 #include "Wrenches.h"
+#include "../include/Data.h"
 #include <chrono>
 
 using namespace std;
@@ -10,6 +11,7 @@ int main(int argc, char **argv) {
 
     MVBB *qtl; qtl = new MVBB();
     wrench *wrc; wrc = new wrench();
+    Data *data; data = new Data();
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr objectPCFiltered(new pcl::PointCloud<pcl::PointXYZ>);
     pcl::PointCloud<pcl::PointXYZ>::Ptr partialObjectPC(new pcl::PointCloud<pcl::PointXYZ>);
@@ -56,7 +58,7 @@ int main(int argc, char **argv) {
     }
     else if(find_switch(argc, argv, "--computeQTM") && argc != 8) {
         PCL_ERROR("Write the command line correctly to compute qualities\n\n");
-        qtl->showHelpQuality();
+        data->showHelpQuality();
         return -1;
     }
     
@@ -80,7 +82,7 @@ int main(int argc, char **argv) {
             qualitySortedTXT = argv[index + 1];
 
         auto t1 = high_resolution_clock::now();
-        if(qtl->getData(inXML, outTransformationTXT, outQualityGraspTXT, qualitySortedTXT))
+        if(data->getData(inXML, outTransformationTXT, outQualityGraspTXT, qualitySortedTXT))
             cout << "Data extracted\n";
         
         auto t2 = high_resolution_clock::now();
@@ -91,7 +93,7 @@ int main(int argc, char **argv) {
     } 
     else if(find_switch(argc, argv, "--extractValues") && argc != 10) {
         PCL_ERROR("Write the command line correctly to extract values\n\n");
-        qtl->showHelpExtractValues();
+        data->showHelpExtractValues();
         return -1;
     }
 

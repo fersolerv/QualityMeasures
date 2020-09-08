@@ -1,7 +1,6 @@
 #include "MVBB.h"
 #include <boost/algorithm/string/replace.hpp>
 #include <thread_pool.hpp>
-// #include <boost/thread/thread.hpp>
 #include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 

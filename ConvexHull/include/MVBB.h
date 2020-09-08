@@ -45,7 +45,6 @@
 #include <pcl/sample_consensus/sac_model_sphere.h>
 #include <pcl/features/normal_3d_omp.h>
 #include "../libs/pugixml/src/pugixml.hpp"
-
 class MVBB
 {
 
@@ -123,7 +122,7 @@ public:
                  const char *outQualityGraspTXT, 
                  const char *qualitySortedTXT);
 
-    bool computeQualities(std::string graspPointCloudPath,
+    void computeQualities(std::string graspPointCloudPath,
                           std::string objectPointCloudPath,
                           std::string transformationsFilePath,
                           pcl::PointCloud<pcl::PointXYZ>::Ptr &objectPCFiltered, 

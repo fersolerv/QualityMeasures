@@ -37,14 +37,16 @@ int main(int argc, char **argv) {
         if(index > 0)
             transformationsFile = argv[index + 1];  
         
-        qtl->computeQualities(graspPointCloud,
-                              objectPointCloud,
-                              transformationsFile,
-                              objectPCFiltered, 
-                              partialObjectPC, 
-                              objectNormals, 
-                              partialObjectNormals, 
-                              CM);
+        if(!qtl->computeQualities(graspPointCloud,
+                                  objectPointCloud,
+                                  transformationsFile,
+                                  objectPCFiltered, 
+                                  partialObjectPC, 
+                                  objectNormals, 
+                                  partialObjectNormals, 
+                                  CM)) {
+            PCL_ERROR("The qualities can't be computed\n");  
+        }
 
         // if(!wrc->computeOWSQuality(objectPCFiltered, objectNormals, partialObjectPC, partialObjectNormals, CM)) {
         //     PCL_ERROR("OWS can't be computed.\n");
@@ -63,6 +65,7 @@ int main(int argc, char **argv) {
     }
     
     if(find_switch(argc, argv, "--extractValues") && argc == 10) {
+        
         const char *inXML, *outTransformationTXT, *outQualityGraspTXT, *qualitySortedTXT;
    
         int index = find_argument(argc, argv, "-transformationXMLFile"); // file.xml

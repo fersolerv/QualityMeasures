@@ -1,6 +1,8 @@
 PROJECT(TransferQualityMeasure)
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
+add_definitions(-std=c++11 -Wall -Wextra -Wpedantic )
+
 project(TransferQualityMeasure)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules/" ${CMAKE_MODULE_PATH})

@@ -88,7 +88,7 @@ public:
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormals,
                       pcl::PointCloud<pcl::Normal>::Ptr &objectNormalsOut, 
                       Eigen::Vector3f &CM);
-    void computeQualities(std::string graspPointCloudPath,
+    bool computeQualities(std::string graspPointCloudPath,
                           std::string objectPointCloudPath,
                           std::string transformationsFilePath,
                           pcl::PointCloud<pcl::PointXYZ>::Ptr &objectPCFiltered, 

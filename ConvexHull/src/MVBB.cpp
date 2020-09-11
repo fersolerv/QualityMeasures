@@ -48,7 +48,7 @@ bool MVBB::getQualities(std::string graspPointCloudPath,
         return true;
 }
 
-void MVBB::computeQualities(std::string graspPointCloudPath,
+bool MVBB::computeQualities(std::string graspPointCloudPath,
                             std::string objectPointCloudPath,
                             std::string transformationsFilePath,
                             pcl::PointCloud<pcl::PointXYZ>::Ptr &objectPCFiltered, 
@@ -80,6 +80,7 @@ void MVBB::computeQualities(std::string graspPointCloudPath,
                 )
             );
         }
+        return true;
 }
 
 bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &pointCloud) {
@@ -91,8 +92,8 @@ bool MVBB::loadPointCloud(string path, pcl::PointCloud<pcl::PointXYZ>::Ptr &poin
 
 bool MVBB::readPoints(pcl::PointCloud<pcl::PointXYZ>::Ptr &C_Object, pcl::PointCloud<pcl::Normal>::Ptr &normals) {
     std::fstream obj;
-    std::vector<std::vector <double>> points;
-    std::vector<std::vector <double>> norms;
+    std::vector<std::vector<double>> points;
+    std::vector<std::vector<double>> norms;
     std::vector<double> point;
     std::vector<double> norm;
     double val_point, val_norm;
@@ -159,7 +160,7 @@ Eigen::Matrix4f MVBB::returnTransformation(string transformationFilePath, uint l
     string sLine = "";
     ifstream read;
     read.open(transformationFilePath);
-    int line_no = 0;
+    uint line_no = 0;
     while (line_no != line && getline(read, sLine))
         ++line_no;
     
@@ -238,6 +239,7 @@ void MVBB::getHandPCTransformation(pcl::PointCloud<pcl::PointXYZ>::Ptr &handConf
 void MVBB::computeNormals(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object, 
                           pcl::PointCloud<pcl::Normal>::Ptr &Normals, 
                           Eigen::Vector3f &CM) {
+    
     Eigen::Vector4f centroid;
     pcl::compute3DCentroid (*C_Object, centroid);
     CM << centroid[0], centroid[1], centroid[2];
@@ -335,7 +337,7 @@ float MVBB::getPointCloudArea(pcl::PointCloud<pcl::PointXYZ>::Ptr C_Object) {
     double x1, x2, x3, y1, y2, y3, z1, z2, z3, a, b, c, q;
     float area = 0.0;
 
-    for(int i = 0; i < triangles.polygons.size(); i++) {
+    for(uint i = 0; i < triangles.polygons.size(); i++) {
         index_p1 = triangles.polygons[i].vertices[0];
         index_p2 = triangles.polygons[i].vertices[1];
         index_p3 = triangles.polygons[i].vertices[2];

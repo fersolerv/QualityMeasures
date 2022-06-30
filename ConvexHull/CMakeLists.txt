@@ -1,7 +1,7 @@
 PROJECT(TransferQualityMeasure)
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
-add_definitions(-std=c++11 -Wall -Wextra -Wpedantic )
+add_definitions(-std=c++11 -Wall -Wextra -Wpedantic)
 
 project(TransferQualityMeasure)
 
@@ -19,7 +19,7 @@ add_definitions(-DEIGEN_USE_NEW_STDVECTOR
 find_package( PugiXML )
 if(PUGI_XML_FOUND)
    message( STATUS "PugiXML FOUND, using it")
-   set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE)
+   #set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE)
    include_directories( ${PUGI_XML_INCLUDE_DIR})
 else(PUGI_XML_FOUND)
    message(STATUS "PugiXML not found, using internal copy")

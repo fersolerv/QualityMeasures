@@ -3,9 +3,6 @@ build/
 data/
 .vscode/
 
-extractValues.sh
-run.sh
 buld.sh
-scripts/pythonRun.sh
 
 THREAD_POOL/

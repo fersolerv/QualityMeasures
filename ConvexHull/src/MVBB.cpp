@@ -383,7 +383,7 @@ void MVBB::visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr handConfigurationPointC
     visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 0.0, 0.0, 0.0, "boundingbox");
     visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_LINE_WIDTH, 4, "boundingbox");
     visualizer.setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_OPACITY, 0.2, "boundingbox");
-
+    
     while(!visualizer.wasStopped())
         visualizer.spinOnce();
 

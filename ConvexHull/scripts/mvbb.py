@@ -17,9 +17,9 @@ class Quality:
         self.objectPointCloudPath = objectPointCloudPath
         self.transformationFile = transformationFile
 
-
     def loadPointCloud(self, pointCloud):
         pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
+        print(pc)
         return pc
 
 
@@ -40,6 +40,7 @@ class Quality:
             accumulative += point
             
         cp = accumulative / len(samplePoints)
+        print(cp)
         return cp
 
 
@@ -52,6 +53,7 @@ class Quality:
     def extractGraspNumber(self, graspPointCloudPath):
         number = re.findall('\d+', graspPointCloudPath)
         number = int(number[0])
+        print(number)
         return number
 
 

@@ -1,8 +1,4 @@
 # CMake 
 build/
-data/
+#data/
 .vscode/
-
-extractValues.sh
-run.sh
-scripts/pythonRun.sh

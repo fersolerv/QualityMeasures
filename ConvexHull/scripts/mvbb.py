@@ -127,4 +127,8 @@ class Quality:
         transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
         objectPointCloud.paint_uniform_color([0, 1, 0])
         objectCroppedPointCloud.paint_uniform_color([0, 0, 1])
-        visualization.draw_geometries([transformedGraspPointCloud, objectPointCloud, objectCroppedPointCloud, bbox], point_show_normal=False)
+        visualization.draw_geometries([transformedGraspPointCloud, 
+                                       objectPointCloud, 
+                                       objectCroppedPointCloud, 
+                                       bbox], 
+                                       point_show_normal=False)

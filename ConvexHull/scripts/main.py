@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 import argparse, time
 import logging, coloredlogs
-import multiprocessing as multip 
+import multiprocessing as multip
+from concurrent.futures import ProcessPoolExecutor
 from mvbb import Quality
-from data import Data
+from dataGrasp import DataGrasp
+from inOut import InOut 
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -14,27 +16,42 @@ parser.add_argument('--graspPointCloudPath', help='Grasp point cloud file path',
 parser.add_argument('--objectPointCloudPath', help='Object point cloud file path', required=True)
 parser.add_argument('--transformationFilePath', help='Transformation point cloud file path', required=True)
 
-if __name__ == "__main__":
-    start_time = time.time()
-    args = vars(parser.parse_args())
-    graspPointCloudPath = args['graspPointCloudPath']
-    objectPointCloudPath = args['objectPointCloudPath']
-    transformationFile = args['transformationFilePath']
-    qty = Quality(graspPointCloudPath, objectPointCloudPath, transformationFile)
-    data = Data(graspPointCloudPath)
+args = vars(parser.parse_args())
+graspPointCloudPath = args['graspPointCloudPath']
+objectPointCloudPath = args['objectPointCloudPath']
+transformationFile = args['transformationFilePath']
+
+# CLASSES 
+qty = Quality(graspPointCloudPath, objectPointCloudPath, transformationFile)
+data = DataGrasp(graspPointCloudPath)
+io = InOut(graspPointCloudPath, objectPointCloudPath, transformationFile)
+
+def pipeline(index):
     #Pipeline
-    graspNumber = data.getGrapsNumber(graspPointCloudPath)
-    # graspPointCloud = qty.loadPointCloud(graspPointCloudPath)
-    # objectPointCloud = qty.loadPointCloud(objectPointCloudPath)
+    graspNumber = data.getGraspNumber(graspPointCloudPath)
+    io.changeGraspPointcloud(graspPointCloudPath, index)
+    # graspPointCloud = io.loadPointCloud(graspPointCloudPath)
+    # objectPointCloud = io.loadPointCloud(objectPointCloudPath)
     # filteredObjectPointCloud = qty.filterPointCloud(objectPointCloud)
     # cm = qty.computeCenterPoint(filteredObjectPointCloud)
     # pointCloudNormals = qty.computeNormals(filteredObjectPointCloud, cm)
-    # line = qty.extractGraspNumber(graspPointCloudPath)
-    # transformation = qty.returnTransformation(transformationFile, line)
+    # transformation = qty.returnTransformation(transformationFile, graspNumber)
     # [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
-    # [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
-    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
+    # [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
+    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, graspNumber)
     # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
 
-    # line_str = str(line)
-    # logger.info("Time to compute qualities for grasp " + line_str + " took: --- %s seconds ---" % (time.time() - start_time))
+    graspNumber_str = str(graspNumber)
+    logger.info("Time to compute qualities for grasp " + graspNumber_str + " took: --- %s seconds ---" % (time.time() - start_time))
+
+def main():
+    cpuAmount = multip.cpu_count()
+    executor = ProcessPoolExecutor(max_workers = cpuAmount)
+    logger.info("Multithreading in " + str(cpuAmount) + " threads")
+    for index in range(1,31):
+        pipeline(index)
+
+if __name__ == "__main__":
+    start_time = time.time()
+    logger.info("Starting...")
+    main()

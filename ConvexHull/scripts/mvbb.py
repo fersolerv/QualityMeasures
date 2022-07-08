@@ -18,11 +18,6 @@ class Quality:
         self.transformationFile = transformationFile
 
 
-    def loadPointCloud(self, pointCloud):
-        pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
-        return pc
-
-
     def filterPointCloud(self, objectpointCloud):
         points = np.asarray(objectpointCloud.points)
         if(len(points) > 900000):
@@ -47,13 +42,7 @@ class Quality:
         pointCloud.estimate_normals(search_param=geometry.KDTreeSearchParamHybrid(radius=0.1, max_nn=30))
         # geometry.orient_normals_to_align_with_direction(pointCloud, orientation_reference=array([cm[0], cm[1], cm[2]]))
         return pointCloud
-
-
-    def extractGraspNumber(self, graspPointCloudPath):
-        number = re.findall('\d+', graspPointCloudPath)
-        number = int(number[0])
-        return number
-
+        
 
     def returnTransformation(self, transformationsFilePath, line):
         file = open(transformationsFilePath)

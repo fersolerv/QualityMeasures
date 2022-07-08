@@ -20,8 +20,8 @@ class InOut:
         pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
         return pc
 
+
     def changeGraspPointcloud(self, graspPointCloudPath, graspNumber):
-        # remove_digits = str.maketrans('', '', digits)
-        # noGraspNumberPath = graspPointCloudPath.translate(remove_digits)
-        
+        remove_digits = str.maketrans('', '', digits)
+        noGraspNumberPath = graspPointCloudPath.translate(remove_digits)
         print(noGraspNumberPath)

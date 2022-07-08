@@ -3,7 +3,6 @@ from open3d import *
 import numpy as np
 from numpy.linalg import inv
 import logging, coloredlogs
-import math, os, sys, re, array, vtk
 import pyvista as pv
 
 LOG_LEVEL = logging.DEBUG

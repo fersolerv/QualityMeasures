@@ -16,5 +16,4 @@ class DataGrasp:
     def getGraspNumber(self,graspPointCloudPath):
         number = re.findall('\d+', graspPointCloudPath)
         number = int(number[0])
-        # print(number)
         return number

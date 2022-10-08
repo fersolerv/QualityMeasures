@@ -22,6 +22,9 @@ class InOut:
 
 
     def changeGraspPointcloud(self, graspPointCloudPath, graspNumber):
+        graspNumber_str = str(graspNumber)
         remove_digits = str.maketrans('', '', digits)
         noGraspNumberPath = graspPointCloudPath.translate(remove_digits)
-        print(noGraspNumberPath)
+        noFormat = noGraspNumberPath.replace('.pcd','')
+        newgraspPointCloudPath = noFormat + graspNumber_str + '.pcd'
+        return newgraspPointCloudPath

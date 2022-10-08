@@ -48,8 +48,8 @@ def main():
     cpuAmount = multip.cpu_count()
     executor = ProcessPoolExecutor(max_workers = cpuAmount)
     logger.info("Multithreading in " + str(cpuAmount) + " threads")
-    for index in range(1,31):
-        pipeline(index)
+    #for index in range(1,31):
+    pipeline(1) #TODO Continue this 
 
 if __name__ == "__main__":
     start_time = time.time()

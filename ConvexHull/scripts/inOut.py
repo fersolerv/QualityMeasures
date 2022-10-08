@@ -9,17 +9,14 @@ coloredlogs.install(level=LOG_LEVEL, logger=logger)
 
 class InOut:
 
-
     def __init__(self, graspPointCloudPath, objectPointCloudPath, transformationFile):
         self.graspPointCloudPath = graspPointCloudPath
         self.objectPointCloudPath = objectPointCloudPath
         self.transformationFile = transformationFile
 
-
     def loadPointCloud(self, pointCloud):
         pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
         return pc
-
 
     def changeGraspPointcloud(self, graspPointCloudPath, graspNumber):
         graspNumber_str = str(graspNumber)

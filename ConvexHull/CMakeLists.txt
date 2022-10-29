@@ -30,10 +30,12 @@ set(PUGI_XML_LIBRARIES libpugixml)
 endif(PUGI_XML_FOUND)
 
 include_directories(${PUGI_XML_INCLUDE_DIR})
-                 
+
+set(Qt5_DIR /usr/local/Cellar/qt@5/5.15.6/lib/cmake/Qt5)
 find_package(Qhull)
 
-find_package(PCL 1.8 REQUIRED)
+set(pcl_DIR /usr)
+find_package(PCL 1.12 REQUIRED)
 if (NOT PCL_SHARED_LIB OR WIN32)
 set(QHULL_USE_STATIC ON)
 endif(NOT PCL_SHARED_LIB OR WIN32)

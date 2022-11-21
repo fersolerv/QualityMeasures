@@ -92,7 +92,7 @@ class Quality:
         partialPTS = np.asarray(partialObjectPointCloud.points)
         partial = pv.PolyData(partialPTS)
         partialMesh = partial.delaunay_3d(alpha=0.03)
-        partialWires = partialMesh.compute_cell_sizes(length=True, area=False, volume=False).extract_all_edges() 
+        partialWires = partialMesh.compute_cell_sizes(length=True, area=True, volume=False).extract_all_edges() 
     
         plotter = pv.Plotter(polygon_smoothing=True, 
                              border_width=10.0,
@@ -103,6 +103,7 @@ class Quality:
         plotter.add_mesh(objectMesh, color='green')
         plotter.add_mesh(graspMesh, color='red')
         plotter.add_mesh(partialMesh, color='blue')
+        # plotter.add_mesh(objectWires, color='white')
         plotter.show_bounds(grid='front', location='outer', all_edges=True)
         plotter.show(title="GRASP " + line_str, full_screen=False) 
 

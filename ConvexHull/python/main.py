@@ -50,6 +50,8 @@ def main():
     executor = ProcessPoolExecutor(max_workers = cpuAmount)
     logger.info("Multithreading in " + str(cpuAmount) + " threads")
 
+    # computeQualities(1)
+
     #Loop for the main pipeline
     # for index in range(1,31):
     #     computeQualities(index)

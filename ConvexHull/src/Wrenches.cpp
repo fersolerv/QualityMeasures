@@ -4,6 +4,7 @@ wrench::wrench(){}
 
 wrench::~wrench(){}
 
+// OWS = Object Wrench Space
 float wrench::computeOWS(pcl::PointCloud<pcl::PointXYZ>::Ptr objectPointCloud, 
                         pcl::PointCloud<pcl::Normal>::Ptr objectNormals,  
                         Eigen::Vector3f CM,

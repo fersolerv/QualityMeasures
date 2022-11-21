@@ -8,6 +8,7 @@
 #include <iterator>
 #include <vector>
 #include <math.h>
+#include "boost/date_time/posix_time/posix_time.hpp"
 #include "ContactConeGenerator.h"
 #include "ConvexHull.h"
 #include <pcl/point_types.h>

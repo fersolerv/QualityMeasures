@@ -34,6 +34,7 @@ class Quality:
             accumulative += point
             
         cp = accumulative / len(samplePoints)
+        #print("Center point is: ", cp)
         return cp
 
 

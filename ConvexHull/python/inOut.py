@@ -16,12 +16,13 @@ class InOut:
 
     def loadPointCloud(self, pointCloud):
         pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
+        # print("Point cloud loaded with ", pc, " points")
         return pc
 
-    def changeGraspPointcloud(self, graspPointCloudPath, graspNumber):
-        graspNumber_str = str(graspNumber)
+    def changeGraspPointcloud(graspPointCloudPath, index):
+        graspNumber_str = str(index)
         remove_digits = str.maketrans('', '', digits)
         noGraspNumberPath = graspPointCloudPath.translate(remove_digits)
-        noFormat = noGraspNumberPath.replace('.pcd','')
-        newgraspPointCloudPath = noFormat + graspNumber_str + '.pcd'
+        noFormatPath = noGraspNumberPath.replace('.pcd','')
+        newgraspPointCloudPath = noFormatPath + graspNumber_str + '.pcd'
         return newgraspPointCloudPath

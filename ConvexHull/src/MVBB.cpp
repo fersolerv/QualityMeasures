@@ -1,8 +1,8 @@
 #include "MVBB.h"
 #include "../include/Data.h"
-#include <thread_pool.hpp>
-// #include <boost/make_shared.hpp>
-// #include <boost/shared_ptr.hpp>
+#include <thread_grasp.hpp>
+#include <boost/make_shared.hpp>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 
@@ -60,7 +60,7 @@ bool MVBB::computeQualities(std::string graspPointCloudPath,
         Data *data; data = new Data();
         // Multi-threading
         int threads = std::thread::hardware_concurrency();
-        ThreadPool multiPool_(threads);
+        ThreadGrasp multiPool_(threads);
         vector<future<bool>> future_vector;
         
         for(int index = 1; index <= 30; index++) {

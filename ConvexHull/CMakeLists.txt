@@ -11,7 +11,7 @@ set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(Eigen REQUIRED)
+find_package( Eigen REQUIRED )
 INCLUDE_DIRECTORIES(SYSTEM ${EIGEN_INCLUDE_DIRS})
 add_definitions(-DEIGEN_USE_NEW_STDVECTOR
                  -DEIGEN_YES_I_KNOW_SPARSE_MODULE_IS_NOT_STABLE_YET)
@@ -19,7 +19,7 @@ add_definitions(-DEIGEN_USE_NEW_STDVECTOR
 find_package( PugiXML )
 if(PUGI_XML_FOUND)
    message( STATUS "PugiXML FOUND, using it")
-   #set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE)
+   set(EXTRA_LIBS ${EXTRA_LIBS} ${PUGI_XML_LIBRARIES} PARENT_SCOPE)
    include_directories( ${PUGI_XML_INCLUDE_DIR})
 else(PUGI_XML_FOUND)
    message(STATUS "PugiXML not found, using internal copy")
@@ -29,10 +29,10 @@ set(PUGI_XML_LIBRARIES libpugixml)
 endif(PUGI_XML_FOUND)
 
 include_directories(${PUGI_XML_INCLUDE_DIR})
-                 
-find_package(Qhull)
 
-find_package(PCL 1.8 REQUIRED)
+find_package( Qhull )
+
+find_package(PCL 1.12 REQUIRED)
 if (NOT PCL_SHARED_LIB OR WIN32)
 set(QHULL_USE_STATIC ON)
 endif(NOT PCL_SHARED_LIB OR WIN32)
@@ -55,7 +55,7 @@ SET(SRC src/main.cpp
         src/Data.cpp)
         #src/FilterObject.cpp)
 
-add_subdirectory(THREAD_POOL)
+add_subdirectory(THREAD_GRASP)
         
 add_executable(TransferQualityMeasure ${SRC})
 
@@ -65,7 +65,7 @@ target_link_libraries(TransferQualityMeasure ${QHULL_LIBRARIES}
                                              ${PUGI_XML_LIBRARIES}
                                              ${PCL_LIBRARIES}
                                              ${PCL_IO_LIBRARIES}
-                                             THREAD_POOL
+                                             THREAD_GRASP
                                              pugixml)
                                              
 #add_executable(FilterObject ${SRC})                                             

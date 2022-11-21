@@ -34,7 +34,7 @@ def computeQualities(index):
     objectPointCloud = io.loadPointCloud(objectPointCloudPath)
     filteredObjectPointCloud = qty.filterPointCloud(objectPointCloud)
     cm = qty.computeCenterPoint(filteredObjectPointCloud)
-    pointCloudNormals = qty.computeNormals(filteredObjectPointCloud, cm)
+    # pointCloudNormals = qty.computeNormals(filteredObjectPointCloud, cm)
     transformation = qty.returnTransformation(transformationFile, graspNumber)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)

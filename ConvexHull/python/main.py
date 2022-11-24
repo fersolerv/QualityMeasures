@@ -2,6 +2,7 @@
 import argparse, time
 import logging, coloredlogs
 from mvbb import Quality
+import open3d as o3d
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -30,8 +31,8 @@ if __name__ == "__main__":
     transformation = qty.returnTransformation(transformationFile, line)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
-    qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
-    qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
+    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
+    # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
 
     line_str = str(line)
     logger.info("Time to compute qualities for grasp " + line_str + " took: --- %s seconds ---" % (time.time() - start_time))

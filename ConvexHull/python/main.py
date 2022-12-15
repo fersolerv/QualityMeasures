@@ -6,6 +6,7 @@ from concurrent.futures import ProcessPoolExecutor
 from mvbb import Quality
 from dataGrasp import DataGrasp
 from inOut import InOut as inout
+import random
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -38,7 +39,7 @@ def computeQualities(index):
     transformation = qty.returnTransformation(transformationFile, graspNumber)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
-    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, graspNumber)
+    qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, graspNumber)
     # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
 
     # graspNumber_str = str(graspNumber)
@@ -50,19 +51,25 @@ def main():
     executor = ProcessPoolExecutor(max_workers = cpuAmount)
     logger.info("Multithreading in " + str(cpuAmount) + " threads")
 
-    # computeQualities(1)
+    # Single grasp 
+    index = random.randint(1,30)
+    computeQualities(index)
 
-    #Loop for the main pipeline
+    # Loop for the main pipeline
+    # for_loop_time = time.time()
     # for index in range(1,31):
     #     computeQualities(index)
+    # logger.info("For loop time took: --- %0.2s seconds ---" % (time.time() - for_loop_time))
 
-    #Multithreading
-    with ProcessPoolExecutor(max_workers=cpuAmount) as executor:
-        executor.map(computeQualities, range(31))
+    # Multithreading
+    # multithreading_time = time.time()
+    # with ProcessPoolExecutor(max_workers=cpuAmount) as executor:
+    #     executor.map(computeQualities, range(31))
+    # logger.info("Multithreading took: --- %0.2s seconds ---" % (time.time() - multithreading_time))
 
 
 if __name__ == "__main__":
     start_time = time.time()
     logger.info("Starting...")
     main()
-    logger.info("Time to compute qualities took: --- %s seconds ---" % (time.time() - start_time))
+    logger.info("Time to compute qualities took: --- %0.2s seconds ---" % (time.time() - start_time))

@@ -39,7 +39,7 @@ def computeQualities(index):
     transformation = qty.returnTransformation(transformationFile, graspNumber)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
     [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
-    qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, graspNumber)
+    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, graspNumber)
     # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
 
     # graspNumber_str = str(graspNumber)
@@ -52,8 +52,8 @@ def main():
     logger.info("Multithreading in " + str(cpuAmount) + " threads")
 
     # Single grasp 
-    index = random.randint(1,30)
-    computeQualities(index)
+    # index = random.randint(1,30)
+    # computeQualities(index)
 
     # Loop for the main pipeline
     # for_loop_time = time.time()
@@ -62,10 +62,10 @@ def main():
     # logger.info("For loop time took: --- %0.2s seconds ---" % (time.time() - for_loop_time))
 
     # Multithreading
-    # multithreading_time = time.time()
-    # with ProcessPoolExecutor(max_workers=cpuAmount) as executor:
-    #     executor.map(computeQualities, range(31))
-    # logger.info("Multithreading took: --- %0.2s seconds ---" % (time.time() - multithreading_time))
+    multithreading_time = time.time()
+    with ProcessPoolExecutor(max_workers=cpuAmount) as executor:
+        executor.map(computeQualities, range(31))
+    logger.info("Multithreading took: --- %0.2s seconds ---" % (time.time() - multithreading_time))
 
 
 if __name__ == "__main__":

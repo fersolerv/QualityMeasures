@@ -3,7 +3,6 @@
 
 import vtk
 
-
 def main():
     colors = vtk.vtkNamedColors()
 

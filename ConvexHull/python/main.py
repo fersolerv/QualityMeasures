@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+import open3d as o3d
 import argparse, time
 import logging, coloredlogs
 from mvbb import Quality
-import open3d as o3d
+from inOut import InOut as inout
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -22,17 +23,17 @@ if __name__ == "__main__":
     qty = Quality(graspPointCloudPath, objectPointCloudPath, transformationFile)
     
     #Pipeline
-    graspPointCloud = qty.loadPointCloud(graspPointCloudPath)
-    objectPointCloud = qty.loadPointCloud(objectPointCloudPath)
+    graspPointCloud = inout.loadPointCloud(graspPointCloudPath)
+    objectPointCloud = inout.loadPointCloud(objectPointCloudPath)
     filteredObjectPointCloud = qty.filterPointCloud(objectPointCloud)
-    cm = qty.computeCenterPoint(filteredObjectPointCloud)
-    pointCloudNormals = qty.computeNormals(filteredObjectPointCloud, cm)
+    # cm = qty.computeCenterPoint(filteredObjectPointCloud)
+    # pointCloudNormals = qty.computeNormals(filteredObjectPointCloud, cm)
     line = qty.extractGraspNumber(graspPointCloudPath)
     transformation = qty.returnTransformation(transformationFile, line)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
-    [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
+    [graspConvexHull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
     # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
-    # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
+    qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, graspConvexHull)
 
     line_str = str(line)
     logger.info("Time to compute qualities for grasp " + line_str + " took: --- %s seconds ---" % (time.time() - start_time))

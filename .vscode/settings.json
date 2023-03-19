@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "__locale": "cpp",
+        "__threading_support": "cpp",
+        "format": "cpp",
+        "locale": "cpp",
+        "thread": "cpp",
+        "complex": "cpp",
+        "core": "cpp",
+        "*.tcc": "cpp",
+        "mutex": "cpp",
+        "stop_token": "cpp",
+        "variant": "cpp",
+        "*.inc": "cpp",
+        "*.txx": "cpp"
+    }
+}

@@ -111,7 +111,7 @@ class Quality:
         o3d.visualization.draw_geometries([transformedGraspPointCloud, 
                                            objectPointCloud, 
                                            objectCroppedPointCloud, 
-                                           bbox, 
-                                           graspConvexHull], 
+                                           bbox],
+                                           #graspConvexHull], 
                                            window_name="Grasp Quality",
                                            point_show_normal=False)

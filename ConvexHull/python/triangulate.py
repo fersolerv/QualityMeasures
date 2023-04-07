@@ -4,7 +4,7 @@
 import vtk
 
 
-def main():
+def triangulate():
     colors = vtk.vtkNamedColors()
 
     # Create a triangle
@@ -53,4 +53,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    triangulate()

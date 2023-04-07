@@ -12,6 +12,6 @@
         "stop_token": "cpp",
         "variant": "cpp",
         "*.inc": "cpp",
-        "*.txx": "cpp"
+        "*.txx": "cpp",
     }
 }

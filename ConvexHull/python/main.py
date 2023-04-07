@@ -38,10 +38,10 @@ def computeQualities(index):
     # pointCloudNormals = qty.computeNormals(filteredObjectPointCloud, cm)
     transformation = qty.returnTransformation(transformationFile, graspNumber)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
-    [convex_hull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
+    [convex_hull, objectCroppedPointCloud, QTpoints] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
     # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, graspNumber)
     # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, convex_hull)
-
+    io.writeValues(QTpoints)
     # graspNumber_str = str(graspNumber)
     # print("Grasp number is:", graspNumber_str)
     # logger.info("Time to compute qualities for grasp " + graspNumber_str + " took: --- %s seconds ---" % (time.time() - start_time))

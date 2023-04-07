@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from open3d import *
+import open3d as o3d
 import logging, coloredlogs
 from string import digits
 
@@ -15,7 +15,7 @@ class InOut:
         self.transformationFile = transformationFile
 
     def loadPointCloud(self, pointCloud):
-        pc = io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
+        pc = o3d.io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
         # print("Point cloud loaded with ", pc, " points")
         return pc
 
@@ -26,3 +26,9 @@ class InOut:
         noFormatPath = noGraspNumberPath.replace('.pcd','')
         newgraspPointCloudPath = noFormatPath + graspNumber_str + '.pcd'
         return newgraspPointCloudPath
+    
+    def writeValues(QTpoints):
+        f = open('Quality_Values.txt', 'w')
+        f.write("Quality measure based on points: ", QTpoints)
+        f.close()
+        print("Value written")

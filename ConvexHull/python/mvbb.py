@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from open3d import *
+# from open3d import *
+import open3d as o3d
 import numpy as np
 from numpy.linalg import inv
 import logging, coloredlogs
@@ -39,7 +40,7 @@ class Quality:
 
 
     def computeNormals(self, pointCloud, centerPoint):
-        pointCloud.estimate_normals(search_param=geometry.KDTreeSearchParamHybrid(radius=0.1, max_nn=30))
+        pointCloud.estimate_normals(search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=0.1, max_nn=30))
         # geometry.orient_normals_to_align_with_direction(pointCloud, orientation_reference=array([cm[0], cm[1], cm[2]]))
         return pointCloud
         
@@ -59,22 +60,22 @@ class Quality:
     def getHandPCTransformation(self, graspPointCloud, transformation):
         normaPC = graspPointCloud
         Tinv = np.linalg.inv(transformation)
-        transformedGraspPointCloud = geometry.Geometry3D.transform(graspPointCloud, Tinv)
-        bbox = geometry.OrientedBoundingBox.get_oriented_bounding_box(transformedGraspPointCloud)
+        transformedGraspPointCloud = o3d.geometry.Geometry3D.transform(graspPointCloud, Tinv)
+        bbox = o3d.geometry.OrientedBoundingBox.get_oriented_bounding_box(transformedGraspPointCloud)
         return transformedGraspPointCloud, bbox
 
 
     def computeQTpoints(self, transformedGraspPointCloud, objectPointCloud, bbox, line):
-        maxBound = geometry.PointCloud.get_max_bound(transformedGraspPointCloud)
-        minBound = geometry.PointCloud.get_min_bound(transformedGraspPointCloud)
+        maxBound = o3d.geometry.PointCloud.get_max_bound(transformedGraspPointCloud)
+        minBound = o3d.geometry.PointCloud.get_min_bound(transformedGraspPointCloud)
         hull, _ = transformedGraspPointCloud.compute_convex_hull()
-        convex_hull = geometry.LineSet.create_from_triangle_mesh(hull)
-        objectCroppedPointCloud = geometry.PointCloud.crop(objectPointCloud, bbox)
+        convex_hull = o3d.geometry.LineSet.create_from_triangle_mesh(hull)
+        objectCroppedPointCloud = o3d.geometry.PointCloud.crop(objectPointCloud, bbox)
         partialInPoints = len(np.asarray(objectCroppedPointCloud.points))
         totalPoints = len(np.asarray(objectPointCloud.points))
         QTpoints = (totalPoints - partialInPoints) / totalPoints
         logger.info("QMTpoints for grasp %d is %.4f" % (line, QTpoints))
-        return convex_hull, objectCroppedPointCloud
+        return convex_hull, objectCroppedPointCloud, QTpoints
 
 
     def visualizeGraspVTK(self, objectPointCloud, graspPointCloud, partialObjectPointCloud, line):
@@ -117,7 +118,7 @@ class Quality:
         transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
         objectPointCloud.paint_uniform_color([0, 1, 0])
         objectCroppedPointCloud.paint_uniform_color([0, 0, 1])
-        visualization.draw_geometries([transformedGraspPointCloud, 
+        o3d.visualization.draw_geometries([transformedGraspPointCloud, 
                                        objectPointCloud, 
                                        objectCroppedPointCloud, 
                                        bbox], 

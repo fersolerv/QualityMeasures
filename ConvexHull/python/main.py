@@ -22,7 +22,7 @@ if __name__ == "__main__":
     transformationFile = args['transformationFilePath']
     qty = Quality(graspPointCloudPath, objectPointCloudPath, transformationFile)
     
-    # Main Pipeline
+    # MAIN PIPELINE
     graspPointCloud = inout.loadPointCloud(graspPointCloudPath)
     objectPointCloud = inout.loadPointCloud(objectPointCloudPath)
     filteredObjectPointCloud = qty.filterPointCloud(objectPointCloud)
@@ -31,9 +31,10 @@ if __name__ == "__main__":
     line = qty.extractGraspNumber(graspPointCloudPath)
     transformation = qty.returnTransformation(transformationFile, line)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
-    [graspConvexHull, objectCroppedPointCloud] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
+    [graspConvexHull, objectCroppedPointCloud, QTpoints] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, line)
     # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
     # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, graspConvexHull)
+    inout.writeValues(QTpoints)
 
     line_str = str(line)
     logger.info("Time to compute qualities for grasp " + line_str + " took: --- %s seconds ---" % (time.time() - start_time))

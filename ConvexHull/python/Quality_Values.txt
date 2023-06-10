@@ -1,0 +1,1 @@
+Quality based on number of points is: 0.5648195221148958

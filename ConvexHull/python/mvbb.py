@@ -73,7 +73,7 @@ class Quality:
         totalPoints = len(np.asarray(objectPointCloud.points))
         QTpoints = (totalPoints - partialInPoints) / totalPoints
         logger.info("QMTpoints for grasp %d is %.4f" % (line, QTpoints))
-        return graspConvexHull, objectCroppedPointCloud
+        return graspConvexHull, objectCroppedPointCloud, QTpoints
 
     def visualizeGraspVTK(self, objectPointCloud, graspPointCloud, partialObjectPointCloud, line):
         line_str = str(line)  

@@ -13,3 +13,10 @@ class InOut:
         pc = o3d.io.read_point_cloud(pointCloud, format='auto', remove_nan_points=True, remove_infinite_points=True, print_progress=True)
         # print("Point cloud loaded with ", pc, " points")
         return pc
+    
+    def writeValues(QTpoints):
+        f = open('Quality_Values.txt', 'w')
+        QTpoints_str = str(QTpoints)
+        f.write("Quality based on number of points is: ")
+        f.write(QTpoints_str)
+        f.close()

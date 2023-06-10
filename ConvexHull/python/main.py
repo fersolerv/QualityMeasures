@@ -55,7 +55,7 @@ def main():
     # index = random.randint(1,30)
     # computeQualities(index)
 
-    # Loop for the main pipeline
+    # For Loop for the main pipeline
     # for_loop_time = time.time()
     # for index in range(1,31):
     #     computeQualities(index)

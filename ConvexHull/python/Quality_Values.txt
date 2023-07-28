@@ -1,1 +1,1 @@
-Quality based on number of points is: 0.5648195221148958
+Transfer Grasp Quality based on number of points for grasp 2 is: 0.66

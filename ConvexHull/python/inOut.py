@@ -14,9 +14,9 @@ class InOut:
         # print("Point cloud loaded with ", pc, " points")
         return pc
     
-    def writeValues(QTpoints):
+    def writeQualityValues(QTpoints, graspNumber):
         f = open('Quality_Values.txt', 'w')
-        QTpoints_str = str(QTpoints)
-        f.write("Quality based on number of points is: ")
-        f.write(QTpoints_str)
+        QTpoints_str = str(float("{:.2f}".format(QTpoints)))
+        grasp_str = str(graspNumber)
+        f.write("Transfer Grasp Quality based on number of points for grasp " + grasp_str + " is: " + QTpoints_str + "\n")
         f.close()

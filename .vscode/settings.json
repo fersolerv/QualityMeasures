@@ -13,5 +13,7 @@
         "variant": "cpp",
         "*.inc": "cpp",
         "*.txx": "cpp",
+        "numericaldiff": "cpp",
+        "random": "cpp"
     }
 }

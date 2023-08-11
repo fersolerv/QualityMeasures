@@ -5,6 +5,8 @@ import numpy as np
 from numpy.linalg import inv
 import logging, coloredlogs
 import pyvista as pv
+from string import digits
+from inOut import InOut as inout
 
 LOG_LEVEL = logging.DEBUG
 logger = logging.getLogger('Quality Measures')
@@ -58,7 +60,7 @@ class Quality:
 
 
     def getHandPCTransformation(self, graspPointCloud, transformation):
-        normaPC = graspPointCloud
+        # normaPC = graspPointCloud
         Tinv = np.linalg.inv(transformation)
         transformedGraspPointCloud = o3d.geometry.Geometry3D.transform(graspPointCloud, Tinv)
         bbox = o3d.geometry.OrientedBoundingBox.get_oriented_bounding_box(transformedGraspPointCloud)
@@ -66,8 +68,8 @@ class Quality:
 
 
     def computeQTpoints(self, transformedGraspPointCloud, objectPointCloud, bbox, line):
-        maxBound = o3d.geometry.PointCloud.get_max_bound(transformedGraspPointCloud)
-        minBound = o3d.geometry.PointCloud.get_min_bound(transformedGraspPointCloud)
+        # maxBound = o3d.geometry.PointCloud.get_max_bound(transformedGraspPointCloud)
+        # minBound = o3d.geometry.PointCloud.get_min_bound(transformedGraspPointCloud)
         hull, _ = transformedGraspPointCloud.compute_convex_hull()
         convex_hull = o3d.geometry.LineSet.create_from_triangle_mesh(hull)
         objectCroppedPointCloud = o3d.geometry.PointCloud.crop(objectPointCloud, bbox)
@@ -99,8 +101,7 @@ class Quality:
                              border_width=10.0,
                              point_smoothing=True, 
                              border=True, 
-                             border_color='white'
-                            )
+                             border_color='white')
         # plotter.add_mesh(objectMesh, color='green')
         # plotter.add_mesh(graspMesh, color='red')
         # plotter.add_mesh(partialMesh, color='blue')
@@ -123,3 +124,21 @@ class Quality:
                                        objectCroppedPointCloud, 
                                        bbox], 
                                        point_show_normal=False)
+    
+    def visualizeBestQualityGraspO3D(self, bestQualityGraspNumber, graspPointCloudPath, transformedGraspPointCloud, filteredObjectPointCloud, transformationFile):
+        # DATA ARRANGEMENT
+        graspNumber_str = str(bestQualityGraspNumber)
+        remove_digits = str.maketrans('', '', digits)
+        noGraspNumberPath = graspPointCloudPath.translate(remove_digits)
+        noFormatPath = noGraspNumberPath.replace('.pcd','')
+        newgraspPointCloudPath = noFormatPath + graspNumber_str + '.pcd'
+        
+        graspPointCloud = inout.loadPointCloud(newgraspPointCloudPath)
+        # transformation = Quality.returnTransformation(Quality, transformationFile, bestQualityGraspNumber)
+        # Quality.getHandPCTransformation(Quality, newgraspPointCloudPath, transformation)
+        
+        # VISUALIZATION
+        graspPointCloud.paint_uniform_color([1, 0, 0])
+        filteredObjectPointCloud.paint_uniform_color([0, 1, 0])
+        o3d.visualization.draw_geometries([graspPointCloud, filteredObjectPointCloud])
+        

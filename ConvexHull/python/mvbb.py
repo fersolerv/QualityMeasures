@@ -133,12 +133,13 @@ class Quality:
         noFormatPath = noGraspNumberPath.replace('.pcd','')
         newgraspPointCloudPath = noFormatPath + graspNumber_str + '.pcd'
         
+        # GRASP POINT CLOUD TREATMENT
         graspPointCloud = inout.loadPointCloud(newgraspPointCloudPath)
-        # transformation = Quality.returnTransformation(Quality, transformationFile, bestQualityGraspNumber)
-        # Quality.getHandPCTransformation(Quality, newgraspPointCloudPath, transformation)
+        transformation = Quality.returnTransformation(Quality, transformationFile, bestQualityGraspNumber)
+        [transformedGraspPointCloud, bbox] = Quality.getHandPCTransformation(Quality, graspPointCloud, transformation)
         
         # VISUALIZATION
-        graspPointCloud.paint_uniform_color([1, 0, 0])
+        transformedGraspPointCloud.paint_uniform_color([1, 0, 0])
         filteredObjectPointCloud.paint_uniform_color([0, 1, 0])
-        o3d.visualization.draw_geometries([graspPointCloud, filteredObjectPointCloud])
+        o3d.visualization.draw_geometries([transformedGraspPointCloud, filteredObjectPointCloud, bbox])
         

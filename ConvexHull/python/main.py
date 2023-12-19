@@ -26,7 +26,7 @@ qty = Quality(graspPointCloudPath, objectPointCloudPath, transformationFile)
 data = DataGrasp(graspPointCloudPath)
 
 def computeQualities(index):
-    #Pipeline
+    # MAIN PIPELINE
     newGraspPointCloudPath = inout.changeGraspPointcloud(graspPointCloudPath, index)
     graspNumber = data.getGraspNumber(newGraspPointCloudPath)
     graspPointCloud = inout.loadPointCloud(newGraspPointCloudPath)
@@ -44,7 +44,7 @@ def computeQualities(index):
 
 def main():
 
-    # METHOD 1: SINGLE GRASP 
+    # METHOD 1: RANDOM SINGLE GRASP 
     # index = random.randint(1,30)
     # computeQualities(index)
 

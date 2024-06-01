@@ -34,7 +34,7 @@ if __name__ == "__main__":
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
     [graspConvexHull, objectCroppedPointCloud, QTpoints] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
     # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
-    # qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, graspConvexHull)
+    qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, graspConvexHull)
     inout.writeQualityValues(QTpoints, graspNumber)
 
     line_str = str(graspNumber)

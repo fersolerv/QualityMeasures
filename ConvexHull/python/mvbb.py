@@ -64,8 +64,8 @@ class Quality:
         return transformedGraspPointCloud, bbox
 
     def computeQTpoints(self, transformedGraspPointCloud, objectPointCloud, bbox, line):
-        maxBound = o3d.geometry.PointCloud.get_max_bound(transformedGraspPointCloud)
-        minBound = o3d.geometry.PointCloud.get_min_bound(transformedGraspPointCloud)
+        # maxBound = o3d.geometry.PointCloud.get_max_bound(transformedGraspPointCloud)
+        # minBound = o3d.geometry.PointCloud.get_min_bound(transformedGraspPointCloud)
         hull, _ = transformedGraspPointCloud.compute_convex_hull()
         graspConvexHull = o3d.geometry.LineSet.create_from_triangle_mesh(hull)
         objectCroppedPointCloud = o3d.geometry.PointCloud.crop(objectPointCloud, bbox)
@@ -75,8 +75,8 @@ class Quality:
         logger.info("QMTpoints for grasp %d is %.4f" % (line, QTpoints))
         return graspConvexHull, objectCroppedPointCloud, QTpoints
 
-    def visualizeGraspVTK(self, objectPointCloud, graspPointCloud, partialObjectPointCloud, line):
-        line_str = str(line)  
+    def visualizeGraspVTK(self, objectPointCloud, graspPointCloud, partialObjectPointCloud):
+        # line_str = str(line)  
         objectPTS = np.asarray(objectPointCloud.points)
         object = pv.PolyData(objectPTS)    
         objectMesh = object.delaunay_3d(alpha=0.022)
@@ -96,8 +96,9 @@ class Quality:
         plotter.add_mesh(objectMesh, color='green')
         plotter.add_mesh(graspMesh, color='red')
         plotter.add_mesh(partialMesh, color='blue')
+        # plotter.add_mesh(partialWires, color='black')
         plotter.show_bounds(grid='front', location='outer', all_edges=True)
-        plotter.show(title="GRASP " + line_str, full_screen=False) 
+        # plotter.show(title="GRASP " + line_str, full_screen=False) 
 
     def visualiazeGraspO3D(self, 
                            transformedGraspPointCloud, 
@@ -111,7 +112,7 @@ class Quality:
         o3d.visualization.draw_geometries([transformedGraspPointCloud, 
                                            objectPointCloud, 
                                            objectCroppedPointCloud, 
-                                           bbox],
-                                           #graspConvexHull], 
+                                           bbox,
+                                           graspConvexHull], 
                                            window_name="Grasp Quality",
                                            point_show_normal=False)

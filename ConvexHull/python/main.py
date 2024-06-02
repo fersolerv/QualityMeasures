@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import open3d as o3d
 import argparse, time
 import logging, coloredlogs
 from mvbb import Quality
@@ -33,7 +32,7 @@ if __name__ == "__main__":
     transformation = qty.returnTransformation(transformationFile, graspNumber)
     [transformedGraspPointCloud, bbox] = qty.getHandPCTransformation(graspPointCloud, transformation)
     [graspConvexHull, objectCroppedPointCloud, QTpoints] = qty.computeQTpoints(transformedGraspPointCloud, filteredObjectPointCloud, bbox, graspNumber)
-    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud, line)
+    # qty.visualizeGraspVTK(filteredObjectPointCloud, transformedGraspPointCloud, objectCroppedPointCloud)
     qty.visualiazeGraspO3D(transformedGraspPointCloud, filteredObjectPointCloud, objectCroppedPointCloud, bbox, graspConvexHull)
     inout.writeQualityValues(QTpoints, graspNumber)
 

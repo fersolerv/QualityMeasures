@@ -15,5 +15,6 @@
         "*.txx": "cpp",
         "numericaldiff": "cpp",
         "random": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/Users/fernandosoler/Documents/Robotics/QualityMeasures/ConvexHull"
 }
